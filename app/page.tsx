@@ -2,7 +2,7 @@ import { AboutJourney } from "@/components/about/about-journey";
 import { AchievementGrid } from "@/components/achievements/achievement-grid";
 import { AiProjectsSection } from "@/components/ai-projects/ai-projects-section";
 import { CertificationsSection } from "@/components/certifications/certifications-section";
-import { SectionNav } from "@/components/chrome/section-nav";
+import { Navbar } from "@/components/chrome/navbar";
 import { ContactSection } from "@/components/contact/contact-section";
 import { ExperienceTimeline } from "@/components/experience/experience-timeline";
 import { GallerySection } from "@/components/gallery/gallery-section";
@@ -16,7 +16,7 @@ import { SkillsSection } from "@/components/skills/skills-section";
 export default function Home() {
   return (
     <main className="relative">
-      <SectionNav />
+      <Navbar />
       <Hero />
       <AboutJourney />
       <ExperienceTimeline />

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Download, Linkedin, Mail, MapPin } from "lucide-react";
 import { person, stats } from "@/lib/content/profile";
 import { Button } from "@/components/ui/button";
 import { StatCounter } from "@/components/ui/stat-counter";
@@ -12,24 +12,40 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="section-shell flex min-h-[100svh] flex-col items-center justify-center text-center"
+      className="section-shell relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden text-center"
     >
-      <MonogramAvatar />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.4]"
+        style={{
+          backgroundImage:
+            "radial-gradient(color-mix(in oklab, black 12%, transparent) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: "radial-gradient(ellipse 60% 55% at 50% 40%, black, transparent)",
+          WebkitMaskImage: "radial-gradient(ellipse 60% 55% at 50% 40%, black, transparent)",
+        }}
+      />
 
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.4 }}
-        className="mt-8 text-xs font-semibold uppercase tracking-[0.35em] text-aurora-cyan"
+        transition={{ duration: 0.6, delay: 0.15 }}
+        className="glass-panel mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium text-mist"
       >
-        {person.location}
-      </motion.p>
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-aurora-emerald opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-aurora-emerald" />
+        </span>
+        Open to Customer Experience roles
+      </motion.div>
+
+      <MonogramAvatar />
 
       <motion.h1
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-6xl md:text-7xl"
+        transition={{ duration: 0.8, delay: 0.45 }}
+        className="mt-8 font-display text-4xl font-bold tracking-tight text-ink sm:text-6xl md:text-7xl"
       >
         {person.name}
       </motion.h1>
@@ -37,17 +53,27 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
         className="mt-5"
       >
         <RoleRotator />
       </motion.div>
 
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.85 }}
+        className="mt-3 flex items-center justify-center gap-1.5 text-xs text-mist/80"
+      >
+        <MapPin className="h-3.5 w-3.5" />
+        {person.location}
+      </motion.p>
+
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 1 }}
-        className="mt-10 flex flex-wrap items-center justify-center gap-4"
+        className="mt-9 flex flex-wrap items-center justify-center gap-4"
       >
         <Button href="#experience">
           Explore the Journey
@@ -69,10 +95,13 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 1.2 }}
-        className="glass-panel mt-16 grid w-full max-w-3xl grid-cols-2 gap-6 rounded-3xl px-6 py-8 sm:grid-cols-4"
+        className="glass-panel mt-14 grid w-full max-w-3xl grid-cols-2 divide-y divide-ink/8 rounded-3xl px-6 py-2 sm:grid-cols-4 sm:divide-y-0 sm:divide-x sm:py-0"
       >
         {stats.map((stat) => (
-          <div key={stat.label} className="flex flex-col items-center gap-1">
+          <div
+            key={stat.label}
+            className="flex flex-col items-center justify-center gap-1 px-4 py-6"
+          >
             <span className="font-display text-3xl font-semibold text-ink sm:text-4xl">
               <StatCounter value={stat.value} suffix={stat.suffix} />
             </span>

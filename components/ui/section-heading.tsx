@@ -23,19 +23,19 @@ export function SectionHeading({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: "easeOut" }}
       className={cn(
-        "mb-12 max-w-2xl",
+        "mb-10 max-w-2xl",
         align === "center" && "mx-auto text-center",
         className
       )}
     >
-      <span className="text-xs font-semibold uppercase tracking-[0.3em] text-aurora-cyan">
+      <span className="text-xs font-semibold uppercase tracking-[0.25em] text-aurora-cyan">
         {eyebrow}
       </span>
-      <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl md:text-5xl">
+      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base text-mist sm:text-lg">{description}</p>
+        <p className="mt-3 text-base text-mist sm:text-lg">{description}</p>
       )}
     </motion.div>
   );

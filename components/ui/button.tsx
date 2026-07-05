@@ -37,13 +37,12 @@ export function Button({ className, variant, size, href, external, ...props }: B
   if (href) {
     return (
       <Link
+        {...(props as React.ComponentProps<typeof Link>)}
         href={href}
         className={classes}
         data-cursor-hover
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      >
-        {props.children}
-      </Link>
+      />
     );
   }
 
