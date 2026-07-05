@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import { aiProjects, type AiProject } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { LaptopMockup } from "@/components/ui/device-mockup";
 import { useTilt } from "@/lib/hooks/use-tilt";
 
 function AiProjectCard({ project }: { project: AiProject }) {
@@ -22,14 +22,16 @@ function AiProjectCard({ project }: { project: AiProject }) {
       style={style}
       className="glass-panel group relative flex h-full flex-col overflow-hidden rounded-3xl transition-transform duration-300 ease-out hover:border-ink/20"
     >
-      <div className="relative flex items-center justify-center overflow-hidden border-b border-ink/8 bg-black/20 px-6 pb-4 pt-10">
-        <LaptopMockup
+      <div
+        className="relative w-full overflow-hidden border-b border-ink/8 bg-black/30"
+        style={{ aspectRatio: "2.25" }}
+      >
+        <Image
           src={project.screenshot}
           alt={`${project.name} screenshot`}
-          tilt={{ x: 6, y: -14 }}
-          fit="contain"
-          screenRatio={2.25}
-          className="w-full max-w-[300px] transition-transform duration-500 group-hover:scale-[1.04]"
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
         />
       </div>
 

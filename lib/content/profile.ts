@@ -316,6 +316,9 @@ export const tools: { name: string; logo: string }[] = [
   { name: "Microsoft Word", logo: "/images/tools/word.png" },
   { name: "Microsoft Excel", logo: "/images/tools/excel.png" },
   { name: "Microsoft Outlook", logo: "/images/tools/outlook.png" },
+  { name: "Antigravity", logo: "/images/tools/antigravity.png" },
+  { name: "VS Code", logo: "/images/tools/vscode.png" },
+  { name: "Claude", logo: "/images/tools/claude.png" },
 ];
 
 export type Certification = { title: string; url?: string };
