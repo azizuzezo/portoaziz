@@ -11,7 +11,7 @@ export function ExperienceTimeline() {
         description="Scroll through the roles that shaped the way I work — from a Ramayana sales floor to a fintech help desk."
       />
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {experience.map((entry, index) => (
           <ExperienceCard key={entry.id} entry={entry} index={index} />
         ))}

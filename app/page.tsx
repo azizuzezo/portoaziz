@@ -1,5 +1,6 @@
 import { AboutJourney } from "@/components/about/about-journey";
 import { AchievementGrid } from "@/components/achievements/achievement-grid";
+import { AiProjectsSection } from "@/components/ai-projects/ai-projects-section";
 import { CertificationsSection } from "@/components/certifications/certifications-section";
 import { SectionNav } from "@/components/chrome/section-nav";
 import { ContactSection } from "@/components/contact/contact-section";
@@ -25,6 +26,7 @@ export default function Home() {
       <PhotographySection />
       <GallerySection />
       <ShortMovieSection />
+      <AiProjectsSection />
       <RecommendationsSection />
       <CertificationsSection />
       <ContactSection />

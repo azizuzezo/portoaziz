@@ -14,6 +14,7 @@ const sections = [
   { id: "photography", label: "Photography" },
   { id: "gallery", label: "Gallery" },
   { id: "short-movie", label: "Short Movie" },
+  { id: "ai-projects", label: "AI Projects" },
   { id: "recommendations", label: "Recommendations" },
   { id: "credentials", label: "Credentials" },
   { id: "contact", label: "Contact" },
@@ -57,18 +58,18 @@ export function SectionNav() {
         >
           <span
             className={cn(
-              "translate-x-2 whitespace-nowrap rounded-full bg-surface/90 px-3 py-1 text-xs text-mist opacity-0 shadow-lg transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100",
-              active === section.id && "text-white"
+              "translate-x-2 whitespace-nowrap rounded-full bg-surface/95 px-3 py-1 text-xs text-mist opacity-0 shadow-lg transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100",
+              active === section.id && "text-ink"
             )}
           >
             {section.label}
           </span>
           <span
             className={cn(
-              "h-2 w-2 rounded-full border border-white/40 transition-all",
+              "h-2 w-2 rounded-full border border-ink/25 transition-all",
               active === section.id
                 ? "scale-125 bg-aurora-cyan"
-                : "bg-transparent group-hover:bg-white/40"
+                : "bg-transparent group-hover:bg-ink/30"
             )}
           />
         </a>

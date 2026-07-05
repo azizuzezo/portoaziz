@@ -21,7 +21,7 @@ export function AchievementGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-            className="glass-panel group relative overflow-hidden rounded-3xl p-6 transition-colors hover:border-white/25"
+            className="glass-panel group relative overflow-hidden rounded-3xl p-6 transition-colors hover:border-ink/15"
           >
             <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-aurora-violet/20 blur-2xl transition-opacity group-hover:opacity-80" />
             <span className="font-display text-3xl font-bold text-gradient-aurora">
@@ -32,7 +32,7 @@ export function AchievementGrid() {
                 {achievement.statLabel}
               </span>
             )}
-            <h3 className="mt-4 font-display text-lg font-semibold text-white">
+            <h3 className="mt-4 font-display text-lg font-semibold text-ink">
               {achievement.title}
             </h3>
             <p className="mt-2 text-sm text-mist">{achievement.description}</p>

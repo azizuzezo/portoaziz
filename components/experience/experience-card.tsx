@@ -35,6 +35,8 @@ const industryLabel: Record<Industry, string> = {
   venture: "Venture",
 };
 
+const MAX_VISIBLE_IMAGES = 3;
+
 export function ExperienceCard({
   entry,
   index,
@@ -44,87 +46,96 @@ export function ExperienceCard({
 }) {
   const [open, setOpen] = useState(false);
   const Icon = industryIcon[entry.industry];
+  const extraImages = (entry.images?.length ?? 0) - MAX_VISIBLE_IMAGES;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay: (index % 4) * 0.08 }}
+      transition={{ duration: 0.5, delay: (index % 4) * 0.06 }}
       className={cn(
-        "glass-panel relative rounded-3xl p-6 transition-colors hover:border-white/25 sm:p-8",
-        entry.milestone && "border-aurora-gold/40 shadow-[0_0_60px_-15px_var(--color-aurora-gold)]"
+        "glass-panel relative rounded-2xl p-5 transition-colors hover:border-ink/15 sm:p-6",
+        entry.milestone && "border-aurora-gold/35"
       )}
     >
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div className="flex items-start gap-4">
-          <div className="glass-panel-strong flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-aurora-cyan">
-            <Icon className="h-5 w-5" />
-          </div>
-          <div>
-            <h3 className="font-display text-lg font-semibold text-white sm:text-xl">
-              {entry.role}
-            </h3>
-            <p className="text-sm text-mist">{entry.company}</p>
-          </div>
+      <div className="flex flex-wrap items-start gap-4">
+        <div className="glass-panel-strong flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-aurora-cyan">
+          <Icon className="h-5 w-5" />
         </div>
-        <div className="flex flex-col items-end gap-2 text-right">
-          <Badge>{industryLabel[entry.industry]}</Badge>
-          <span className="text-xs text-mist">{entry.period}</span>
-          <span className="text-xs text-mist/70">{entry.duration}</span>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 className="font-display text-base font-semibold text-ink sm:text-lg">
+              {entry.role}
+              <span className="font-normal text-mist"> · {entry.company}</span>
+            </h3>
+            <span className="whitespace-nowrap text-xs text-mist">
+              {entry.period}
+              <span className="text-mist/60"> · {entry.duration}</span>
+            </span>
+          </div>
+
+          <p className="mt-1.5 text-sm text-fog">{entry.summary}</p>
+
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <Badge className="py-0.5 text-[11px]">{industryLabel[entry.industry]}</Badge>
+            {entry.milestone && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-aurora-gold/30 bg-aurora-gold/5 px-2.5 py-0.5 text-[11px] text-aurora-gold">
+                <Award className="h-3 w-3" />
+                {entry.milestone}
+              </span>
+            )}
+          </div>
+
+          {entry.images && entry.images.length > 0 && (
+            <div className="mt-3 flex items-center gap-2">
+              {entry.images.slice(0, MAX_VISIBLE_IMAGES).map((src) => (
+                <div
+                  key={src}
+                  className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg border border-ink/10"
+                >
+                  <Image
+                    src={src}
+                    alt={`${entry.company} — ${entry.role}`}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+              {extraImages > 0 && (
+                <span className="text-xs text-mist">+{extraImages} more</span>
+              )}
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            data-cursor-hover
+            className="mt-3 flex items-center gap-1.5 text-xs font-medium text-aurora-cyan transition-colors hover:text-ink"
+            aria-expanded={open}
+          >
+            {open ? "Hide details" : "Details"}
+            <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
+          </button>
+
+          <motion.ul
+            initial={false}
+            animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            {entry.bullets.map((bullet) => (
+              <li key={bullet} className="mt-2 flex gap-2 text-sm text-mist">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-cyan" />
+                {bullet}
+              </li>
+            ))}
+          </motion.ul>
         </div>
       </div>
-
-      {entry.images && entry.images.length > 0 && (
-        <div className="mt-5 flex gap-3 overflow-x-auto pb-1">
-          {entry.images.map((src) => (
-            <div
-              key={src}
-              className="relative h-28 w-40 shrink-0 overflow-hidden rounded-xl border border-white/10"
-            >
-              <Image
-                src={src}
-                alt={`${entry.company} — ${entry.role}`}
-                fill
-                sizes="160px"
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-
-      {entry.milestone && (
-        <div className="mt-5 flex items-start gap-3 rounded-2xl border border-aurora-gold/30 bg-aurora-gold/10 p-4">
-          <Award className="mt-0.5 h-5 w-5 shrink-0 text-aurora-gold" />
-          <p className="text-sm text-fog">{entry.milestone}</p>
-        </div>
-      )}
-
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        data-cursor-hover
-        className="mt-5 flex items-center gap-2 text-sm font-medium text-aurora-cyan transition-colors hover:text-white"
-        aria-expanded={open}
-      >
-        {open ? "Hide responsibilities" : "Show responsibilities"}
-        <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
-      </button>
-
-      <motion.ul
-        initial={false}
-        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="mt-3 space-y-2 overflow-hidden"
-      >
-        {entry.bullets.map((bullet) => (
-          <li key={bullet} className="flex gap-2 text-sm text-mist">
-            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-cyan" />
-            {bullet}
-          </li>
-        ))}
-      </motion.ul>
     </motion.div>
   );
 }

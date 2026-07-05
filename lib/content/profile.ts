@@ -66,6 +66,8 @@ export type ExperienceEntry = {
   duration: string;
   location: string;
   industry: Industry;
+  /** One-line summary, always visible without expanding. */
+  summary: string;
   bullets: string[];
   milestone?: string;
   /** Optional photo gallery, e.g. ["/images/experience/skor/team-1.jpg"] */
@@ -82,12 +84,11 @@ export const experience: ExperienceEntry[] = [
     duration: "4 bulan",
     location: "North Jakarta, Indonesia",
     industry: "retail",
+    summary: "Sold products on the floor and ran live event promotions.",
     bullets: [
-      "Directly offered products to customers and explained product details and payment methods",
-      "Conducted live promotions during special events",
+      "Sold products directly to customers on the floor",
+      "Ran live promotions during special events",
       "Prepared monthly sales reports",
-      "Ensured product availability and maintained store cleanliness",
-      "Maintained good communication and collaborated with colleagues",
     ],
   },
   {
@@ -98,11 +99,11 @@ export const experience: ExperienceEntry[] = [
     duration: "4 bulan",
     location: "Area DKI Jakarta",
     industry: "retail",
+    summary: "Beat sales targets by 100%+ and lifted customer satisfaction by 15%.",
     bullets: [
-      "Provided excellent service to every customer visiting the store",
-      "Achieved and exceeded the monthly sales target by more than 100%",
-      "Conducted daily stock opname to ensure product availability",
-      "Successfully increased customer satisfaction by 15% during tenure",
+      "Exceeded monthly sales target by over 100%",
+      "Ran daily stock checks for availability",
+      "Lifted customer satisfaction by 15%",
     ],
   },
   {
@@ -113,12 +114,11 @@ export const experience: ExperienceEntry[] = [
     duration: "4 bulan",
     location: "Jakarta, Indonesia",
     industry: "administration",
+    summary: "Sold palm sugar to retailers and repped the company at trade expos.",
     bullets: [
-      "Promoted and offered palm sugar products to coffee shops, retail stores, and individual customers",
-      "Developed and planned sales strategies",
-      "Distributed products to clients, including an international client sourcing aren (palm) sugar",
-      "Represented the company at the Ministry of Industry trade expo and UMKM bazaar in Surabaya",
-      "Assisted with sales bookkeeping and administrative tasks in the office",
+      "Sold palm sugar to shops, cafes, and retailers",
+      "Landed an international client for the product",
+      "Represented the company at a Ministry of Industry expo",
     ],
     images: [
       "/images/experience/orgaren/indian-client.jpg",
@@ -133,11 +133,11 @@ export const experience: ExperienceEntry[] = [
     duration: "4 bulan",
     location: "Jakarta, Indonesia",
     industry: "administration",
+    summary: "Ran daily bookkeeping and payroll for the venue.",
     bullets: [
-      "Handled office bookkeeping and financial record-keeping",
-      "Recorded daily income recapitulation",
-      "Processed employee salary payments weekly",
-      "Monitored cash flow across incoming and outgoing transactions",
+      "Handled daily bookkeeping and income recaps",
+      "Processed weekly staff payroll",
+      "Tracked incoming and outgoing cash flow",
     ],
   },
   {
@@ -148,11 +148,11 @@ export const experience: ExperienceEntry[] = [
     duration: "5 bulan",
     location: "Area DKI Jakarta",
     industry: "transportation",
+    summary: "Bridged customer reports to the right teams across the network.",
     bullets: [
-      "Acted as a bridge between customer reports and relevant teams",
-      "Facilitated and forwarded customer reports to the appropriate teams or units",
-      "Monitored passenger flow across all Commuter Line stations",
-      "Handled customer complaints and inquiries on social media (Twitter)",
+      "Routed customer reports to the right team",
+      "Monitored passenger flow at every station",
+      "Handled complaints on social media (Twitter)",
     ],
   },
   {
@@ -163,12 +163,11 @@ export const experience: ExperienceEntry[] = [
     duration: "3 tahun 2 bulan",
     location: "Area DKI Jakarta",
     industry: "transportation",
+    summary: "Announced train updates and kept the passenger-info system running, 3+ years.",
     bullets: [
-      "Announced arrival, departure, and schedule updates for Commuter Line services",
-      "Ensured all passengers received accurate and timely information",
-      "Operated the Application Tracking Announcer (ATA) as a reference for train movements",
-      "Ensured the ATA system functioned properly as the primary reference for passenger information displays and the C-Access app",
-      "Assisted passengers directly at stations, including handling lost-and-found cases",
+      "Announced arrivals, departures, and schedule changes",
+      "Operated the train-tracking system (ATA)",
+      "Helped passengers directly, including lost & found",
     ],
     images: [
       "/images/experience/kci-announcer/studio-booth.jpg",
@@ -183,17 +182,14 @@ export const experience: ExperienceEntry[] = [
     duration: "2 tahun 5 bulan",
     location: "Area DKI Jakarta",
     industry: "transportation",
+    summary: "Delivered onboard service and safety on the KRL — including a presidential assignment.",
     bullets: [
-      "Delivered high-quality passenger service and supported railway safety on the Commuter Line (KRL)",
-      "Conducted routine checks on stop blocks, air conditioning, lights, and extra microphones",
-      "Made onboard announcements covering station names, greetings, service policy, and safety reminders",
-      "Operated commuter line doors, ensuring safe boarding and alighting at every station",
-      "Coordinated actively with the train driver (masinis) to maintain smooth operations",
-      "Read and interpreted train schedules and understood railway signals and regulations",
-      "Served on the Creative Team of Customer Service On Train (CSOT), developing and managing CSOT's social media, graphic design, and short-film projects",
+      "Ran onboard safety checks and announcements",
+      "Coordinated with the train driver every trip",
+      "Led the CSOT Creative Team's social & design output",
     ],
     milestone:
-      "27 December 2022 — Entrusted as the Onboard Service Officer for President Joko Widodo (7th President of Indonesia) and Minister of Transportation Budi Karya Sumadi during the Manggarai Station inauguration, on the Tanah Abang → Manggarai route.",
+      "27 Dec 2022 — Onboard Service Officer for President Joko Widodo & Minister Budi Karya Sumadi, Manggarai Station inauguration.",
     images: [
       "/images/experience/kawisata/presidential-service.jpg",
       "/images/experience/kawisata/platform-group.jpg",
@@ -211,13 +207,11 @@ export const experience: ExperienceEntry[] = [
     duration: "11 bulan",
     location: "Jakarta Raya, Indonesia",
     industry: "hospitality",
+    summary: "Greeted residents and guests, and helped roll out a smoother ops system.",
     bullets: [
-      "Provided warm greetings to residents and guests, offering assistance and sharing information about amenities and policies",
-      "Delivered announcements and safety reminders",
-      "Assisted residents and guests with inquiries and access",
-      "Coordinated with units lacking direct contact",
-      "Handled complaints and provided solutions",
-      "Played a key role in implementing changes to the property's operating system, improving efficiency",
+      "Greeted and assisted residents & guests daily",
+      "Handled complaints and resolved issues",
+      "Helped roll out a new building operations system",
     ],
     images: [
       "/images/experience/angkasa-pura/reception.jpg",
@@ -232,18 +226,14 @@ export const experience: ExperienceEntry[] = [
     duration: "7 bulan",
     location: "Jakarta Raya, Indonesia",
     industry: "fintech",
+    summary: "Resolves card cases and built internal tools that cut manual work in half.",
     bullets: [
-      "Handle customer complaints related to card issues in a professional and timely manner",
-      "Provide accurate, clear, and comprehensive information regarding products and services",
-      "Act as an effective liaison between the bank and Skorcard to ensure smooth issue resolution",
-      "Maintain a high level of customer satisfaction through excellent service and support",
-      "Document and track customer interactions, issues, and resolutions in internal systems",
-      "Escalate complex cases to the appropriate teams while ensuring proper follow-up",
-      "Comply with company policies, procedures, and service level agreements (SLAs)",
-      "Collaborate with internal teams to improve service quality and customer experience",
+      "Resolves card-related complaints for customers",
+      "Liaises between the bank and Skorcard on cases",
+      "Built the internal CS Tools Portal (see AI Projects)",
     ],
     milestone:
-      "Within 6 months of joining, built internal tooling for the CS team that eliminated 50% of the manual work needed to handle each customer case.",
+      "Built internal CS tooling within 6 months that cut manual case-handling work by 50%.",
     images: [
       "/images/experience/skor/team-lunch.jpg",
       "/images/experience/skor/birthday-celebration.jpg",
@@ -258,14 +248,11 @@ export const experience: ExperienceEntry[] = [
     duration: "2 bulan",
     location: "Indonesia",
     industry: "venture",
+    summary: "Built a digital wedding invitation & photobooth business from the ground up.",
     bullets: [
-      "Founded and manage Duacincin.id, a digital wedding invitation service",
-      "Assist couples with wedding planning and event preparation",
-      "Offer digital photobooth solutions for weddings and special events",
-      "Handle customer consultations and support",
-      "Manage business operations, project coordination, and client communications",
-      "Promote services through social media and digital marketing",
-      "Develop new features and services to improve customer experience",
+      "Founded a digital wedding invitation platform",
+      "Added digital photobooth offerings for events",
+      "Runs ops, marketing, and client support solo",
     ],
   },
 ];
@@ -659,5 +646,51 @@ export const recommendations: Recommendation[] = [
     quote:
       "During his time at PT KAI Wisata, Abdul Aziz Setiawan consistently demonstrated exceptional skills in customer service and operational management. His dedication to providing top-notch service and his ability to handle complex situations with ease made him an invaluable asset to the team.",
     photo: "/images/recommendations/abdul-azis.jpg",
+  },
+];
+
+export type AiProject = {
+  name: string;
+  tagline: string;
+  description: string;
+  url: string;
+};
+
+// Software built with AI-assisted ("vibe coding") development.
+export const aiProjects: AiProject[] = [
+  {
+    name: "Skorcard CS Tools Portal",
+    tagline: "Internal CS toolkit — Skor Technologies",
+    description:
+      "An internal portal built for Skor Technologies' Customer Service team, streamlining day-to-day case handling — the tooling referenced in Nabila's recommendation above.",
+    url: "https://sc-cs-portal.skorcard.app",
+  },
+  {
+    name: "FlowWorks",
+    tagline: "Enterprise workflow platform",
+    description:
+      "Takes teams from survey to quotation in one place, with real-time KPI dashboards, role-based access, and automated task workflows.",
+    url: "https://flowworks.ptuip.my.id",
+  },
+  {
+    name: "RuangBaru",
+    tagline: "UMKM team workspace",
+    description:
+      "Unifies projects, tasks, calendar, and notes in one simple space, so small teams can focus on the work instead of the tools.",
+    url: "https://ruangbaru.my.id",
+  },
+  {
+    name: "Muter",
+    tagline: "Casual browser games",
+    description:
+      "A pocketful of quick, joyful browser games — no installs, no accounts. Pick one and you're playing in seconds.",
+    url: "https://muter.my.id",
+  },
+  {
+    name: "Duacincin.id",
+    tagline: "Digital wedding invitations",
+    description:
+      "32 templates with rich animation and layout variety, from rustic to baroque to minimalist — the platform behind the Founder role above.",
+    url: "https://duacincin.id",
   },
 ];

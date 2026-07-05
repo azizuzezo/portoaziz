@@ -33,7 +33,7 @@ export function ContactSection() {
         <span className="text-xs font-semibold uppercase tracking-[0.3em] text-aurora-cyan">
           Let&apos;s talk
         </span>
-        <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
+        <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-semibold text-ink sm:text-4xl md:text-5xl">
           Looking for a customer experience professional who adapts fast?
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base text-mist">

@@ -31,7 +31,7 @@ export function GraphicDesignSection() {
             transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
             className="glass-panel overflow-hidden rounded-3xl"
           >
-            <div className="relative aspect-video w-full bg-black/20">
+            <div className="relative aspect-video w-full bg-slate-100">
               <Image
                 src={item.image}
                 alt={item.title}
@@ -42,7 +42,7 @@ export function GraphicDesignSection() {
             </div>
             <div className="p-6 pt-0">
               <Badge className="mb-3">{item.tag}</Badge>
-              <h3 className="font-display text-lg font-semibold text-white">{item.title}</h3>
+              <h3 className="font-display text-lg font-semibold text-ink">{item.title}</h3>
               <p className="mt-2 text-sm text-mist">{item.description}</p>
             </div>
           </motion.div>
@@ -63,7 +63,7 @@ export function GraphicDesignSection() {
                 <Instagram className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-semibold text-white">
+                <h3 className="font-display text-lg font-semibold text-ink">
                   {socialMediaWork.handle}
                 </h3>
                 <p className="text-xs text-mist">{socialMediaWork.followers} followers</p>
@@ -90,7 +90,7 @@ export function GraphicDesignSection() {
       </motion.div>
 
       <div className="mt-10">
-        <h3 className="font-display text-lg font-semibold text-white">
+        <h3 className="font-display text-lg font-semibold text-ink">
           Social campaign designs
         </h3>
         <p className="mt-1 text-sm text-mist">
@@ -104,7 +104,7 @@ export function GraphicDesignSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: (i % 4) * 0.08 }}
-              className="group relative aspect-square overflow-hidden rounded-2xl border border-white/10"
+              className="group relative aspect-square overflow-hidden rounded-2xl border border-ink/10"
             >
               <Image
                 src={post.image}
@@ -114,7 +114,7 @@ export function GraphicDesignSection() {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <p className="text-xs text-fog">{post.caption}</p>
+                <p className="text-xs text-white">{post.caption}</p>
               </div>
             </motion.div>
           ))}

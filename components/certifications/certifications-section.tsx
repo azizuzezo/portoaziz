@@ -32,7 +32,7 @@ export function CertificationsSection() {
             <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-cyan">
               <ShieldCheck className="h-5 w-5" />
             </div>
-            <h3 className="font-display text-lg font-semibold text-white">Certifications</h3>
+            <h3 className="font-display text-lg font-semibold text-ink">Certifications</h3>
           </div>
           <ul className="space-y-3">
             {certifications.map((cert) => (
@@ -69,12 +69,12 @@ export function CertificationsSection() {
               <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-rose">
                 <GraduationCap className="h-5 w-5" />
               </div>
-              <h3 className="font-display text-lg font-semibold text-white">Education</h3>
+              <h3 className="font-display text-lg font-semibold text-ink">Education</h3>
             </div>
             <p className="text-sm font-medium text-fog">{education.school}</p>
             <p className="mt-1 text-sm text-mist">{education.degree}</p>
             <p className="mt-1 text-xs text-mist/70">{education.period}</p>
-            <ul className="mt-4 space-y-2 border-t border-white/10 pt-4">
+            <ul className="mt-4 space-y-2 border-t border-ink/10 pt-4">
               {education.bullets.map((bullet) => (
                 <li key={bullet} className="flex gap-2 text-xs text-mist">
                   <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-aurora-rose" />
@@ -95,7 +95,7 @@ export function CertificationsSection() {
               <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-emerald">
                 <Languages className="h-5 w-5" />
               </div>
-              <h3 className="font-display text-lg font-semibold text-white">Languages</h3>
+              <h3 className="font-display text-lg font-semibold text-ink">Languages</h3>
             </div>
             <ul className="space-y-2">
               {languages.map((lang) => (
@@ -119,7 +119,7 @@ export function CertificationsSection() {
             <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-violet">
               <Users className="h-5 w-5" />
             </div>
-            <h3 className="font-display text-lg font-semibold text-white">
+            <h3 className="font-display text-lg font-semibold text-ink">
               Organizational Experience
             </h3>
           </div>
@@ -153,7 +153,7 @@ export function CertificationsSection() {
             <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-gold">
               <Wrench className="h-5 w-5" />
             </div>
-            <h3 className="font-display text-lg font-semibold text-white">Tools</h3>
+            <h3 className="font-display text-lg font-semibold text-ink">Tools</h3>
           </div>
           <div className="flex flex-wrap gap-2">
             {tools.map((tool) => (

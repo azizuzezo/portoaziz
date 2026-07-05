@@ -35,7 +35,7 @@ export function PageLoader() {
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
           <motion.div
-            className="flex h-24 w-24 items-center justify-center rounded-full border border-white/15 text-2xl font-display font-semibold text-gradient-aurora"
+            className="flex h-24 w-24 items-center justify-center rounded-full border border-ink/12 text-2xl font-display font-semibold text-gradient-aurora"
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 1.15, opacity: 0 }}

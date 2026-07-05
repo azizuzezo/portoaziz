@@ -21,7 +21,7 @@ export function GallerySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
-            className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-white/10"
+            className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-ink/10"
           >
             <div className="relative w-full">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -33,8 +33,8 @@ export function GallerySection() {
               />
             </div>
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4">
-              <p className="text-sm font-medium text-fog">{item.caption}</p>
-              <p className="mt-0.5 text-xs text-mist">{item.org}</p>
+              <p className="text-sm font-medium text-white">{item.caption}</p>
+              <p className="mt-0.5 text-xs text-white/70">{item.org}</p>
             </div>
           </motion.div>
         ))}

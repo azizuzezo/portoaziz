@@ -27,8 +27,8 @@ export function RecommendationsSection() {
           >
             <Quote className="h-6 w-6 text-aurora-cyan/60" />
             <p className="mt-4 flex-1 text-sm leading-relaxed text-mist">{rec.quote}</p>
-            <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
-              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-white/15">
+            <div className="mt-6 flex items-center gap-3 border-t border-ink/10 pt-5">
+              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-ink/12">
                 <Image src={rec.photo} alt={rec.name} fill sizes="44px" className="object-cover" />
               </div>
               <div>

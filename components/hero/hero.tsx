@@ -29,7 +29,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="mt-4 font-display text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl"
+        className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-6xl md:text-7xl"
       >
         {person.name}
       </motion.h1>
@@ -73,7 +73,7 @@ export function Hero() {
       >
         {stats.map((stat) => (
           <div key={stat.label} className="flex flex-col items-center gap-1">
-            <span className="font-display text-3xl font-semibold text-white sm:text-4xl">
+            <span className="font-display text-3xl font-semibold text-ink sm:text-4xl">
               <StatCounter value={stat.value} suffix={stat.suffix} />
             </span>
             <span className="text-center text-xs text-mist sm:text-sm">{stat.label}</span>

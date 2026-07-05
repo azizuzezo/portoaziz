@@ -48,13 +48,13 @@ export function AboutJourney() {
             >
               <div
                 className={`absolute -left-10 top-6 hidden h-3 w-3 rounded-full bg-gradient-to-br sm:block ${
-                  industryAccent[stage.industry] ?? "from-white/60 to-transparent"
+                  industryAccent[stage.industry] ?? "from-ink/40 to-transparent"
                 }`}
               />
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-aurora-cyan">
                 {stage.years}
               </span>
-              <h3 className="mt-2 font-display text-xl font-semibold text-white">
+              <h3 className="mt-2 font-display text-xl font-semibold text-ink">
                 {stage.industry}
               </h3>
               <p className="mt-2 text-sm text-mist">{stage.description}</p>

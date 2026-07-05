@@ -18,7 +18,7 @@ export function ShortMovieSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
-          className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-2xl border border-white/10"
+          className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-2xl border border-ink/10"
         >
           <Image
             src={shortMovie.poster}

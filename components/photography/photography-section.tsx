@@ -23,7 +23,7 @@ export function PhotographySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
-            className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10"
+            className="group relative aspect-[4/3] overflow-hidden rounded-3xl border border-ink/10"
           >
             <Image
               src={photo.image}
@@ -33,7 +33,7 @@ export function PhotographySection() {
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-              <p className="text-sm text-fog">{photo.caption}</p>
+              <p className="text-sm text-white">{photo.caption}</p>
             </div>
           </motion.div>
         ))}
