@@ -60,7 +60,14 @@ export function ExperienceCard({
       )}
     >
       <div className="flex flex-wrap items-start gap-4">
-        <div className="glass-panel-strong relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl text-aurora-cyan">
+        <div
+          className={cn(
+            "relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl",
+            entry.logo
+              ? "border border-ink/10 bg-white shadow-md"
+              : "glass-panel-strong text-aurora-cyan"
+          )}
+        >
           {entry.logo ? (
             <Image
               src={entry.logo}

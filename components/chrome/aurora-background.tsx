@@ -2,7 +2,7 @@
 
 export function AuroraBackground() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-void" aria-hidden>
+    <div className="pointer-events-none fixed inset-0 -z-20 overflow-hidden bg-void" aria-hidden>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(45,212,191,0.14),_transparent_60%)]" />
       <div className="animate-float-slow absolute -left-40 top-[-10%] h-[36rem] w-[36rem] rounded-full bg-aurora-cyan/[0.14] blur-[120px]" />
       <div className="animate-float absolute right-[-15%] top-[20%] h-[30rem] w-[30rem] rounded-full bg-aurora-violet/[0.1] blur-[130px]" />

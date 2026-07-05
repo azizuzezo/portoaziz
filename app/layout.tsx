@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { person } from "@/lib/content/profile";
 import { AuroraBackground } from "@/components/chrome/aurora-background";
+import { PhotoBackdrop } from "@/components/chrome/photo-backdrop";
 import { CursorFollower } from "@/components/chrome/cursor-follower";
 import { PageLoader } from "@/components/chrome/page-loader";
 import { ServiceWorkerRegistrar } from "@/components/chrome/service-worker-registrar";
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <PageLoader />
         <AuroraBackground />
+        <PhotoBackdrop />
         <CursorFollower />
         <ServiceWorkerRegistrar />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>

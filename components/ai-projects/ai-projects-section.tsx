@@ -27,7 +27,9 @@ function AiProjectCard({ project }: { project: AiProject }) {
           src={project.screenshot}
           alt={`${project.name} screenshot`}
           tilt={{ x: 6, y: -14 }}
-          className="w-full max-w-[280px] transition-transform duration-500 group-hover:scale-[1.04]"
+          fit="contain"
+          screenRatio={2.25}
+          className="w-full max-w-[300px] transition-transform duration-500 group-hover:scale-[1.04]"
         />
       </div>
 

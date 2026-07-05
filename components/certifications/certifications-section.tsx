@@ -66,7 +66,7 @@ export function CertificationsSection() {
             className="glass-panel rounded-3xl p-6"
           >
             <div className="mb-4 flex items-center gap-3">
-              <div className="glass-panel-strong relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl">
+              <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-ink/10 bg-white shadow-md">
                 <Image
                   src={education.logo}
                   alt={education.school}

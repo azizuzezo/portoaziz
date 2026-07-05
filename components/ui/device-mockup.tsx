@@ -8,9 +8,20 @@ type MockupProps = {
   alt: string;
   className?: string;
   tilt?: { x: number; y: number; z?: number };
+  /** How the screenshot fills the screen: crop to fill (cover) or show the whole image (contain). */
+  fit?: "cover" | "contain";
+  /** Screen aspect ratio, width/height. Defaults to a 16:10 laptop panel. */
+  screenRatio?: number;
 };
 
-export function LaptopMockup({ src, alt, className, tilt = { x: 8, y: -20 } }: MockupProps) {
+export function LaptopMockup({
+  src,
+  alt,
+  className,
+  tilt = { x: 8, y: -20 },
+  fit = "cover",
+  screenRatio = 16 / 10,
+}: MockupProps) {
   return (
     <div className={cn("relative", className)} style={{ perspective: "1600px" }}>
       <div
@@ -22,8 +33,17 @@ export function LaptopMockup({ src, alt, className, tilt = { x: 8, y: -20 } }: M
       >
         <div className="relative rounded-[14px] border-[10px] border-neutral-800 bg-neutral-900 shadow-2xl">
           <div className="absolute left-1/2 top-0 h-1 w-1 -translate-x-1/2 rounded-full bg-neutral-600" />
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[3px] bg-black">
-            <Image src={src} alt={alt} fill sizes="640px" className="object-cover object-top" />
+          <div
+            className="relative w-full overflow-hidden rounded-[3px] bg-black"
+            style={{ aspectRatio: `${screenRatio}` }}
+          >
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes="640px"
+              className={fit === "contain" ? "object-contain" : "object-cover object-top"}
+            />
           </div>
         </div>
         <div
