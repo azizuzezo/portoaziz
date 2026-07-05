@@ -10,6 +10,11 @@ const sections = [
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "achievements", label: "Achievements" },
+  { id: "graphic-design", label: "Design" },
+  { id: "photography", label: "Photography" },
+  { id: "gallery", label: "Gallery" },
+  { id: "short-movie", label: "Short Movie" },
+  { id: "recommendations", label: "Recommendations" },
   { id: "credentials", label: "Credentials" },
   { id: "contact", label: "Contact" },
 ];

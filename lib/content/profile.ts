@@ -6,7 +6,7 @@ export const person = {
   initials: "AA",
   headline:
     "Customer Service Agent as Supported Team | Good in Communication, Administration and Time Management",
-  location: "Jakarta Raya, Indonesia",
+  location: "Kota Bogor, Jawa Barat, Indonesia",
   email: "work.aziz@outlook.com",
   linkedin: "https://www.linkedin.com/in/abdazizs",
   cvUrl: "/Profile.pdf",
@@ -116,8 +116,13 @@ export const experience: ExperienceEntry[] = [
     bullets: [
       "Promoted and offered palm sugar products to coffee shops, retail stores, and individual customers",
       "Developed and planned sales strategies",
-      "Distributed products to clients",
+      "Distributed products to clients, including an international client sourcing aren (palm) sugar",
+      "Represented the company at the Ministry of Industry trade expo and UMKM bazaar in Surabaya",
       "Assisted with sales bookkeeping and administrative tasks in the office",
+    ],
+    images: [
+      "/images/experience/orgaren/indian-client.jpg",
+      "/images/experience/orgaren/trade-expo.jpg",
     ],
   },
   {
@@ -163,8 +168,12 @@ export const experience: ExperienceEntry[] = [
       "Ensured all passengers received accurate and timely information",
       "Operated the Application Tracking Announcer (ATA) as a reference for train movements",
       "Ensured the ATA system functioned properly as the primary reference for passenger information displays and the C-Access app",
+      "Assisted passengers directly at stations, including handling lost-and-found cases",
     ],
-    images: ["/images/experience/kci-announcer/studio-booth.jpg"],
+    images: [
+      "/images/experience/kci-announcer/studio-booth.jpg",
+      "/images/experience/kci-announcer/lost-and-found.jpg",
+    ],
   },
   {
     id: "kawisata",
@@ -181,12 +190,17 @@ export const experience: ExperienceEntry[] = [
       "Operated commuter line doors, ensuring safe boarding and alighting at every station",
       "Coordinated actively with the train driver (masinis) to maintain smooth operations",
       "Read and interpreted train schedules and understood railway signals and regulations",
+      "Served on the Creative Team of Customer Service On Train (CSOT), developing and managing CSOT's social media, graphic design, and short-film projects",
     ],
     milestone:
-      "December 2022 — Entrusted as the Onboard Service Officer for President Joko Widodo (7th President of Indonesia) and Minister of Transportation Budi Karya Sumadi during the Manggarai Station inauguration.",
+      "27 December 2022 — Entrusted as the Onboard Service Officer for President Joko Widodo (7th President of Indonesia) and Minister of Transportation Budi Karya Sumadi during the Manggarai Station inauguration, on the Tanah Abang → Manggarai route.",
     images: [
       "/images/experience/kawisata/presidential-service.jpg",
       "/images/experience/kawisata/platform-group.jpg",
+      "/images/experience/kawisata/team-photo.jpg",
+      "/images/experience/kawisata/onboard-portrait.jpg",
+      "/images/experience/kawisata/night-briefing.jpg",
+      "/images/experience/kawisata/depot-portrait.jpg",
     ],
   },
   {
@@ -258,9 +272,51 @@ export const experience: ExperienceEntry[] = [
 
 export const education = {
   school: "SMK Negeri 23 Jakarta",
-  degree: "Vocational High School, Manajemen Pemasaran",
-  period: "2015 – 2017",
+  degree: "Vocational High School, Manajemen Pemasaran (Marketing Management)",
+  period: "2015 – 2018",
+  bullets: [
+    "Curriculum covered digital marketing strategies, business communication, market analysis, and brand management — building a strong foundation in marketing studies.",
+    "Served as Vice President of the Intra-School Student Council (OSIS) for one term and initiated an internet-based election system for the next leadership selection.",
+    "Contributed to the School Theater Event as part of the music accompaniment team, well received by the public.",
+  ],
 };
+
+export const organizationalExperience: {
+  role: string;
+  org: string;
+  period: string;
+  bullets: string[];
+}[] = [
+  {
+    role: "Creative Team Coordinator",
+    org: "Creative Team of Customer Service On Train — PT Kereta Api Pariwisata (KAWISATA)",
+    period: "August 2022 – Present",
+    bullets: [
+      "Coordinated content for publication on the Customer Service On Train (CSOT) account.",
+      "Acted as a bridge between the CSOT Creative Team and the Corporate Culture Team of KAI Commuter.",
+    ],
+  },
+  {
+    role: "Wakil Ketua (Vice Chairman)",
+    org: "Intra-School Student Organization (OSIS) — SMK Negeri 23 Jakarta",
+    period: "June 2016 – June 2017",
+    bullets: [
+      "Assisted in coordinating the planning of the 2016 Art Performance event.",
+      "Implemented a digital voting system for the Chairman election, replacing the traditional manual process.",
+      "Helped organize and manage events such as Class Meet, which was successfully executed as planned.",
+    ],
+  },
+];
+
+export const tools: string[] = [
+  "Canva",
+  "Adobe Photoshop",
+  "Adobe Lightroom",
+  "CapCut",
+  "Microsoft Word",
+  "Microsoft Excel",
+  "Microsoft Outlook",
+];
 
 export const certifications: string[] = [
   "Certificate of Competency in Marketing Skills",
@@ -280,6 +336,8 @@ export type SkillCategory =
   | "Communication"
   | "Fintech Support"
   | "Hospitality"
+  | "Creative & Design"
+  | "Leadership & Teamwork"
   | "Digital & AI";
 
 export const skills: { name: string; category: SkillCategory }[] = [
@@ -288,10 +346,19 @@ export const skills: { name: string; category: SkillCategory }[] = [
   { name: "CRM", category: "Customer Experience" },
   { name: "Time Management", category: "Customer Experience" },
   { name: "Multitasking", category: "Customer Experience" },
+  { name: "Customer Relations", category: "Customer Experience" },
+  { name: "Customer Engagement", category: "Customer Experience" },
   { name: "Public Communication", category: "Communication" },
   { name: "Persuasive Communication", category: "Communication" },
   { name: "Public Relations", category: "Communication" },
+  { name: "Public Speaking", category: "Communication" },
+  { name: "Marketing Communication", category: "Communication" },
   { name: "Announcing", category: "Communication" },
+  { name: "Vocal Performance", category: "Communication" },
+  { name: "Leadership", category: "Leadership & Teamwork" },
+  { name: "Team Building", category: "Leadership & Teamwork" },
+  { name: "Team Management", category: "Leadership & Teamwork" },
+  { name: "Teamwork", category: "Leadership & Teamwork" },
   { name: "Fintech Customer Support", category: "Fintech Support" },
   { name: "Ticketing Systems", category: "Fintech Support" },
   { name: "Process Improvement", category: "Fintech Support" },
@@ -299,11 +366,16 @@ export const skills: { name: string; category: SkillCategory }[] = [
   { name: "Hospitality Excellence", category: "Hospitality" },
   { name: "Guest Relations", category: "Hospitality" },
   { name: "Public Service", category: "Hospitality" },
+  { name: "Photography", category: "Creative & Design" },
+  { name: "Photo Editing", category: "Creative & Design" },
+  { name: "Video Editing", category: "Creative & Design" },
+  { name: "Graphic Design", category: "Creative & Design" },
   { name: "AI Prompting", category: "Digital & AI" },
   { name: "Start-up Ventures", category: "Digital & AI" },
   { name: "Digital Operations", category: "Digital & AI" },
   { name: "Social Media Administration", category: "Digital & AI" },
   { name: "Microsoft Office", category: "Digital & AI" },
+  { name: "Basic Computer Literacy", category: "Digital & AI" },
   { name: "Google Workspace", category: "Digital & AI" },
 ];
 
@@ -311,7 +383,7 @@ export const achievements = [
   {
     title: "Presidential Service Honor",
     description:
-      "Entrusted as Onboard Service Officer for the 7th President of Indonesia, Joko Widodo, and Minister of Transportation Budi Karya Sumadi at the Manggarai Station inauguration — December 2022.",
+      "Entrusted as Onboard Service Officer for the 7th President of Indonesia, Joko Widodo, and Minister of Transportation Budi Karya Sumadi during the Manggarai Station inauguration — 27 December 2022, Tanah Abang → Manggarai route.",
     stat: "1 of 1",
   },
   {
@@ -357,3 +429,214 @@ export const stats = [
   { value: 10, suffix: "", label: "Roles Held" },
   { value: 1, suffix: "", label: "Presidential Assignment" },
 ] as const;
+
+// CSOT Creative Team work — content sourced from the Portfolio deck (Portfolio.pdf).
+
+export const socialMediaWork = {
+  handle: "@csot.kaicommuter",
+  url: "https://www.instagram.com/csot.kaicommuter",
+  followers: "5,265+",
+  description:
+    "As part of the CSOT Creative Team, developed and managed the official Customer Service On Train Instagram account — planning content, growing the following, and tracking reach across posts, reels, and stories.",
+  metrics: [
+    { value: "5.041", label: "Followers gained in 2 years" },
+    { value: "115.050", label: "Accounts reached (last 90 days)" },
+  ],
+};
+
+export type GraphicDesignItem = {
+  title: string;
+  description: string;
+  image: string;
+  tag: string;
+};
+
+export const graphicDesignWork: GraphicDesignItem[] = [
+  {
+    title: "Multi-Trip Card (KMT) Design Competition",
+    description:
+      "Designed for the 15th Anniversary of KAI Commuter. The mosaic pattern and #PilihanCerdas messaging position CommuterLine as a pollution-free, ever-adapting choice for urban life.",
+    image: "/images/graphic-design/kmt-card-design.jpg",
+    tag: "Design Competition",
+  },
+  {
+    title: "CSOT Official Logo",
+    description: "Official logo of Customer Service On Train (CSOT), KAI Commuter.",
+    image: "/images/graphic-design/csot-logo.png",
+    tag: "Brand Identity",
+  },
+  {
+    title: "ABSES Jersey Logo",
+    description: "Official jersey logo for the Customer Service On Train sports team.",
+    image: "/images/graphic-design/abses-logo.jpg",
+    tag: "Brand Identity",
+  },
+  {
+    title: "PPK Community Logo",
+    description:
+      "Official logo of Forum Pengguna dan Pecinta KA (PPK) — a community for public transport enthusiasts.",
+    image: "/images/graphic-design/ppk-logo.jpg",
+    tag: "Brand Identity",
+  },
+];
+
+export const socialDesignPosts: { image: string; caption: string }[] = [
+  {
+    image: "/images/design-posts/design-post-01.jpg",
+    caption: "C-Access app launch — \"Satu genggaman, bisa untuk semua\"",
+  },
+  {
+    image: "/images/design-posts/design-post-02.jpg",
+    caption: "KRL Access — real-time schedule and train position tracking",
+  },
+  {
+    image: "/images/design-posts/design-post-03.jpg",
+    caption: "Indonesia Independence Day greeting, 17 Agustus 2024",
+  },
+  {
+    image: "/images/design-posts/design-post-04.jpg",
+    caption: "KAI Commuter's 16th anniversary greeting",
+  },
+  {
+    image: "/images/design-posts/design-post-05.jpg",
+    caption: "CSOT open recruitment announcement",
+  },
+  {
+    image: "/images/design-posts/design-post-06.jpg",
+    caption: "GAPEKA 2023 train schedule change notice",
+  },
+  {
+    image: "/images/design-posts/design-post-07.jpg",
+    caption: "Station cleanliness campaign",
+  },
+  {
+    image: "/images/design-posts/design-post-08.jpg",
+    caption: "\"Maaf\" short film promotional poster",
+  },
+];
+
+export const photographyWork: { image: string; caption: string }[] = [
+  { image: "/images/photography/train-01.jpg", caption: "KRL Commuter Line at the platform" },
+  { image: "/images/photography/train-02.jpg", caption: "KRL Commuter Line on the open line" },
+  { image: "/images/photography/cabin-crew.jpg", caption: "Inside the driver's cabin, on duty" },
+  { image: "/images/photography/officers-lineup.jpg", caption: "CSOT officers lineup" },
+];
+
+export const photographyNote = "Shot on a Canon 1200D with tele and fix lenses.";
+
+export type GalleryItem = { image: string; caption: string; org: string };
+
+export const gallery: GalleryItem[] = [
+  {
+    image: "/images/gallery/photo-01.jpg",
+    caption: "Serving Shin Tae-yong at District 8 Jakarta",
+    org: "Angkasa Pura Supports",
+  },
+  {
+    image: "/images/gallery/photo-02.jpg",
+    caption: "Service desk at District 8 Jakarta",
+    org: "Angkasa Pura Supports",
+  },
+  {
+    image: "/images/gallery/photo-03.jpg",
+    caption: "Recording session with C-Choir",
+    org: "PT Kereta Commuter Indonesia & KAI Wisata",
+  },
+  {
+    image: "/images/gallery/photo-04.jpg",
+    caption: "Recording session with C-Choir",
+    org: "PT Kereta Commuter Indonesia & KAI Wisata",
+  },
+  {
+    image: "/images/gallery/photo-05.jpg",
+    caption: "Train services duty",
+    org: "PT Kereta Commuter Indonesia & KAI Wisata",
+  },
+  {
+    image: "/images/experience/kawisata/team-photo.jpg",
+    caption: "CSOT team photo",
+    org: "PT Kereta Commuter Indonesia & KAI Wisata",
+  },
+  {
+    image: "/images/experience/kawisata/night-briefing.jpg",
+    caption: "Night coordination briefing with station security",
+    org: "PT Kereta Commuter Indonesia & KAI Wisata",
+  },
+  {
+    image: "/images/experience/kawisata/depot-portrait.jpg",
+    caption: "Between trains at the depot",
+    org: "PT Kereta Commuter Indonesia & KAI Wisata",
+  },
+  {
+    image: "/images/gallery/announcer-lost-and-found.jpg",
+    caption: "Assisting a passenger with a lost & found case",
+    org: "PT Kereta Commuter Indonesia — Announcer",
+  },
+  {
+    image: "/images/gallery/orgaren-indian-client.jpg",
+    caption: "Meeting an Indian client to supply aren sugar",
+    org: "PT Orgaren Indonesia Jaya",
+  },
+  {
+    image: "/images/gallery/orgaren-trade-expo.jpg",
+    caption: "Representing the company at a Ministry of Industry trade expo",
+    org: "PT Orgaren Indonesia Jaya",
+  },
+];
+
+export const shortMovie = {
+  title: "Maaf",
+  subtitle: "CSOT Short Movie — by Gilang & Aziz",
+  description:
+    "A short film with a festive atmosphere, depicting the everyday situation of being a Customer Service On Train officer.",
+  poster: "/images/short-movie/maaf-poster.jpg",
+  link: "https://www.instagram.com/tv/CrQiRetJAWB/?igsh=a2Mxc3lxdnh2YnVq",
+  credits: [
+    { role: "Director", name: "Gilang Anggi Pradana" },
+    { role: "Lead Actor", name: "Albi Wagia Yusup" },
+    { role: "Assistant Actor", name: "Bani Adam" },
+    { role: "Supporting Actor", name: "Abdul Aziz Setiawan" },
+    { role: "Editor", name: "Gilang Anggi Pradana" },
+    { role: "Audio", name: "Abdul Aziz Setiawan" },
+  ],
+};
+
+export type Recommendation = {
+  name: string;
+  title: string;
+  relationship: string;
+  date: string;
+  quote: string;
+  photo: string;
+};
+
+// LinkedIn recommendations — abdazizs.
+export const recommendations: Recommendation[] = [
+  {
+    name: "Riyan Riyadi",
+    title: "Training & Service Quality Strategist",
+    relationship: "Senior colleague, did not manage Aziz directly",
+    date: "July 3, 2026",
+    quote:
+      "Aziz has a strong willingness to learn and continuously improve. He quickly adapts to new processes, actively seeks feedback, and is always looking for ways to enhance both his own performance and the team's effectiveness. Beyond his technical capabilities, Aziz is a reliable, proactive, and collaborative team player.",
+    photo: "/images/recommendations/riyan-riyadi.jpg",
+  },
+  {
+    name: "Nabila Sharafina",
+    title: "Customer Service Supervisor | HR Operations | Employee Relations",
+    relationship: "Aziz's mentor at Skor Technologies",
+    date: "July 1, 2026",
+    quote:
+      "Aziz is one of the best Customer Service team members at Skor. Beyond his excellent customer support skills, he has an exceptional aptitude for technology and problem-solving. One of his most impressive contributions was developing an internal portal that significantly simplifies and streamlines the Customer Service team's daily operations.",
+    photo: "/images/recommendations/nabila-sharafina.jpg",
+  },
+  {
+    name: "Abdul Azis",
+    title: "Public Relations | Customer Service | Human Resources",
+    relationship: "Worked together at PT KAI Wisata",
+    date: "December 17, 2024",
+    quote:
+      "During his time at PT KAI Wisata, Abdul Aziz Setiawan consistently demonstrated exceptional skills in customer service and operational management. His dedication to providing top-notch service and his ability to handle complex situations with ease made him an invaluable asset to the team.",
+    photo: "/images/recommendations/abdul-azis.jpg",
+  },
+];

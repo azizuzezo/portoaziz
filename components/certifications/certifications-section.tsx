@@ -1,9 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Languages, ShieldCheck } from "lucide-react";
-import { certifications, education, languages } from "@/lib/content/profile";
+import { GraduationCap, Languages, ShieldCheck, Users, Wrench } from "lucide-react";
+import {
+  certifications,
+  education,
+  languages,
+  organizationalExperience,
+  tools,
+} from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Badge } from "@/components/ui/badge";
 
 export function CertificationsSection() {
   return (
@@ -54,6 +61,14 @@ export function CertificationsSection() {
             <p className="text-sm font-medium text-fog">{education.school}</p>
             <p className="mt-1 text-sm text-mist">{education.degree}</p>
             <p className="mt-1 text-xs text-mist/70">{education.period}</p>
+            <ul className="mt-4 space-y-2 border-t border-white/10 pt-4">
+              {education.bullets.map((bullet) => (
+                <li key={bullet} className="flex gap-2 text-xs text-mist">
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-aurora-rose" />
+                  {bullet}
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
           <motion.div
@@ -79,6 +94,60 @@ export function CertificationsSection() {
             </ul>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="glass-panel rounded-3xl p-6"
+        >
+          <div className="mb-4 flex items-center gap-3">
+            <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-violet">
+              <Users className="h-5 w-5" />
+            </div>
+            <h3 className="font-display text-lg font-semibold text-white">
+              Organizational Experience
+            </h3>
+          </div>
+          <ul className="space-y-5">
+            {organizationalExperience.map((org) => (
+              <li key={org.role}>
+                <p className="text-sm font-medium text-fog">{org.role}</p>
+                <p className="text-xs text-mist">{org.org}</p>
+                <p className="mt-0.5 text-xs text-mist/60">{org.period}</p>
+                <ul className="mt-2 space-y-1.5">
+                  {org.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-2 text-xs text-mist">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-aurora-violet" />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="glass-panel rounded-3xl p-6 lg:col-span-2"
+        >
+          <div className="mb-4 flex items-center gap-3">
+            <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-gold">
+              <Wrench className="h-5 w-5" />
+            </div>
+            <h3 className="font-display text-lg font-semibold text-white">Tools</h3>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {tools.map((tool) => (
+              <Badge key={tool}>{tool}</Badge>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

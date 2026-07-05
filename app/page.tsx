@@ -4,7 +4,12 @@ import { CertificationsSection } from "@/components/certifications/certification
 import { SectionNav } from "@/components/chrome/section-nav";
 import { ContactSection } from "@/components/contact/contact-section";
 import { ExperienceTimeline } from "@/components/experience/experience-timeline";
+import { GallerySection } from "@/components/gallery/gallery-section";
+import { GraphicDesignSection } from "@/components/graphic-design/graphic-design-section";
 import { Hero } from "@/components/hero/hero";
+import { PhotographySection } from "@/components/photography/photography-section";
+import { RecommendationsSection } from "@/components/recommendations/recommendations-section";
+import { ShortMovieSection } from "@/components/short-movie/short-movie-section";
 import { SkillsSection } from "@/components/skills/skills-section";
 
 export default function Home() {
@@ -16,6 +21,11 @@ export default function Home() {
       <ExperienceTimeline />
       <SkillsSection />
       <AchievementGrid />
+      <GraphicDesignSection />
+      <PhotographySection />
+      <GallerySection />
+      <ShortMovieSection />
+      <RecommendationsSection />
       <CertificationsSection />
       <ContactSection />
     </main>
