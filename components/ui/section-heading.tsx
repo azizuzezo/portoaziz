@@ -3,6 +3,16 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -18,24 +28,32 @@ export function SectionHeading({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      variants={container}
       className={cn(
         "mb-10 max-w-2xl",
         align === "center" && "mx-auto text-center",
         className
       )}
     >
-      <span className="text-xs font-semibold uppercase tracking-[0.25em] text-aurora-cyan">
+      <motion.span
+        variants={item}
+        className="inline-block text-xs font-semibold uppercase tracking-[0.25em] text-aurora-cyan"
+      >
         {eyebrow}
-      </span>
-      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
+      </motion.span>
+      <motion.h2
+        variants={item}
+        className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
+      >
         {title}
-      </h2>
+      </motion.h2>
       {description && (
-        <p className="mt-3 text-base text-mist sm:text-lg">{description}</p>
+        <motion.p variants={item} className="mt-3 text-base text-mist sm:text-lg">
+          {description}
+        </motion.p>
       )}
     </motion.div>
   );

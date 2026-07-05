@@ -12,6 +12,7 @@ import {
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { TiltCard } from "@/components/ui/tilt-card";
 import { KmtCard3D } from "@/components/graphic-design/kmt-card-3d";
 
 export function GraphicDesignSection() {
@@ -37,7 +38,7 @@ export function GraphicDesignSection() {
           <p className="mt-2 text-sm text-mist">{kmtCard.description}</p>
           <p className="mt-4 flex items-center gap-1.5 text-xs text-mist/70">
             <RotateCw className="h-3.5 w-3.5" />
-            Drag to spin the card 360° — front and back
+            Click to flip, drag to spin the card 360° — front and back
           </p>
         </div>
       </motion.div>
@@ -46,26 +47,27 @@ export function GraphicDesignSection() {
         {graphicDesignWork.map((item, i) => (
           <motion.div
             key={item.title}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 36, scale: 0.94 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-            className="glass-panel overflow-hidden rounded-3xl"
+            transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: "easeOut" }}
           >
-            <div className="relative aspect-square w-full bg-slate-100">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                sizes="(min-width: 640px) 33vw, 100vw"
-                className="object-contain p-8"
-              />
-            </div>
-            <div className="p-6 pt-0">
-              <Badge className="mb-3">{item.tag}</Badge>
-              <h3 className="font-display text-lg font-semibold text-ink">{item.title}</h3>
-              <p className="mt-2 text-sm text-mist">{item.description}</p>
-            </div>
+            <TiltCard max={7} className="glass-panel overflow-hidden rounded-3xl">
+              <div className="relative aspect-square w-full bg-slate-100">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-contain p-8"
+                />
+              </div>
+              <div className="p-6 pt-0">
+                <Badge className="mb-3">{item.tag}</Badge>
+                <h3 className="font-display text-lg font-semibold text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm text-mist">{item.description}</p>
+              </div>
+            </TiltCard>
           </motion.div>
         ))}
       </div>

@@ -30,26 +30,30 @@ export function SkillsSection() {
             </p>
           </div>
 
-          <div className="glass-panel rounded-3xl p-6">
+          <div className="glass-panel group/row rounded-3xl p-6">
             <p className="text-sm font-medium text-fog">Tools in the kit</p>
-            <div className="mt-3 flex -space-x-2">
+            <div className="mt-4 flex flex-wrap gap-3">
               {tools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-white bg-white"
-                  title={tool.name}
+                  className="group/icon relative flex flex-col items-center transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-110"
                 >
-                  <Image
-                    src={tool.logo}
-                    alt={tool.name}
-                    fill
-                    sizes="36px"
-                    className="object-contain p-0.5"
-                  />
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white bg-white shadow-md transition-shadow duration-200 group-hover/icon:shadow-[0_0_0_3px_var(--color-aurora-cyan)]">
+                    <Image
+                      src={tool.logo}
+                      alt={tool.name}
+                      fill
+                      sizes="40px"
+                      className="object-contain p-0.5"
+                    />
+                  </div>
+                  <span className="pointer-events-none absolute -bottom-6 whitespace-nowrap rounded-full bg-void px-2 py-0.5 text-[10px] text-fog opacity-0 shadow-lg transition-opacity duration-200 group-hover/icon:opacity-100">
+                    {tool.name}
+                  </span>
                 </div>
               ))}
             </div>
-            <p className="mt-3 text-xs text-mist/70">{tools.length} apps, from design to ops</p>
+            <p className="mt-6 text-xs text-mist/70">{tools.length} apps, from design to ops</p>
           </div>
         </div>
       </div>

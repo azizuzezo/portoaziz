@@ -165,7 +165,7 @@ export function CertificationsSection() {
             {tools.map((tool) => (
               <div
                 key={tool.name}
-                className="glass-panel flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4"
+                className="glass-panel flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-aurora-cyan/40 hover:shadow-[0_0_20px_-4px_var(--color-aurora-cyan)]"
               >
                 <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full bg-white">
                   <Image

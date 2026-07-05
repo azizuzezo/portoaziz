@@ -13,14 +13,19 @@ function Card() {
   const meshRef = useRef<Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const pointer = useRef({ x: 0, y: 0 });
+  const motionState = useRef({ autoAngle: 0, flipOffset: 0 });
+  const dragStart = useRef<{ x: number; y: number } | null>(null);
 
   const [frontMap, backMap] = useTexture([kmtCard.frontTexture, kmtCard.backTexture]);
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
     if (!hovered) {
-      groupRef.current.rotation.y += delta * 0.35;
+      motionState.current.autoAngle += delta * 0.35;
     }
+    const targetY = motionState.current.autoAngle + motionState.current.flipOffset;
+    groupRef.current.rotation.y += (targetY - groupRef.current.rotation.y) * Math.min(1, delta * 5);
+
     // Subtle parallax tilt toward the pointer position.
     const targetX = pointer.current.y * 0.35;
     groupRef.current.rotation.x += (targetX - groupRef.current.rotation.x) * 0.08;
@@ -32,8 +37,25 @@ function Card() {
       onPointerMove={(e) => {
         pointer.current = { x: e.uv ? e.uv.x - 0.5 : 0, y: e.uv ? e.uv.y - 0.5 : 0 };
       }}
-      onPointerEnter={() => setHovered(true)}
-      onPointerLeave={() => setHovered(false)}
+      onPointerEnter={() => {
+        setHovered(true);
+        document.body.style.cursor = "pointer";
+      }}
+      onPointerLeave={() => {
+        setHovered(false);
+        document.body.style.cursor = "auto";
+      }}
+      onPointerDown={(e) => {
+        dragStart.current = { x: e.clientX, y: e.clientY };
+      }}
+      onClick={(e) => {
+        const start = dragStart.current;
+        const moved = start ? Math.hypot(e.clientX - start.x, e.clientY - start.y) : 0;
+        // Only flip on a genuine click, not the end of a drag-to-rotate gesture.
+        if (moved < 6) {
+          motionState.current.flipOffset += Math.PI;
+        }
+      }}
     >
       <mesh ref={meshRef}>
         <boxGeometry args={[3.2, 2.02, 0.06]} />

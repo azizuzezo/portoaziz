@@ -5,6 +5,7 @@ import { ArrowDown, Download, Linkedin, Mail, MapPin } from "lucide-react";
 import { person, stats } from "@/lib/content/profile";
 import { Button } from "@/components/ui/button";
 import { StatCounter } from "@/components/ui/stat-counter";
+import { LaptopMockup, PhoneMockup } from "@/components/ui/device-mockup";
 import { MonogramAvatar } from "@/components/hero/monogram-avatar";
 import { RoleRotator } from "@/components/hero/role-rotator";
 
@@ -19,7 +20,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 -z-10 opacity-[0.4]"
         style={{
           backgroundImage:
-            "radial-gradient(color-mix(in oklab, black 12%, transparent) 1px, transparent 1px)",
+            "radial-gradient(color-mix(in oklab, white 14%, transparent) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           maskImage: "radial-gradient(ellipse 60% 55% at 50% 40%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 60% 55% at 50% 40%, black, transparent)",
@@ -108,6 +109,25 @@ export function Hero() {
             <span className="text-center text-xs text-mist sm:text-sm">{stat.label}</span>
           </div>
         ))}
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        className="relative mt-24 w-full max-w-3xl px-6 sm:mt-28"
+      >
+        <LaptopMockup
+          src="/images/mockups/site-desktop.jpg"
+          alt="This portfolio site on desktop"
+          className="w-full"
+        />
+        <PhoneMockup
+          src="/images/mockups/site-mobile.jpg"
+          alt="This portfolio site on mobile"
+          className="absolute -bottom-10 -right-2 w-24 sm:-right-4 sm:w-32 md:-right-8 md:w-36"
+        />
       </motion.div>
     </section>
   );
