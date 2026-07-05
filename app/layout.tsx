@@ -89,7 +89,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PhotoBackdrop />
         <CursorFollower />
         <ServiceWorkerRegistrar />
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SmoothScrollProvider>
+          <div className="relative z-10">{children}</div>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

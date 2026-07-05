@@ -68,7 +68,7 @@ export function PhotoBackdrop() {
 
   if (reducedMotion) {
     return (
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
         <div className="absolute inset-0 opacity-20">
           <Image src={photos[0]} alt="" fill sizes="100vw" className="object-cover" priority />
         </div>
@@ -78,7 +78,7 @@ export function PhotoBackdrop() {
   }
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
       {photos.map((src, i) => (
         <BackdropPhoto
           key={src}
