@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Languages, ShieldCheck, Users, Wrench } from "lucide-react";
+import { ExternalLink, GraduationCap, Languages, ShieldCheck, Users, Wrench } from "lucide-react";
 import {
   certifications,
   education,
@@ -36,9 +36,22 @@ export function CertificationsSection() {
           </div>
           <ul className="space-y-3">
             {certifications.map((cert) => (
-              <li key={cert} className="flex gap-3 text-sm text-mist">
+              <li key={cert.title} className="flex items-start gap-3 text-sm text-mist">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-aurora-cyan" />
-                {cert}
+                {cert.url ? (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cursor-hover
+                    className="inline-flex items-start gap-1.5 hover:text-fog"
+                  >
+                    {cert.title}
+                    <ExternalLink className="mt-0.5 h-3.5 w-3.5 shrink-0 opacity-60" />
+                  </a>
+                ) : (
+                  cert.title
+                )}
               </li>
             ))}
           </ul>

@@ -318,12 +318,33 @@ export const tools: string[] = [
   "Microsoft Outlook",
 ];
 
-export const certifications: string[] = [
-  "Certificate of Competency in Marketing Skills",
-  "Work Motivation Program: Building a Successful Service Team",
-  "Basic Service Excellence & Basic Voice Treatment",
-  "Team Building: Developing AKHLAK for Frontline Service Excellence",
-  "Fundamentals of Service: Using Persuasive Communication in Handling Complaints",
+export type Certification = { title: string; url?: string };
+
+export const certifications: Certification[] = [
+  {
+    title: "TOEIC",
+    url: "https://drive.google.com/file/d/172d-akQdKGDNRT0r3GIw9LdXilPW_rrS/view",
+  },
+  {
+    title: "Certificate of Competency in Marketing Skills",
+    url: "https://drive.google.com/file/d/16zsOM42e_n2xlSpjrkL3FQ9ExcCcWzEP/view",
+  },
+  {
+    title: "Fundamentals of Service: Using Persuasive Communication in Handling Complaints",
+    url: "https://drive.google.com/file/d/15AoutYNKMrmxZ7bSVviySpC35KuBztwd/view",
+  },
+  {
+    title: "Work Motivation Program: Building a Successful Service Team",
+    url: "https://drive.google.com/file/d/15FBaoAut7NXbmiDWy6CLVlu4iIZLU5B9/view",
+  },
+  {
+    title: "Basic Service Excellence & Basic Voice Treatment",
+    url: "https://drive.google.com/file/d/15D6HX3U6PrDAXNL4Vuu-GHLHDWq2i9LH/view",
+  },
+  {
+    title: "Team Building: Developing AKHLAK for Frontline Service Excellence",
+    url: "https://drive.google.com/file/d/15G0hbgh53A9u_tGpxoG9yTGzayEUL2Ih/view",
+  },
 ];
 
 export const languages = [
