@@ -112,6 +112,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "orgaren",
+    logo: "/images/companies/orgaren.png",
     company: "PT Orgaren Indonesia Jaya",
     role: "Marketing Staff",
     period: "September 2018 – Desember 2018",
