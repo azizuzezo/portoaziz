@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, GraduationCap, Languages, ShieldCheck, Users, Wrench } from "lucide-react";
+import { ExternalLink, Languages, ShieldCheck, Users, Wrench } from "lucide-react";
+import Image from "next/image";
 import {
   certifications,
   education,
@@ -10,7 +11,6 @@ import {
   tools,
 } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Badge } from "@/components/ui/badge";
 
 export function CertificationsSection() {
   return (
@@ -66,8 +66,14 @@ export function CertificationsSection() {
             className="glass-panel rounded-3xl p-6"
           >
             <div className="mb-4 flex items-center gap-3">
-              <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-rose">
-                <GraduationCap className="h-5 w-5" />
+              <div className="glass-panel-strong relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl">
+                <Image
+                  src={education.logo}
+                  alt={education.school}
+                  fill
+                  sizes="40px"
+                  className="object-contain p-1"
+                />
               </div>
               <h3 className="font-display text-lg font-semibold text-ink">Education</h3>
             </div>
@@ -155,9 +161,23 @@ export function CertificationsSection() {
             </div>
             <h3 className="font-display text-lg font-semibold text-ink">Tools</h3>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {tools.map((tool) => (
-              <Badge key={tool}>{tool}</Badge>
+              <div
+                key={tool.name}
+                className="glass-panel flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-4"
+              >
+                <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full bg-white">
+                  <Image
+                    src={tool.logo}
+                    alt={tool.name}
+                    fill
+                    sizes="28px"
+                    className="object-contain p-0.5"
+                  />
+                </div>
+                <span className="text-xs font-medium text-mist">{tool.name}</span>
+              </div>
             ))}
           </div>
         </motion.div>

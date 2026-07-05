@@ -72,12 +72,15 @@ export type ExperienceEntry = {
   milestone?: string;
   /** Optional photo gallery, e.g. ["/images/experience/skor/team-1.jpg"] */
   images?: string[];
+  /** Optional company logo, shown in place of the generic industry icon. */
+  logo?: string;
 };
 
 // Chronological (oldest -> newest) to read as a growth story.
 export const experience: ExperienceEntry[] = [
   {
     id: "ramayana",
+    logo: "/images/companies/ramayana.png",
     company: "PT Ramayana Lestari Sentosa, Tbk",
     role: "Sales Promotion Boy",
     period: "Januari 2017 – April 2017",
@@ -93,6 +96,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "map-aktif",
+    logo: "/images/companies/map-active.png",
     company: "PT MAP Aktif Adiperkasa, Indonesia",
     role: "Sales Assistant",
     period: "Mei 2018 – Agustus 2018",
@@ -127,6 +131,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "diva-karaoke",
+    logo: "/images/companies/diva-karaoke.png",
     company: "Diva Karaoke",
     role: "Administration",
     period: "September 2018 – Desember 2018",
@@ -142,6 +147,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "kci-helpdesk",
+    logo: "/images/companies/kai-commuter.png",
     company: "PT Kereta Commuter Indonesia",
     role: "Helpdesk Command Control Room",
     period: "Januari 2019 – Mei 2019",
@@ -157,6 +163,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "kci-announcer",
+    logo: "/images/companies/kai-commuter.png",
     company: "PT Kereta Commuter Indonesia",
     role: "Announcer",
     period: "Juni 2019 – Juli 2022",
@@ -176,6 +183,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "kawisata",
+    logo: "/images/companies/kai-wisata.png",
     company: "PT Kereta Api Pariwisata (KAWISATA)",
     role: "Customer Service On Train",
     period: "Agustus 2022 – Desember 2024",
@@ -201,6 +209,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "angkasa-pura",
+    logo: "/images/companies/angkasa-pura.png",
     company: "Angkasa Pura Supports",
     role: "Guest Service Officer",
     period: "Januari 2025 – November 2025",
@@ -220,6 +229,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "skor",
+    logo: "/images/companies/skor-technologies.png",
     company: "Skor Technologies",
     role: "Customer Service Agent and Support",
     period: "Januari 2026 – Present",
@@ -242,6 +252,7 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "duacincin",
+    logo: "/images/companies/duacincin.png",
     company: "Duacincin.id",
     role: "Founder",
     period: "Juni 2026 – Present",
@@ -259,6 +270,7 @@ export const experience: ExperienceEntry[] = [
 
 export const education = {
   school: "SMK Negeri 23 Jakarta",
+  logo: "/images/education/smkn23-logo.png",
   degree: "Vocational High School, Manajemen Pemasaran (Marketing Management)",
   period: "2015 – 2018",
   bullets: [
@@ -295,14 +307,14 @@ export const organizationalExperience: {
   },
 ];
 
-export const tools: string[] = [
-  "Canva",
-  "Adobe Photoshop",
-  "Adobe Lightroom",
-  "CapCut",
-  "Microsoft Word",
-  "Microsoft Excel",
-  "Microsoft Outlook",
+export const tools: { name: string; logo: string }[] = [
+  { name: "Canva", logo: "/images/tools/canva.png" },
+  { name: "Adobe Photoshop", logo: "/images/tools/photoshop.png" },
+  { name: "Adobe Lightroom", logo: "/images/tools/lightroom.png" },
+  { name: "CapCut", logo: "/images/tools/capcut.png" },
+  { name: "Microsoft Word", logo: "/images/tools/word.png" },
+  { name: "Microsoft Excel", logo: "/images/tools/excel.png" },
+  { name: "Microsoft Outlook", logo: "/images/tools/outlook.png" },
 ];
 
 export type Certification = { title: string; url?: string };
@@ -452,6 +464,15 @@ export const socialMediaWork = {
   ],
 };
 
+export const kmtCard = {
+  title: "Multi-Trip Card (KMT) Design Competition",
+  description:
+    "Designed for the 15th Anniversary of KAI Commuter. The mosaic pattern and #PilihanCerdas messaging position CommuterLine as a pollution-free, ever-adapting choice for urban life.",
+  tag: "Design Competition",
+  frontTexture: "/images/graphic-design/kmt-card-front-flat.jpg",
+  backTexture: "/images/graphic-design/kmt-card-back.png",
+};
+
 export type GraphicDesignItem = {
   title: string;
   description: string;
@@ -460,13 +481,6 @@ export type GraphicDesignItem = {
 };
 
 export const graphicDesignWork: GraphicDesignItem[] = [
-  {
-    title: "Multi-Trip Card (KMT) Design Competition",
-    description:
-      "Designed for the 15th Anniversary of KAI Commuter. The mosaic pattern and #PilihanCerdas messaging position CommuterLine as a pollution-free, ever-adapting choice for urban life.",
-    image: "/images/graphic-design/kmt-card-design.jpg",
-    tag: "Design Competition",
-  },
   {
     title: "CSOT Official Logo",
     description: "Official logo of Customer Service On Train (CSOT), KAI Commuter.",
@@ -654,6 +668,7 @@ export type AiProject = {
   tagline: string;
   description: string;
   url: string;
+  screenshot: string;
 };
 
 // Software built with AI-assisted ("vibe coding") development.
@@ -664,6 +679,7 @@ export const aiProjects: AiProject[] = [
     description:
       "An internal portal built for Skor Technologies' Customer Service team, streamlining day-to-day case handling — the tooling referenced in Nabila's recommendation above.",
     url: "https://sc-cs-portal.skorcard.app",
+    screenshot: "/images/ai-projects/skorcard-cs-portal.jpg",
   },
   {
     name: "FlowWorks",
@@ -671,6 +687,7 @@ export const aiProjects: AiProject[] = [
     description:
       "Takes teams from survey to quotation in one place, with real-time KPI dashboards, role-based access, and automated task workflows.",
     url: "https://flowworks.ptuip.my.id",
+    screenshot: "/images/ai-projects/flowworks.jpg",
   },
   {
     name: "RuangBaru",
@@ -678,6 +695,7 @@ export const aiProjects: AiProject[] = [
     description:
       "Unifies projects, tasks, calendar, and notes in one simple space, so small teams can focus on the work instead of the tools.",
     url: "https://ruangbaru.my.id",
+    screenshot: "/images/ai-projects/ruangbaru.jpg",
   },
   {
     name: "Muter",
@@ -685,10 +703,12 @@ export const aiProjects: AiProject[] = [
     description:
       "A pocketful of quick, joyful browser games — no installs, no accounts. Pick one and you're playing in seconds.",
     url: "https://muter.my.id",
+    screenshot: "/images/ai-projects/muter.jpg",
   },
   {
     name: "Duacincin.id",
     tagline: "Digital wedding invitations",
+    screenshot: "/images/ai-projects/duacincin.jpg",
     description:
       "32 templates with rich animation and layout variety, from rustic to baroque to minimalist — the platform behind the Founder role above.",
     url: "https://duacincin.id",

@@ -60,8 +60,18 @@ export function ExperienceCard({
       )}
     >
       <div className="flex flex-wrap items-start gap-4">
-        <div className="glass-panel-strong flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-aurora-cyan">
-          <Icon className="h-5 w-5" />
+        <div className="glass-panel-strong relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl text-aurora-cyan">
+          {entry.logo ? (
+            <Image
+              src={entry.logo}
+              alt={entry.company}
+              fill
+              sizes="44px"
+              className="object-contain p-1.5"
+            />
+          ) : (
+            <Icon className="h-5 w-5" />
+          )}
         </div>
 
         <div className="min-w-0 flex-1">

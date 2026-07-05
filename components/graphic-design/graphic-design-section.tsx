@@ -2,15 +2,17 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Instagram } from "lucide-react";
+import { Instagram, RotateCw } from "lucide-react";
 import {
   graphicDesignWork,
+  kmtCard,
   socialDesignPosts,
   socialMediaWork,
 } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { KmtCard3D } from "@/components/graphic-design/kmt-card-3d";
 
 export function GraphicDesignSection() {
   return (
@@ -21,23 +23,42 @@ export function GraphicDesignSection() {
         description="Brand identity, campaign design, and social content built while running the Customer Service On Train Instagram presence."
       />
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.6 }}
+        className="glass-panel mb-6 grid gap-6 overflow-hidden rounded-3xl p-6 sm:p-8 lg:grid-cols-[1.1fr_1fr] lg:items-center"
+      >
+        <KmtCard3D />
+        <div>
+          <Badge className="mb-3">{kmtCard.tag}</Badge>
+          <h3 className="font-display text-lg font-semibold text-ink">{kmtCard.title}</h3>
+          <p className="mt-2 text-sm text-mist">{kmtCard.description}</p>
+          <p className="mt-4 flex items-center gap-1.5 text-xs text-mist/70">
+            <RotateCw className="h-3.5 w-3.5" />
+            Drag to spin the card 360° — front and back
+          </p>
+        </div>
+      </motion.div>
+
+      <div className="grid gap-6 sm:grid-cols-3">
         {graphicDesignWork.map((item, i) => (
           <motion.div
             key={item.title}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
+            transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
             className="glass-panel overflow-hidden rounded-3xl"
           >
-            <div className="relative aspect-video w-full bg-slate-100">
+            <div className="relative aspect-square w-full bg-slate-100">
               <Image
                 src={item.image}
                 alt={item.title}
                 fill
-                sizes="(min-width: 640px) 50vw, 100vw"
-                className="object-contain p-6"
+                sizes="(min-width: 640px) 33vw, 100vw"
+                className="object-contain p-8"
               />
             </div>
             <div className="p-6 pt-0">
