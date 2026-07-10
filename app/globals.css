@@ -82,23 +82,23 @@
 }
 
 @utility glass-panel {
-  background: color-mix(in oklab, var(--color-surface) 72%, transparent);
+  background: color-mix(in oklab, var(--color-surface) 78%, transparent);
   border: 1px solid color-mix(in oklab, white 10%, transparent);
   box-shadow:
     0 1px 2px rgb(0 0 0 / 0.2),
     0 12px 28px -16px rgb(0 0 0 / 0.5);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 @utility glass-panel-strong {
-  background: color-mix(in oklab, var(--color-surface) 85%, transparent);
+  background: color-mix(in oklab, var(--color-surface) 88%, transparent);
   border: 1px solid color-mix(in oklab, white 15%, transparent);
   box-shadow:
     0 1px 2px rgb(0 0 0 / 0.25),
     0 20px 40px -18px rgb(0 0 0 / 0.6);
-  backdrop-filter: blur(28px) saturate(1.2);
-  -webkit-backdrop-filter: blur(28px) saturate(1.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 @utility text-gradient-aurora {

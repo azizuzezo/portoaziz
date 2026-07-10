@@ -2,22 +2,22 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import Image from "next/image";
-import { gallery } from "@/lib/content/profile";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 
 // Peak visibility of the photos. The user asked for ~30-40%.
 const PEAK_OPACITY = 0.4;
 
-// A curated, varied subset so the cross-fade windows stay wide enough to read.
+// Dedicated low-weight copies (~1100px, q58) so the compositor never
+// handles the full-resolution gallery files.
 const photos = [
-  "/images/gallery/photo-01.jpg",
-  "/images/gallery/photo-03.jpg",
-  "/images/experience/kawisata/team-photo.jpg",
-  "/images/gallery/photo-05.jpg",
-  "/images/experience/kawisata/night-briefing.jpg",
-  "/images/experience/kawisata/depot-portrait.jpg",
-  "/images/gallery/orgaren-trade-expo.jpg",
-].filter((src) => gallery.some((g) => g.image === src) || src.includes("/experience/"));
+  "/images/backdrop/photo-01.jpg",
+  "/images/backdrop/photo-03.jpg",
+  "/images/backdrop/team-photo.jpg",
+  "/images/backdrop/photo-05.jpg",
+  "/images/backdrop/night-briefing.jpg",
+  "/images/backdrop/depot-portrait.jpg",
+  "/images/backdrop/orgaren-trade-expo.jpg",
+];
 
 function BackdropPhoto({
   src,
@@ -42,12 +42,14 @@ function BackdropPhoto({
     [0, PEAK_OPACITY, 0],
     { clamp: true }
   );
-  const y = useTransform(progress, [center - half, center + half], ["6%", "-6%"]);
-  const scale = useTransform(progress, [center - half, center + half], [1.16, 1.02]);
+  // Fully skip compositing for photos outside their scroll window.
+  const visibility = useTransform(opacity, (v) => (v <= 0.001 ? "hidden" : "visible"));
+  const y = useTransform(progress, [center - half, center + half], ["4%", "-4%"]);
+  const scale = useTransform(progress, [center - half, center + half], [1.08, 1.01]);
 
   return (
-    <motion.div style={{ opacity }} className="absolute inset-0 will-change-[opacity]">
-      <motion.div style={{ y, scale }} className="absolute inset-0 will-change-transform">
+    <motion.div style={{ opacity, visibility }} className="absolute inset-0">
+      <motion.div style={{ y, scale }} className="absolute inset-0">
         <Image
           src={src}
           alt=""
@@ -55,6 +57,7 @@ function BackdropPhoto({
           fill
           priority={priority}
           sizes="100vw"
+          quality={60}
           className="object-cover"
         />
       </motion.div>
