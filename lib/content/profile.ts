@@ -608,6 +608,11 @@ export const gallery: GalleryItem[] = [
     caption: "Representing the company at a Ministry of Industry trade expo",
     org: "PT Orgaren Indonesia Jaya",
   },
+  {
+    image: "/images/experience/skor/team-selfie.jpg",
+    caption: "With the CS team",
+    org: "Skor Technologies",
+  },
 ];
 
 export const shortMovie = {
