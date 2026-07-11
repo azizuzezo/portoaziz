@@ -18,19 +18,18 @@ export function SkillsGalaxy() {
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    if (inView) return;
     const el = containerRef.current;
     if (!el) return;
 
+    // Toggle (not latch) visibility so the WebGL render loop actually
+    // stops once the user scrolls away, instead of running forever.
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
+      ([entry]) => setInView(entry.isIntersecting),
       { rootMargin: "200px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [inView]);
+  }, []);
 
   if (reducedMotion || lowPower) {
     return <SkillsGalaxyFallback />;
