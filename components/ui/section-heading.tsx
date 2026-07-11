@@ -40,12 +40,8 @@ export function SectionHeading({
     >
       <motion.span
         variants={item}
-        className={cn(
-          "inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-aurora-orange",
-          align === "center" && "justify-center"
-        )}
+        className="inline-block text-xs font-semibold uppercase tracking-[0.25em] text-aurora-cyan"
       >
-        <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-aurora-gold to-aurora-orange" />
         {eyebrow}
       </motion.span>
       <motion.h2

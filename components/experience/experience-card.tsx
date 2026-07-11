@@ -55,7 +55,7 @@ export function ExperienceCard({
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, delay: (index % 4) * 0.06 }}
       className={cn(
-        "glass-panel relative rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-ink/15 hover:shadow-lg sm:p-6",
+        "glass-panel relative rounded-2xl p-5 transition-colors hover:border-ink/15 sm:p-6",
         entry.milestone && "border-aurora-gold/35"
       )}
     >

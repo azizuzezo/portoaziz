@@ -26,7 +26,7 @@ export function CertificationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
-          className="glass-panel rounded-3xl p-6 lg:col-span-2 transition-transform duration-300 hover:-translate-y-1"
+          className="glass-panel rounded-3xl p-6 lg:col-span-2"
         >
           <div className="mb-4 flex items-center gap-3">
             <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-cyan">
@@ -63,7 +63,7 @@ export function CertificationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="glass-panel rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1"
+            className="glass-panel rounded-3xl p-6"
           >
             <div className="mb-4 flex items-center gap-3">
               <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-ink/10 bg-white shadow-md">
@@ -95,7 +95,7 @@ export function CertificationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-panel rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1"
+            className="glass-panel rounded-3xl p-6"
           >
             <div className="mb-4 flex items-center gap-3">
               <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-emerald">
@@ -119,7 +119,7 @@ export function CertificationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="glass-panel rounded-3xl p-6 transition-transform duration-300 hover:-translate-y-1"
+          className="glass-panel rounded-3xl p-6"
         >
           <div className="mb-4 flex items-center gap-3">
             <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-violet">
@@ -153,7 +153,7 @@ export function CertificationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="glass-panel rounded-3xl p-6 lg:col-span-2 transition-transform duration-300 hover:-translate-y-1"
+          className="glass-panel rounded-3xl p-6 lg:col-span-2"
         >
           <div className="mb-4 flex items-center gap-3">
             <div className="glass-panel-strong flex h-10 w-10 items-center justify-center rounded-xl text-aurora-gold">
