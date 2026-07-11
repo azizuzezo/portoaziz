@@ -18,15 +18,15 @@ export function RoleRotator() {
   }, [reducedMotion]);
 
   return (
-    <div className="relative flex h-9 items-center justify-center overflow-hidden sm:h-10">
+    <div className="relative flex h-8 w-full items-center justify-center overflow-hidden text-center sm:h-9 sm:justify-start sm:text-left">
       <AnimatePresence mode="wait">
         <motion.span
           key={roleRotator[index]}
-          initial={{ y: 24, opacity: 0 }}
+          initial={{ y: 22, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -24, opacity: 0 }}
+          exit={{ y: -22, opacity: 0 }}
           transition={{ duration: 0.45, ease: "easeInOut" }}
-          className="absolute font-display text-lg font-medium text-aurora-cyan sm:text-xl"
+          className="absolute whitespace-nowrap bg-gradient-to-r from-aurora-gold to-aurora-orange bg-clip-text font-display text-lg font-semibold tracking-tight text-transparent sm:text-xl"
         >
           {roleRotator[index]}
         </motion.span>
