@@ -28,9 +28,10 @@ export function ContactSection() {
         transition={{ duration: 0.7 }}
         className="glass-panel-strong relative overflow-hidden rounded-[2.5rem] px-6 py-16 text-center sm:px-16"
       >
-        <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-aurora-violet/25 blur-[100px]" />
+        <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-gradient-to-br from-aurora-gold/30 to-aurora-orange/25 blur-[100px]" />
 
-        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-aurora-cyan">
+        <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-aurora-orange">
+          <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-aurora-gold to-aurora-orange" />
           Let&apos;s talk
         </span>
         <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-semibold text-ink sm:text-4xl md:text-5xl">
