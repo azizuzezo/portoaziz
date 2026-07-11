@@ -93,7 +93,6 @@ export function PhotoBackdrop() {
           style={{
             opacity: i === active ? PEAK_OPACITY : 0,
             transitionDuration: "1400ms",
-            visibility: i === active ? "visible" : "hidden",
           }}
         >
           {/* key forces the Ken Burns animation to restart each time this photo becomes active */}

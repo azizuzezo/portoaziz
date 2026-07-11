@@ -38,11 +38,11 @@ function SkillNode({
         <Text
           position={[0, 0.24, 0]}
           fontSize={0.16}
-          color="#16181f"
+          color="#f4f8f8"
           anchorX="center"
           anchorY="middle"
-          outlineWidth={0.014}
-          outlineColor="#faf9f6"
+          outlineWidth={0.012}
+          outlineColor="#0a0e0f"
         >
           {label}
         </Text>

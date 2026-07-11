@@ -4,21 +4,21 @@
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-heading), var(--font-body), ui-sans-serif, sans-serif;
 
-  --color-void: #faf9f6;
-  --color-ink: #16181f;
-  --color-surface: #ffffff;
-  --color-mist: #6b6f7b;
-  --color-fog: #2e313a;
+  --color-void: #0a0e0f;
+  --color-ink: #f4f8f8;
+  --color-surface: #14191b;
+  --color-mist: #8b969a;
+  --color-fog: #d8e0e1;
 
-  --color-aurora-violet: #6d28d9;
-  --color-aurora-cyan: #0e7490;
-  --color-aurora-rose: #be123c;
-  --color-aurora-gold: #b45309;
-  --color-aurora-emerald: #047857;
-  --color-aurora-sky: #0369a1;
-  --color-aurora-orange: #c2410c;
+  --color-aurora-violet: #a78bfa;
+  --color-aurora-cyan: #2dd4bf;
+  --color-aurora-rose: #fb7185;
+  --color-aurora-gold: #fbbf24;
+  --color-aurora-emerald: #34d399;
+  --color-aurora-sky: #38bdf8;
+  --color-aurora-orange: #fb923c;
 
-  --shadow-glow: 0 8px 30px -8px rgb(109 40 217 / 0.35);
+  --shadow-glow: 0 8px 34px -6px rgb(45 212 191 / 0.45);
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 10s ease-in-out infinite;
@@ -65,12 +65,12 @@
 
 @layer base {
   * {
-    border-color: color-mix(in oklab, black 10%, transparent);
+    border-color: color-mix(in oklab, white 10%, transparent);
   }
 
   html {
     background: var(--color-void);
-    color-scheme: light;
+    color-scheme: dark;
   }
 
   body {
@@ -81,7 +81,7 @@
 
   ::selection {
     background: color-mix(in oklab, var(--color-aurora-cyan) 45%, transparent);
-    color: var(--color-ink);
+    color: var(--color-void);
   }
 
   :focus-visible {
@@ -91,21 +91,21 @@
 }
 
 @utility glass-panel {
-  background: color-mix(in oklab, var(--color-surface) 82%, transparent);
-  border: 1px solid color-mix(in oklab, black 8%, transparent);
+  background: color-mix(in oklab, var(--color-surface) 70%, transparent);
+  border: 1px solid color-mix(in oklab, white 10%, transparent);
   box-shadow:
-    0 1px 2px rgb(0 0 0 / 0.04),
-    0 12px 28px -18px rgb(0 0 0 / 0.18);
+    0 1px 2px rgb(0 0 0 / 0.2),
+    0 12px 28px -16px rgb(0 0 0 / 0.5);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 @utility glass-panel-strong {
-  background: color-mix(in oklab, var(--color-surface) 92%, transparent);
-  border: 1px solid color-mix(in oklab, black 10%, transparent);
+  background: color-mix(in oklab, var(--color-surface) 82%, transparent);
+  border: 1px solid color-mix(in oklab, white 15%, transparent);
   box-shadow:
-    0 1px 2px rgb(0 0 0 / 0.05),
-    0 20px 40px -18px rgb(0 0 0 / 0.22);
+    0 1px 2px rgb(0 0 0 / 0.25),
+    0 20px 40px -18px rgb(0 0 0 / 0.6);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -132,7 +132,7 @@
 }
 
 html {
-  scrollbar-color: color-mix(in oklab, black 25%, transparent) transparent;
+  scrollbar-color: color-mix(in oklab, white 25%, transparent) transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -23,7 +23,7 @@ function AiProjectCard({ project }: { project: AiProject }) {
       className="glass-panel group relative flex h-full flex-col overflow-hidden rounded-3xl transition-transform duration-300 ease-out hover:border-ink/20"
     >
       <div
-        className="relative w-full overflow-hidden border-b border-ink/8 bg-ink/5"
+        className="relative w-full overflow-hidden border-b border-ink/8 bg-black/20"
         style={{ aspectRatio: "2.25" }}
       >
         <Image

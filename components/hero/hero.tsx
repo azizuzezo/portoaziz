@@ -20,7 +20,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 -z-10 opacity-[0.4]"
         style={{
           backgroundImage:
-            "radial-gradient(color-mix(in oklab, black 12%, transparent) 1px, transparent 1px)",
+            "radial-gradient(color-mix(in oklab, white 14%, transparent) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
           maskImage: "radial-gradient(ellipse 60% 55% at 50% 40%, black, transparent)",
           WebkitMaskImage: "radial-gradient(ellipse 60% 55% at 50% 40%, black, transparent)",

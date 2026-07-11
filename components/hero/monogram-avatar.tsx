@@ -21,6 +21,7 @@ export function MonogramAvatar() {
             alt={person.name}
             fill
             sizes="256px"
+            quality={90}
             className="object-cover"
             priority
           />
