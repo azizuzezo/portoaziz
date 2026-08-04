@@ -711,8 +711,16 @@ export const aiProjects: AiProject[] = [
     tagline: "Casual browser games",
     description:
       "A pocketful of quick, joyful browser games — no installs, no accounts. Pick one and you're playing in seconds.",
-    url: "https://muter.my.id",
+    url: "https://muter.id",
     screenshot: "/images/ai-projects/muter.jpg",
+  },
+  {
+    name: "Muter.my.id",
+    tagline: "Link-in-bio that actually sells",
+    description:
+      "Turns followers into customers with one link — creators list products, recruit fellow affiliates, and track every commission from a single dashboard.",
+    url: "https://muter.my.id",
+    screenshot: "/images/ai-projects/muter-my-id.png",
   },
   {
     name: "Duacincin.id",
@@ -721,5 +729,21 @@ export const aiProjects: AiProject[] = [
     description:
       "32 templates with rich animation and layout variety, from rustic to baroque to minimalist — the platform behind the Founder role above.",
     url: "https://duacincin.id",
+  },
+  {
+    name: "Skor Chat",
+    tagline: "Internal team chat — Skor Technologies",
+    description:
+      "Channels and direct messages for the whole Skorcard x Skorlife team, signed in with the same CS Portal account used across internal tools.",
+    url: "https://sc-cs-portal.skorcard.app/skorchat",
+    screenshot: "/images/ai-projects/skorchat.png",
+  },
+  {
+    name: "Skorcard Chatbot",
+    tagline: "Agent & admin console — Skor Technologies",
+    description:
+      "Login and console for agents and admins managing Skorcard's customer-facing chatbot.",
+    url: "https://cs.skorcard.app",
+    screenshot: "/images/ai-projects/skorcard-chatbot.png",
   },
 ];
