@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { person, recommendations, type Recommendation } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { cn } from "@/lib/utils";
-import { Reveal } from "@/components/motion/motion";
+import { Quote } from "lucide-react";
+import { Reveal, Spotlight } from "@/components/motion/motion";
 
 function Person({ r }: { r: Recommendation }) {
   return (
@@ -45,16 +45,27 @@ export function RecommendationsSection() {
         }
       />
 
-      <Reveal as="figure" className="mt-12 rounded-2xl bg-sunken p-6 sm:p-10 md:ml-[25%]">
-        <blockquote className="text-xl leading-snug font-medium sm:text-2xl">&ldquo;{first.quote}&rdquo;</blockquote>
-        <Person r={first} />
+      <Reveal className="mt-12 md:ml-[25%]">
+        <Spotlight as="figure" className="rounded-2xl border border-line bg-sunken p-6 sm:p-10">
+          <Quote className="h-8 w-8 text-accent" aria-hidden />
+          <blockquote className="mt-4 text-xl leading-snug font-medium sm:text-2xl">&ldquo;{first.quote}&rdquo;</blockquote>
+          <Person r={first} />
+        </Spotlight>
       </Reveal>
 
-      <div className="mt-14 grid grid-cols-1 gap-12 border-t border-line pt-10 md:grid-cols-2 md:gap-10">
+      <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
         {others.map((r, i) => (
-          <Reveal as="figure" key={r.name} delay={i * 0.08} className={cn(i === 1 && "md:border-l md:border-line md:pl-10")}>
-            <blockquote className="text-lg leading-relaxed text-ink-soft">&ldquo;{r.quote}&rdquo;</blockquote>
-            <Person r={r} />
+          <Reveal key={r.name} delay={i * 0.08} className="h-full">
+            <Spotlight
+              as="figure"
+              className="flex h-full flex-col justify-between rounded-2xl border border-line bg-surface p-6 transition-transform duration-200 hover:-translate-y-1 sm:p-8"
+            >
+              <div>
+                <Quote className="h-6 w-6 text-accent/60" aria-hidden />
+                <blockquote className="mt-3 text-lg leading-relaxed text-ink-soft">&ldquo;{r.quote}&rdquo;</blockquote>
+              </div>
+              <Person r={r} />
+            </Spotlight>
           </Reveal>
         ))}
       </div>

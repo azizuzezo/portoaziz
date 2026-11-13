@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { person } from "@/lib/content/profile";
 import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/motion/motion";
+import { Magnetic, Reveal, SplitWords } from "@/components/motion/motion";
 
 export function ContactSection() {
   const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle");
@@ -19,7 +19,8 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="anchor bg-ink text-paper">
+    <section id="contact" className="anchor relative isolate overflow-hidden bg-ink text-paper">
+      <div aria-hidden className="absolute -right-40 -bottom-40 -z-10 h-[36rem] w-[36rem] rounded-full bg-accent/25 blur-3xl motion-safe:animate-[pulse_7s_ease-in-out_infinite]" />
       <div className="shell py-16 md:py-24">
         <Reveal>
         <p className="text-sm font-semibold text-paper/75">
@@ -30,19 +31,21 @@ export function ContactSection() {
           Contact
         </p>
         <h2 className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl">
-          If your customers keep raising the same problem, I&apos;d like to help fix it at the source.
+          <SplitWords text="If your customers keep raising the same problem, I'd like to help fix it at the source." stagger={0.03} />
         </h2>
         <p className="mt-6 max-w-xl text-lg text-paper/75">{person.lookingFor}. Email is the quickest way to reach me.</p>
         </Reveal>
 
         <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <a
-              href={`mailto:${person.email}`}
-              className="inline-block py-1 text-2xl font-semibold break-all underline decoration-paper/30 underline-offset-8 transition-colors hover:decoration-accent sm:text-4xl"
-            >
-              {person.email}
-            </a>
+            <Magnetic strength={0.12}>
+              <a
+                href={`mailto:${person.email}`}
+                className="inline-block py-1 text-2xl font-semibold break-all underline decoration-paper/30 underline-offset-8 transition-colors hover:text-accent hover:decoration-accent sm:text-4xl"
+              >
+                {person.email}
+              </a>
+            </Magnetic>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <button
                 type="button"
@@ -58,9 +61,11 @@ export function ContactSection() {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button href={person.linkedin} external>
-              Message me on LinkedIn
-            </Button>
+            <Magnetic>
+              <Button href={person.linkedin} external>
+                Message me on LinkedIn
+              </Button>
+            </Magnetic>
             <Button
               href={person.cvUrl}
               external

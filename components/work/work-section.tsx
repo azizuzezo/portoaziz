@@ -3,7 +3,7 @@ import { featuredCase, projects, type Project } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Shot } from "@/components/ui/shot";
 import { cn } from "@/lib/utils";
-import { CountUp, Reveal } from "@/components/motion/motion";
+import { CountUp, Reveal, Spotlight } from "@/components/motion/motion";
 
 // The arrow marks links that leave the site and open a new tab; nothing else gets one.
 function OutLink({ href, children }: { href: string; children: React.ReactNode }) {
@@ -54,18 +54,22 @@ function FeaturedCase() {
         className="mt-6"
       />
 
-      <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
-        <div className="rounded-xl bg-accent-soft p-6 md:col-span-3">
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-12">
+        <Spotlight className="rounded-2xl bg-accent-soft p-6 md:col-span-3">
           <p className="text-6xl font-semibold text-accent">
             <CountUp value={c.result.value} />
           </p>
           <p className="mt-2 max-w-[14rem] text-sm text-ink-soft">{c.result.label}</p>
-        </div>
-        {c.sections.map((s) => (
-          <div key={s.heading} className="md:col-span-3">
-            <h4 className="text-sm font-semibold">{s.heading}</h4>
+        </Spotlight>
+        {c.sections.map((s, i) => (
+          <Spotlight
+            key={s.heading}
+            className="rounded-2xl border border-line bg-surface p-6 transition-transform duration-200 hover:-translate-y-1 md:col-span-3"
+          >
+            <p className="text-xs font-semibold text-accent">0{i + 1}</p>
+            <h4 className="mt-1 text-sm font-semibold">{s.heading}</h4>
             <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{s.text}</p>
-          </div>
+          </Spotlight>
         ))}
       </div>
 
@@ -137,16 +141,20 @@ function ProductRow({ p, flip }: { p: Project; flip: boolean }) {
 
 function ProductCard({ p }: { p: Project }) {
   return (
-    <Reveal as="article" className="flex min-w-0 flex-col">
-      <Shot image={p.image} alt={p.imageAlt} label={p.urlLabel} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
-      <h4 className="mt-5 text-xl font-semibold">{p.name}</h4>
-      <p className="mt-1 text-sm font-medium text-ink-soft">{p.tagline}</p>
-      <p className="mt-2 flex-1 text-[15px] leading-relaxed text-muted">{p.description}</p>
-      {p.url && (
-        <div className="mt-2">
-          <OutLink href={p.url}>Visit {p.urlLabel}</OutLink>
+    <Reveal as="article" className="h-full min-w-0">
+      <Spotlight className="group/card flex h-full flex-col rounded-2xl border border-line bg-surface p-4 transition-transform duration-200 hover:-translate-y-1">
+        <Shot image={p.image} alt={p.imageAlt} label={p.urlLabel} tilt={3} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+        <div className="flex flex-1 flex-col px-1 pb-1">
+          <h4 className="mt-5 text-xl font-semibold transition-colors group-hover/card:text-accent">{p.name}</h4>
+          <p className="mt-1 text-sm font-medium text-ink-soft">{p.tagline}</p>
+          <p className="mt-2 flex-1 text-[15px] leading-relaxed text-muted">{p.description}</p>
+          {p.url && (
+            <div className="mt-2">
+              <OutLink href={p.url}>Visit {p.urlLabel}</OutLink>
+            </div>
+          )}
         </div>
-      )}
+      </Spotlight>
     </Reveal>
   );
 }
@@ -196,7 +204,7 @@ export function WorkSection() {
             <ProductRow key={p.id} p={p} flip={i % 2 === 1} />
           ))}
         </div>
-        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((p) => (
             <ProductCard key={p.id} p={p} />
           ))}

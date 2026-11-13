@@ -7,49 +7,73 @@ import {
   tools,
 } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Reveal } from "@/components/motion/motion";
+import { Marquee, Reveal, Spotlight } from "@/components/motion/motion";
+
+function ToolChip({ t }: { t: (typeof tools)[number] }) {
+  return (
+    <span className="flex min-h-12 shrink-0 items-center gap-2 rounded-full border border-line bg-surface py-1.5 pr-5 pl-1.5 text-sm whitespace-nowrap transition-[transform,border-color] duration-150 hover:-translate-y-0.5 hover:border-accent">
+      {t.logo ? (
+        <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-white">
+          <Image src={t.logo} alt="" fill sizes="36px" className="object-contain p-1" />
+        </span>
+      ) : (
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent">
+          {t.name.charAt(0)}
+        </span>
+      )}
+      {t.name}
+    </span>
+  );
+}
 
 const linkClass =
   "underline decoration-line underline-offset-4 transition-colors hover:decoration-accent";
 
-// Plain lists on purpose: a reader scans skills, so they get columns, not a visualisation.
 export function SkillsSection() {
   return (
     <section id="skills" className="anchor shell py-16 md:py-24">
       <SectionHeading index="04" label="Skills" title="What I bring to a CRM or systems team" />
 
-      <Reveal className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-        {skillGroups.map((g) => (
-          <div key={g.name}>
-            <h3 className="border-b border-line pb-3 text-sm font-semibold">{g.name}</h3>
-            <ul className="mt-3 space-y-1.5 text-[15px] text-ink-soft">
-              {g.items.map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ul>
-          </div>
+      <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {skillGroups.map((g, i) => (
+          <Reveal key={g.name} delay={i * 0.08} className="h-full">
+            <Spotlight className="h-full rounded-2xl border border-line bg-surface p-6">
+              <p className="text-xs font-semibold text-accent">0{i + 1}</p>
+              <h3 className="mt-2 text-lg font-semibold">{g.name}</h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {g.items.map((s) => (
+                  <li
+                    key={s}
+                    className="rounded-full bg-sunken px-3 py-1.5 text-sm text-ink-soft transition-colors duration-150 hover:bg-accent hover:text-accent-ink"
+                  >
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </Spotlight>
+          </Reveal>
         ))}
-      </Reveal>
+      </div>
 
       <Reveal className="mt-14">
         <h3 className="border-b border-line pb-3 text-sm font-semibold">Tools</h3>
-        <ul className="mt-4 flex flex-wrap gap-2">
+        <ul className="sr-only">
           {tools.map((t) => (
-            <li
-              key={t.name}
-              className="flex min-h-11 items-center gap-2 rounded-full border border-line bg-surface py-1.5 pr-4 pl-1.5 text-sm transition-[transform,border-color] duration-150 hover:-translate-y-0.5 hover:border-accent"
-            >
-              {t.logo ? (
-                <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full bg-white">
-                  <Image src={t.logo} alt="" fill sizes="28px" className="object-contain p-0.5" />
-                </span>
-              ) : (
-                <span className="w-1.5" aria-hidden />
-              )}
-              {t.name}
-            </li>
+            <li key={t.name}>{t.name}</li>
           ))}
         </ul>
+        <div aria-hidden className="mt-5 space-y-3">
+          <Marquee duration={45}>
+            {tools.map((t) => (
+              <ToolChip key={t.name} t={t} />
+            ))}
+          </Marquee>
+          <Marquee duration={50} reverse>
+            {[...tools].reverse().map((t) => (
+              <ToolChip key={t.name} t={t} />
+            ))}
+          </Marquee>
+        </div>
       </Reveal>
 
       <div id="credentials" className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">

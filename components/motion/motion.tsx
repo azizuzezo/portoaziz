@@ -128,6 +128,151 @@ export function Tilt({
   );
 }
 
+/**
+ * Card whose border and surface light up under the pointer.
+ * Purpose: makes grids of cards feel alive and shows which one you are on.
+ * Sets --mx/--my on the element; the glow itself is CSS (.spotlight in globals.css).
+ */
+export function Spotlight({
+  children,
+  className,
+  as = "div",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  as?: "div" | "li" | "figure" | "article";
+}) {
+  const Comp = as as "div";
+  const onMove = (e: React.PointerEvent<HTMLElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
+  return (
+    <Comp onPointerMove={onMove} className={cn("spotlight", className)}>
+      {children}
+    </Comp>
+  );
+}
+
+/** Pulls its child a few pixels toward the pointer. Purpose: invites a click on key actions. */
+export function Magnetic({
+  children,
+  strength = 0.25,
+  className,
+}: {
+  children: React.ReactNode;
+  strength?: number;
+  className?: string;
+}) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 260, damping: 18, mass: 0.4 });
+  const sy = useSpring(y, { stiffness: 260, damping: 18, mass: 0.4 });
+  const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
+    const r = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - (r.left + r.width / 2)) * strength);
+    y.set((e.clientY - (r.top + r.height / 2)) * strength);
+  };
+  const reset = () => {
+    x.set(0);
+    y.set(0);
+  };
+  return (
+    <motion.div
+      onPointerMove={onMove}
+      onPointerLeave={reset}
+      style={{ x: sx, y: sy }}
+      className={cn("inline-block", className)}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/** Reveals a heading word by word. Purpose: gives each section opener a clear entrance. */
+export function SplitWords({
+  text,
+  className,
+  delay = 0,
+  stagger = 0.05,
+}: {
+  text: string;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+}) {
+  const words = text.split(" ");
+  return (
+    <motion.span
+      className={className}
+      initial="hidden"
+      whileInView="shown"
+      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      transition={{ staggerChildren: stagger, delayChildren: delay }}
+      aria-label={text}
+    >
+      {words.map((w, i) => (
+        <span key={`${w}-${i}`} aria-hidden className="inline-block overflow-hidden pb-[0.12em] align-bottom">
+          <motion.span
+            className="inline-block"
+            variants={{
+              hidden: { y: "110%", opacity: 0 },
+              shown: { y: "0%", opacity: 1, transition: { duration: 0.6, ease: EASE_OUT } },
+            }}
+          >
+            {w}
+          </motion.span>
+          {i < words.length - 1 && " "}
+        </span>
+      ))}
+    </motion.span>
+  );
+}
+
+/** Endless horizontal strip that pauses on hover. Purpose: shows a long list of tools in little space. */
+export function Marquee({
+  children,
+  reverse,
+  className,
+  duration = 40,
+}: {
+  children: React.ReactNode;
+  reverse?: boolean;
+  className?: string;
+  duration?: number;
+}) {
+  return (
+    <div className={cn("marquee group/marquee relative overflow-hidden", className)}>
+      <div
+        className="marquee-track flex w-max gap-3 group-hover/marquee:[animation-play-state:paused]"
+        style={{ animationDuration: `${duration}s`, animationDirection: reverse ? "reverse" : "normal" }}
+      >
+        <div className="flex shrink-0 gap-3">{children}</div>
+        <div className="flex shrink-0 gap-3" aria-hidden>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Vertical line that fills as its container scrolls through the viewport.
+ * Purpose: turns the experience list into a timeline you move along.
+ */
+export function ScrollLine({ className }: { className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 60%"] });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.4 });
+  return (
+    <div ref={ref} aria-hidden className={cn("absolute top-0 bottom-0 w-px bg-line", className)}>
+      <motion.div className="absolute inset-0 origin-top bg-accent" style={{ scaleY }} />
+    </div>
+  );
+}
+
 /** Counts a number up once it is on screen. Purpose: draws the eye to the four headline facts. */
 export function CountUp({ value, className }: { value: string; className?: string }) {
   const match = value.match(/^(\d+)(.*)$/);

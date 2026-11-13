@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { earlierRoles, experience } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Reveal } from "@/components/motion/motion";
+import { Reveal, ScrollLine } from "@/components/motion/motion";
 import { Zoom } from "@/components/motion/lightbox";
 
 // A ledger, not cards: period on the left, the work on the right, hairlines between.
@@ -15,9 +15,17 @@ export function ExperienceSection() {
         intro={<p>Newest first. Every role was customer-facing; the later ones added the systems behind the service.</p>}
       />
 
-      <ol className="mt-12">
+      <div className="relative mt-12 pl-8 md:pl-10">
+        <ScrollLine className="left-[7px]" />
+        <ol>
         {experience.map((e) => (
-          <Reveal as="li" key={e.id} className="grid grid-cols-1 gap-3 border-b border-line py-8 md:grid-cols-12 md:gap-8">
+          <Reveal as="li" key={e.id} className="group/role relative grid grid-cols-1 gap-3 border-b border-line py-8 md:grid-cols-12 md:gap-8">
+            <span
+              aria-hidden
+              className="absolute top-9 -left-8 flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-accent bg-paper transition-transform duration-200 group-hover/role:scale-125 md:-left-10"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            </span>
             <div className="md:col-span-3">
               <p className="text-sm font-semibold text-accent">{e.period}</p>
               <p className="mt-1 text-xs text-muted">{e.place}</p>
@@ -31,7 +39,7 @@ export function ExperienceSection() {
                   </span>
                 )}
                 <div className="min-w-0">
-                  <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">{e.role}</h3>
+                  <h3 className="text-xl font-semibold tracking-tight transition-colors group-hover/role:text-accent sm:text-2xl">{e.role}</h3>
                   <p className="mt-0.5 text-ink-soft">{e.company}</p>
                 </div>
               </div>
@@ -79,7 +87,13 @@ export function ExperienceSection() {
           </Reveal>
         ))}
 
-        <Reveal as="li" className="grid grid-cols-1 gap-3 py-8 md:grid-cols-12 md:gap-8">
+        <Reveal as="li" className="group/role relative grid grid-cols-1 gap-3 py-8 md:grid-cols-12 md:gap-8">
+            <span
+              aria-hidden
+              className="absolute top-9 -left-8 flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-accent bg-paper transition-transform duration-200 group-hover/role:scale-125 md:-left-10"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            </span>
           <div className="md:col-span-3">
             <p className="text-sm font-semibold text-accent">{earlierRoles.period}</p>
           </div>
@@ -98,6 +112,7 @@ export function ExperienceSection() {
           </div>
         </Reveal>
       </ol>
+      </div>
     </section>
   );
 }

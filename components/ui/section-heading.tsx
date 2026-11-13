@@ -1,4 +1,4 @@
-import { Reveal } from "@/components/motion/motion";
+import { Reveal, SplitWords } from "@/components/motion/motion";
 import { cn } from "@/lib/utils";
 
 /**
@@ -21,7 +21,7 @@ export function SectionHeading({
   return (
     <Reveal className={cn("grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-8", className)}>
       <div className="md:col-span-7">
-        <p className="text-sm font-semibold text-accent">
+        <p className="inline-flex items-center rounded-full border border-line bg-surface px-3 py-1 text-sm font-semibold text-accent">
           {index}
           <span className="mx-2 text-line" aria-hidden>
             /
@@ -29,7 +29,7 @@ export function SectionHeading({
           {label}
         </p>
         <h2 className="mt-3 text-3xl leading-[1.15] font-semibold tracking-tight text-balance sm:text-4xl md:text-[2.75rem]">
-          {title}
+          <SplitWords text={title} stagger={0.035} />
         </h2>
       </div>
       {intro && (

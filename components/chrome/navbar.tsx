@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUp, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { person } from "@/lib/content/profile";
 import { ThemeToggle } from "@/components/chrome/theme-toggle";
@@ -20,6 +20,25 @@ const links = [
 export function Navbar() {
   const [active, setActive] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
+  // Hides while reading downward, returns on any scroll up. Purpose: more room for screenshots.
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [farDown, setFarDown] = useState(false);
+
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      setFarDown(y > 900);
+      if (Math.abs(y - last) < 6) return;
+      setHidden(y > last && y > 400);
+      last = y;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,7 +62,14 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md">
+    <>
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b bg-paper/80 backdrop-blur-md transition-[transform,border-color,box-shadow] duration-300",
+        scrolled ? "border-line shadow-[0_8px_24px_-18px_rgb(17_18_20/0.35)]" : "border-transparent",
+        hidden && !open && "-translate-y-full"
+      )}
+    >
       <nav className="shell flex h-16 items-center justify-between gap-4" aria-label="Main">
         <a href="#top" className="flex min-h-11 items-center gap-2.5 text-base font-semibold tracking-tight">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink text-xs font-bold text-paper" aria-hidden>
@@ -100,8 +126,16 @@ export function Navbar() {
         </div>
       </nav>
 
+      <AnimatePresence>
       {open && (
-        <div id="mobile-menu" className="border-t border-line bg-paper lg:hidden">
+        <motion.div
+          id="mobile-menu"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-hidden border-t border-line bg-paper lg:hidden"
+        >
           <ul className="shell flex flex-col py-2">
             {links.map((link) => (
               <li key={link.id}>
@@ -126,8 +160,26 @@ export function Navbar() {
               </a>
             </li>
           </ul>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </header>
+
+    <AnimatePresence>
+      {farDown && (
+        <motion.a
+          href="#top"
+          aria-label="Back to top"
+          initial={{ opacity: 0, y: 16, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.9 }}
+          transition={{ duration: 0.2 }}
+          className="fixed right-4 bottom-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-accent-ink shadow-[0_12px_24px_-10px_var(--accent)] transition-transform hover:-translate-y-1 sm:right-6 sm:bottom-6"
+        >
+          <ArrowUp className="h-5 w-5" aria-hidden />
+        </motion.a>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
