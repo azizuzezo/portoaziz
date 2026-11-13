@@ -40,15 +40,7 @@ export function Hero() {
                   {person.email}
                 </Button>
               </div>
-              <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
-                <span className="relative flex h-2.5 w-2.5" aria-hidden>
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 motion-safe:animate-[ping-soft_1.8s_cubic-bezier(0,0,0.2,1)_infinite]" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                </span>
-                <span className="font-medium text-ink">{person.lookingFor}</span>
-                <span aria-hidden>·</span>
-                {person.location}
-              </p>
+              <p className="mt-6 text-sm text-muted">{person.location}</p>
             </Reveal>
           </div>
 

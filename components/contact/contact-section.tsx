@@ -33,7 +33,7 @@ export function ContactSection() {
         <h2 className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl">
           <SplitWords text="If your customers keep raising the same problem, I'd like to help fix it at the source." stagger={0.03} />
         </h2>
-        <p className="mt-6 max-w-xl text-lg text-paper/75">{person.lookingFor}. Email is the quickest way to reach me.</p>
+        <p className="mt-6 max-w-xl text-lg text-paper/75">Email is the quickest way to reach me.</p>
         </Reveal>
 
         <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

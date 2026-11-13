@@ -14,12 +14,11 @@ export const person = {
   cvUrl: "/cv/Abdul-Aziz-Setiawan-CV.pdf",
   photoUrl: "/images/profile/aziz.png",
   siteUrl: "https://portoaziz.my.id",
-  lookingFor: "Focused on CRM and systems analyst work",
 } as const;
 
 export const summary = {
   lead: "Nine years of answering customers, from Commuter Line platforms to fintech help desks. Now I also build the tools that help a support team answer them faster.",
-  body: "At Skor Technologies I handle card cases between the bank, Skorcard and Skorlife in a ticketing system, and I built the internal CS Tools Portal, which cut the team's manual case handling by 50% within 6 months. I'm looking for a CRM and systems analyst role where recurring customer problems turn into process and system changes.",
+  body: "At Skor Technologies I handle card cases between the bank, Skorcard and Skorlife in a ticketing system, and I built the internal CS Tools Portal, which cut the team's manual case handling by 50% within 6 months.",
 };
 
 export type Image = { src: string; w: number; h: number };
