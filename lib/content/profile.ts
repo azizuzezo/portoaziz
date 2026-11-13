@@ -14,6 +14,7 @@ export const person = {
   cvUrl: "/cv/Abdul-Aziz-Setiawan-CV.pdf",
   photoUrl: "/images/profile/aziz.png",
   siteUrl: "https://portoaziz.my.id",
+  focus: "Customer experience specialist and tech enthusiast",
 } as const;
 
 export const summary = {

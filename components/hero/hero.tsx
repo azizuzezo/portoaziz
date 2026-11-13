@@ -40,7 +40,11 @@ export function Hero() {
                   {person.email}
                 </Button>
               </div>
-              <p className="mt-6 text-sm text-muted">{person.location}</p>
+              <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
+                <span className="font-medium text-ink">{person.focus}</span>
+                <span aria-hidden>·</span>
+                {person.location}
+              </p>
             </Reveal>
           </div>
 
