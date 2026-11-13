@@ -14,7 +14,7 @@ export const person = {
   cvUrl: "/cv/Abdul-Aziz-Setiawan-CV.pdf",
   photoUrl: "/images/profile/aziz.png",
   siteUrl: "https://portoaziz.my.id",
-  lookingFor: "Open to CRM and systems analyst roles",
+  lookingFor: "Focused on CRM and systems analyst work",
 } as const;
 
 export const summary = {
