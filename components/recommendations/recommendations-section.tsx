@@ -1,45 +1,61 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { Quote } from "lucide-react";
-import { recommendations } from "@/lib/content/profile";
+import { person, recommendations, type Recommendation } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/motion/motion";
+
+function Person({ r }: { r: Recommendation }) {
+  return (
+    <figcaption className="mt-6 flex items-center gap-3">
+      <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-sunken">
+        <Image src={r.photo} alt="" fill sizes="44px" className="object-cover" />
+      </span>
+      <span className="text-sm">
+        <span className="block font-medium">{r.name}</span>
+        <span className="block text-muted">{r.title}</span>
+        <span className="block text-xs text-muted">
+          {r.relationship}, {r.date}
+        </span>
+      </span>
+    </figcaption>
+  );
+}
 
 export function RecommendationsSection() {
+  const [first, ...others] = recommendations;
   return (
-    <section id="recommendations" className="section-shell">
+    <section id="recommendations" className="anchor shell py-16 md:py-24">
       <SectionHeading
-        eyebrow="Recommendations"
-        title="What colleagues say"
-        description="A few words from people I've worked alongside, straight from LinkedIn."
+        index="03"
+        label="Recommendations"
+        title="What people I've worked with say"
+        intro={
+          <p>
+            Quoted in full from{" "}
+            <a
+              href={`${person.linkedin}/details/recommendations/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink underline decoration-line underline-offset-4 hover:decoration-accent"
+            >
+              my LinkedIn profile
+            </a>
+            .
+          </p>
+        }
       />
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        {recommendations.map((rec, i) => (
-          <motion.div
-            key={rec.name}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-            className="glass-panel flex flex-col rounded-3xl p-6"
-          >
-            <Quote className="h-6 w-6 text-aurora-cyan/60" />
-            <p className="mt-4 flex-1 text-sm leading-relaxed text-mist">{rec.quote}</p>
-            <div className="mt-6 flex items-center gap-3 border-t border-ink/10 pt-5">
-              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-ink/12">
-                <Image src={rec.photo} alt={rec.name} fill sizes="44px" className="object-cover" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-fog">{rec.name}</p>
-                <p className="text-xs text-mist">{rec.title}</p>
-                <p className="mt-0.5 text-[11px] text-mist/60">
-                  {rec.relationship} &middot; {rec.date}
-                </p>
-              </div>
-            </div>
-          </motion.div>
+      <Reveal as="figure" className="mt-12 rounded-2xl bg-sunken p-6 sm:p-10 md:ml-[25%]">
+        <blockquote className="text-xl leading-snug font-medium sm:text-2xl">&ldquo;{first.quote}&rdquo;</blockquote>
+        <Person r={first} />
+      </Reveal>
+
+      <div className="mt-14 grid grid-cols-1 gap-12 border-t border-line pt-10 md:grid-cols-2 md:gap-10">
+        {others.map((r, i) => (
+          <Reveal as="figure" key={r.name} delay={i * 0.08} className={cn(i === 1 && "md:border-l md:border-line md:pl-10")}>
+            <blockquote className="text-lg leading-relaxed text-ink-soft">&ldquo;{r.quote}&rdquo;</blockquote>
+            <Person r={r} />
+          </Reveal>
         ))}
       </div>
     </section>

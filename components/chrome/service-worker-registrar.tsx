@@ -8,7 +8,7 @@ export function ServiceWorkerRegistrar() {
     if (!("serviceWorker" in navigator)) return;
 
     navigator.serviceWorker.register("/sw.js").catch(() => {
-      // offline shell is a progressive enhancement — safe to ignore failures
+      // offline shell is a progressive enhancement, safe to ignore failures
     });
   }, []);
 

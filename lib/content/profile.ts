@@ -1,325 +1,442 @@
-// Single source of truth for all real profile content.
-// Sourced from the user's LinkedIn "Save to PDF" export (public/Profile.pdf).
+// Single source of truth for all profile content.
+// Sourced from the CV (public/cv/Abdul-Aziz-Setiawan-CV.pdf), LinkedIn
+// recommendations, and live screenshots of each product.
 
 export const person = {
   name: "Abdul Aziz Setiawan",
+  shortName: "Aziz",
   initials: "AA",
-  headline:
-    "Customer Service Agent as Supported Team | Good in Communication, Administration and Time Management",
+  title: "Customer Experience · AI Application Developer",
+  headline: "Customer Experience | AI Application Developer",
   location: "Kota Bogor, Jawa Barat, Indonesia",
-  email: "work.aziz@outlook.com",
+  email: "si.aziz6970@gmail.com",
   linkedin: "https://www.linkedin.com/in/abdazizs",
-  cvUrl: "/Profile.pdf",
-  hasPhoto: true,
+  cvUrl: "/cv/Abdul-Aziz-Setiawan-CV.pdf",
   photoUrl: "/images/profile/aziz.png",
+  siteUrl: "https://portoaziz.my.id",
+  lookingFor: "Open to CRM and systems analyst roles",
 } as const;
 
-export const roleRotator = [
-  "Customer Experience Specialist",
-  "Customer Service Professional",
-  "Guest Service Expert",
-  "Fintech Support Specialist",
-  "Problem Solver",
-] as const;
+export const summary = {
+  lead: "Nine years of answering customers, from Commuter Line platforms to fintech help desks. Now I also build the tools that help a support team answer them faster.",
+  body: "At Skor Technologies I handle card cases between the bank, Skorcard and Skorlife in a ticketing system, and I built the internal CS Tools Portal, which cut the team's manual case handling by 50% within 6 months. I'm looking for a CRM and systems analyst role where recurring customer problems turn into process and system changes.",
+};
 
-export const about = {
-  paragraphs: [
-    "I am a graduate of SMK Negeri 23 Jakarta and currently serve as a Customer Service Agent at Skor Technologies. Previously, I worked as a Guest Service Officer at PT Angkasa Pura Supports and as a Customer Service on Train at PT Kereta Api Pariwisata (KAWISATA).",
-    "One of the highlights of my career was in 2022, when I was honored as the Best Service Officer and entrusted with serving the 7th President of the Republic of Indonesia, Mr. Ir. Joko Widodo, and the Minister of Transportation, Mr. Budi Karya Sumadi, during a special train service.",
-    "Throughout my education and career journey, I have always been eager to learn new things. I have gained experience in various roles, including Sales Promotion, Sales Assistant, Helpdesk, Customer Service, Social Media Administrator, and Announcer. These experiences have shaped my ability to adapt quickly, communicate effectively, and develop excellent time management skills.",
-  ],
-  arc: [
-    {
-      industry: "Transportation",
-      years: "2019 – 2024",
-      description:
-        "5+ years keeping Jakarta's Commuter Line moving — announcements, onboard safety, and a presidential service assignment.",
-    },
-    {
-      industry: "Hospitality",
-      years: "2025",
-      description:
-        "Guest Service Officer role translating railway-grade service discipline into warm, resident-first hospitality.",
-    },
-    {
-      industry: "Fintech",
-      years: "2026 – Present",
-      description:
-        "Customer Service Agent at Skor Technologies, resolving card issues and building internal tools that cut resolution time in half.",
-    },
-  ],
-} as const;
+export type Image = { src: string; w: number; h: number };
 
-export type Industry =
-  | "retail"
-  | "administration"
-  | "transportation"
-  | "hospitality"
-  | "fintech"
-  | "venture";
+export type Project = {
+  id: string;
+  name: string;
+  /** Where it lives: built inside a team at work, or a product I run myself. */
+  group: "skor" | "own";
+  status: string;
+  tagline: string;
+  description: string;
+  points?: string[];
+  url?: string;
+  urlLabel?: string;
+  image: Image;
+  imageAlt: string;
+  /** Shown under the screenshot when something in it was blurred. */
+  imageNote?: string;
+};
+
+// The flagship case study, told in more depth than the other projects.
+export const featuredCase = {
+  name: "Skorcard CS Tools Portal",
+  org: "Skor Technologies",
+  status: "In daily use",
+  url: "https://sc-cs-portal.skorcard.app",
+  urlLabel: "sc-cs-portal.skorcard.app (sign-in required)",
+  image: { src: "/images/ai-projects/skorcard-cs-portal-2026-11.jpg", w: 2400, h: 1226 },
+  imageAlt:
+    "CS Tools Portal dashboard: live queue for Skorcard and Skorlife tickets, team schedule, product updates and a sheets and reports hub",
+  result: { value: "50%", label: "less manual case work within 6 months" },
+  sections: [
+    {
+      heading: "The problem",
+      text: "Agents worked Skorcard and Skorlife cases across two ticket desks, bank escalations, fee waivers, card delivery sheets and a monthly roster. Each lived in its own tab, so a single case meant a lot of copying and checking by hand.",
+    },
+    {
+      heading: "What I built",
+      text: "One portal for the whole shift: a live queue that refreshes every 20 seconds, the team schedule, BMI escalation workflows, request forms for fee waivers, early payoff and card closing, customer data trackers, and every team sheet linked in one place.",
+    },
+    {
+      heading: "How it landed",
+      text: "Manual case handling dropped by half within 6 months. The team later asked for chat and a chatbot console on the same sign-in, which became the next three tools below.",
+    },
+  ],
+  quote: {
+    text: "One of his most impressive contributions was developing an internal portal that significantly simplifies and streamlines the Customer Service team's daily operations.",
+    name: "Nabila Sharafina",
+    role: "Customer Service Supervisor, Skor Technologies",
+  },
+};
+
+export const projects: Project[] = [
+  {
+    id: "skorcard-chatbot",
+    name: "Skorcard Chatbot console",
+    group: "skor",
+    status: "Internal",
+    tagline: "Agent and admin console for the Skorcard chatbot",
+    description:
+      "Agents pick up chats the bot can't finish, claim or reassign a session, and see the customer's card, billing and risk details beside the conversation. A ticket can be raised without leaving the chat.",
+    url: "https://cs.skorcard.app",
+    urlLabel: "cs.skorcard.app (sign-in required)",
+    image: { src: "/images/ai-projects/skorcard-chatbot-2026-11.jpg", w: 2000, h: 997 },
+    imageAlt: "Skorcard agent dashboard with a session queue, conversation and customer panel",
+    imageNote: "Customer names, IDs and financial details are blurred.",
+  },
+  {
+    id: "skorlife-chatbot",
+    name: "Skorlife chatbot",
+    group: "skor",
+    status: "Internal",
+    tagline: "AI chat with agent takeover for Skorlife",
+    description:
+      "The AI answers credit report questions first. When a customer needs a person, an agent takes over with the credit snapshot and active accounts already on screen, then hands the chat back or closes it.",
+    image: { src: "/images/ai-projects/skorlife-chatbot-2026-11.jpg", w: 2000, h: 1023 },
+    imageAlt: "Skorlife agent dashboard with AI-handled sessions and a credit snapshot panel",
+    imageNote: "Customer names, IDs and financial details are blurred.",
+  },
+  {
+    id: "skorchat",
+    name: "Skor Chat",
+    group: "skor",
+    status: "Internal",
+    tagline: "Team chat on the same sign-in",
+    description:
+      "Channels and direct messages for the Skorcard and Skorlife team, using the CS Portal account, so case talk stays next to the tools instead of in personal chat apps.",
+    url: "https://sc-cs-portal.skorcard.app/skorchat",
+    urlLabel: "sc-cs-portal.skorcard.app/skorchat (sign-in required)",
+    image: { src: "/images/ai-projects/skorchat-2026-11.jpg", w: 2000, h: 1024 },
+    imageAlt: "Skor Chat with channels and direct messages in the sidebar",
+  },
+  {
+    id: "temankereta",
+    name: "Teman Kereta",
+    group: "own",
+    status: "On Google Play",
+    tagline: "A free, ad-free companion for KRL Jabodetabek commuters",
+    description:
+      "Built from five years on the Commuter Line. It sounds an alarm two stations before your stop, shows routes and fares, and tracks trains live from anonymous passenger GPS.",
+    points: [
+      "Schedules from official GTFS open data",
+      "Forum for crowding reports",
+      "Independent app, not an official KAI Commuter product",
+    ],
+    url: "https://play.google.com/store/apps/details?id=id.temankereta.teman_kereta",
+    urlLabel: "Google Play",
+    image: { src: "/images/ai-projects/temankereta-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "Three Teman Kereta screens: home, active trip countdown and the station list",
+  },
+  {
+    id: "patungan",
+    name: "Patungan Yuk!",
+    group: "own",
+    status: "Live",
+    tagline: "QRIS donations that show up live on TikTok LIVE and OBS",
+    description:
+      "Viewers pay by QRIS and the alert appears on the streamer's screen. Hosts get a dashboard, overlay widgets and a wallet with withdrawal requests. The platform takes a 1% fee.",
+    url: "https://patungan.gifts",
+    urlLabel: "patungan.gifts",
+    image: { src: "/images/ai-projects/patungan-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "Patungan Yuk! landing page",
+  },
+  {
+    id: "duacincin",
+    name: "DuaCincin",
+    group: "own",
+    status: "Live",
+    tagline: "Wedding vendor marketplace",
+    description:
+      "Couples compare verified vendors, chat and book in one place. Payment is held in escrow and released to the vendor after the event.",
+    url: "https://duacincin.id",
+    urlLabel: "duacincin.id",
+    image: { src: "/images/ai-projects/duacincin-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "DuaCincin marketplace landing page",
+  },
+  {
+    id: "duacincin-invitation",
+    name: "DuaCincin Invitation",
+    group: "own",
+    status: "Live",
+    tagline: "Cinematic digital wedding invitations",
+    description:
+      "12 themes, RSVP with guest count and dress code, live streaming, a digital guestbook, QR check-in and a photo booth.",
+    url: "https://invitation.duacincin.id",
+    urlLabel: "invitation.duacincin.id",
+    image: { src: "/images/ai-projects/duacincin-invitation-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "DuaCincin Invitation landing page",
+  },
+  {
+    id: "tongkrongan",
+    name: "Tongkrongan.tech",
+    group: "own",
+    status: "Live",
+    tagline: "Free subdomains for anyone",
+    description:
+      "Claim yourname.tongkrongan.tech and point it at Vercel, Cloudflare, a VPS or other hosting. No credit card, no DNS knowledge needed.",
+    url: "https://tongkrongan.tech",
+    urlLabel: "tongkrongan.tech",
+    image: { src: "/images/ai-projects/tongkrongan-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "Tongkrongan.tech landing page",
+  },
+  {
+    id: "flowworks",
+    name: "FlowWorks",
+    group: "own",
+    status: "Live",
+    tagline: "Survey-to-quotation workflow platform",
+    description:
+      "Takes a team from site survey to quotation with real-time KPI dashboards, role-based access and automated task workflows.",
+    url: "https://flowworks.ptuip.my.id",
+    urlLabel: "flowworks.ptuip.my.id",
+    image: { src: "/images/ai-projects/flowworks-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "FlowWorks sign-in page",
+  },
+  {
+    id: "ruangbaru",
+    name: "RuangBaru",
+    group: "own",
+    status: "Live",
+    tagline: "Team workspace for small businesses",
+    description:
+      "Projects, tasks, calendar and notes in one board, so progress is visible without chasing updates in group chats.",
+    url: "https://ruangbaru.my.id",
+    urlLabel: "ruangbaru.my.id",
+    image: { src: "/images/ai-projects/ruangbaru-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "RuangBaru landing page",
+  },
+  {
+    id: "muter-my-id",
+    name: "Muter.my.id",
+    group: "own",
+    status: "Live",
+    tagline: "Link-in-bio for creators who sell",
+    description:
+      "Creators list products, recruit fellow affiliates and track every commission from one dashboard.",
+    url: "https://muter.my.id",
+    urlLabel: "muter.my.id",
+    image: { src: "/images/ai-projects/muter-my-id-2026-11.jpg", w: 2000, h: 1250 },
+    imageAlt: "Muter.my.id landing page",
+  },
+];
 
 export type ExperienceEntry = {
   id: string;
-  company: string;
   role: string;
+  company: string;
+  place: string;
   period: string;
-  duration: string;
-  location: string;
-  industry: Industry;
-  /** One-line summary, always visible without expanding. */
-  summary: string;
   bullets: string[];
   milestone?: string;
-  /** Optional photo gallery, e.g. ["/images/experience/skor/team-1.jpg"] */
-  images?: string[];
-  /** Optional company logo, shown in place of the generic industry icon. */
   logo?: string;
+  images?: { src: string; alt: string }[];
 };
 
-// Chronological (oldest -> newest) to read as a growth story.
+// Newest first, as on the CV.
 export const experience: ExperienceEntry[] = [
   {
-    id: "ramayana",
-    logo: "/images/companies/ramayana.png",
-    company: "PT Ramayana Lestari Sentosa, Tbk",
-    role: "Sales Promotion Boy",
-    period: "Januari 2017 – April 2017",
-    duration: "4 bulan",
-    location: "North Jakarta, Indonesia",
-    industry: "retail",
-    summary: "Sold products on the floor and ran live event promotions.",
-    bullets: [
-      "Sold products directly to customers on the floor",
-      "Ran live promotions during special events",
-      "Prepared monthly sales reports",
-    ],
-  },
-  {
-    id: "map-aktif",
-    logo: "/images/companies/map-active.png",
-    company: "PT MAP Aktif Adiperkasa, Indonesia",
-    role: "Sales Assistant",
-    period: "Mei 2018 – Agustus 2018",
-    duration: "4 bulan",
-    location: "Area DKI Jakarta",
-    industry: "retail",
-    summary: "Beat sales targets by 100%+ and lifted customer satisfaction by 15%.",
-    bullets: [
-      "Exceeded monthly sales target by over 100%",
-      "Ran daily stock checks for availability",
-      "Lifted customer satisfaction by 15%",
-    ],
-  },
-  {
-    id: "orgaren",
-    logo: "/images/companies/orgaren.png",
-    company: "PT Orgaren Indonesia Jaya",
-    role: "Marketing Staff",
-    period: "September 2018 – Desember 2018",
-    duration: "4 bulan",
-    location: "Jakarta, Indonesia",
-    industry: "administration",
-    summary: "Sold palm sugar to retailers and repped the company at trade expos.",
-    bullets: [
-      "Sold palm sugar to shops, cafes, and retailers",
-      "Landed an international client for the product",
-      "Represented the company at a Ministry of Industry expo",
-    ],
-    images: [
-      "/images/experience/orgaren/indian-client.jpg",
-      "/images/experience/orgaren/trade-expo.jpg",
-    ],
-  },
-  {
-    id: "diva-karaoke",
-    logo: "/images/companies/diva-karaoke.png",
-    company: "Diva Karaoke",
-    role: "Administration",
-    period: "September 2018 – Desember 2018",
-    duration: "4 bulan",
-    location: "Jakarta, Indonesia",
-    industry: "administration",
-    summary: "Ran daily bookkeeping and payroll for the venue.",
-    bullets: [
-      "Handled daily bookkeeping and income recaps",
-      "Processed weekly staff payroll",
-      "Tracked incoming and outgoing cash flow",
-    ],
-  },
-  {
-    id: "kci-helpdesk",
-    logo: "/images/companies/kai-commuter.png",
-    company: "PT Kereta Commuter Indonesia",
-    role: "Helpdesk Command Control Room",
-    period: "Januari 2019 – Mei 2019",
-    duration: "5 bulan",
-    location: "Area DKI Jakarta",
-    industry: "transportation",
-    summary: "Bridged customer reports to the right teams across the network.",
-    bullets: [
-      "Routed customer reports to the right team",
-      "Monitored passenger flow at every station",
-      "Handled complaints on social media (Twitter)",
-    ],
-  },
-  {
-    id: "kci-announcer",
-    logo: "/images/companies/kai-commuter.png",
-    company: "PT Kereta Commuter Indonesia",
-    role: "Announcer",
-    period: "Juni 2019 – Juli 2022",
-    duration: "3 tahun 2 bulan",
-    location: "Area DKI Jakarta",
-    industry: "transportation",
-    summary: "Announced train updates and kept the passenger-info system running, 3+ years.",
-    bullets: [
-      "Announced arrivals, departures, and schedule changes",
-      "Operated the train-tracking system (ATA)",
-      "Helped passengers directly, including lost & found",
-    ],
-    images: [
-      "/images/experience/kci-announcer/studio-booth.jpg",
-      "/images/experience/kci-announcer/lost-and-found.jpg",
-    ],
-  },
-  {
-    id: "kawisata",
-    logo: "/images/companies/kai-wisata.png",
-    company: "PT Kereta Api Pariwisata (KAWISATA)",
-    role: "Customer Service On Train",
-    period: "Agustus 2022 – Desember 2024",
-    duration: "2 tahun 5 bulan",
-    location: "Area DKI Jakarta",
-    industry: "transportation",
-    summary: "Delivered onboard service and safety on the KRL — including a presidential assignment.",
-    bullets: [
-      "Ran onboard safety checks and announcements",
-      "Coordinated with the train driver every trip",
-      "Led the CSOT Creative Team's social & design output",
-    ],
-    milestone:
-      "27 Dec 2022 — Onboard Service Officer for President Joko Widodo & Minister Budi Karya Sumadi, Manggarai Station inauguration.",
-    images: [
-      "/images/experience/kawisata/presidential-service.jpg",
-      "/images/experience/kawisata/platform-group.jpg",
-      "/images/experience/kawisata/team-photo.jpg",
-      "/images/experience/kawisata/onboard-portrait.jpg",
-      "/images/experience/kawisata/night-briefing.jpg",
-      "/images/experience/kawisata/depot-portrait.jpg",
-    ],
-  },
-  {
-    id: "angkasa-pura",
-    logo: "/images/companies/angkasa-pura.png",
-    company: "Angkasa Pura Supports",
-    role: "Guest Service Officer",
-    period: "Januari 2025 – November 2025",
-    duration: "11 bulan",
-    location: "Jakarta Raya, Indonesia",
-    industry: "hospitality",
-    summary: "Greeted residents and guests, and helped roll out a smoother ops system.",
-    bullets: [
-      "Greeted and assisted residents & guests daily",
-      "Handled complaints and resolved issues",
-      "Helped roll out a new building operations system",
-    ],
-    images: [
-      "/images/experience/angkasa-pura/reception.jpg",
-      "/images/experience/angkasa-pura/lobby-guest.jpg",
-    ],
-  },
-  {
-    id: "skor",
-    logo: "/images/companies/skor-technologies.png",
+    id: "skor-cx",
+    role: "Customer Experience | AI Application Developer",
     company: "Skor Technologies",
-    role: "Customer Service Agent and Support",
-    period: "Januari 2026 – Present",
-    duration: "7 bulan",
-    location: "Jakarta Raya, Indonesia",
-    industry: "fintech",
-    summary: "Resolves card cases and built internal tools that cut manual work in half.",
+    place: "Jakarta",
+    period: "Jun 2026 – Present",
+    logo: "/images/companies/skor-technologies.png",
     bullets: [
-      "Resolves card-related complaints for customers",
-      "Liaises between the bank and Skorcard on cases",
-      "Built the internal CS Tools Portal (see AI Projects)",
+      "Resolve card-related customer complaints and coordinate cases between the bank, Skorcard and Skorlife",
+      "Built the internal CS Tools Portal with AI-assisted development for the team's daily case handling; it cut manual work by 50% within 6 months",
+      "Recommended on LinkedIn by the customer service supervisor for building the portal",
+      "Added team chat on the same sign-in, and an agent and admin console for the customer-facing chatbot",
     ],
-    milestone:
-      "Built internal CS tooling within 6 months that cut manual case-handling work by 50%.",
     images: [
-      "/images/experience/skor/team-lunch.jpg",
-      "/images/experience/skor/birthday-celebration.jpg",
-      "/images/experience/skor/team-selfie.jpg",
+      { src: "/images/experience/skor/team-selfie.jpg", alt: "With the Skor CS team" },
+      { src: "/images/experience/skor/team-lunch.jpg", alt: "Team lunch at Skor" },
+      { src: "/images/experience/skor/birthday-celebration.jpg", alt: "Celebrating a teammate's birthday" },
+    ],
+  },
+  {
+    id: "skor-csa",
+    role: "Customer Service Agent",
+    company: "Skor Technologies",
+    place: "Jakarta",
+    period: "Jan 2026 – Jun 2026",
+    logo: "/images/companies/skor-technologies.png",
+    bullets: [
+      "Resolved card-related customer complaints and coordinated cases between the bank and Skorcard",
+      "Handled cases from first contact to resolution in the ticketing system, within SLA targets",
+      "Kept customers updated on case status and escalated to the bank or Skorcard when they had to act",
     ],
   },
   {
     id: "duacincin",
+    role: "Co-Founder",
+    company: "Duacincin.id (side venture)",
+    place: "Indonesia",
+    period: "Jun 2026 – Present",
     logo: "/images/companies/duacincin.png",
-    company: "Duacincin.id",
-    role: "Founder",
-    period: "Juni 2026 – Present",
-    duration: "2 bulan",
-    location: "Indonesia",
-    industry: "venture",
-    summary: "Built a digital wedding invitation & photobooth business from the ground up.",
     bullets: [
-      "Founded a digital wedding invitation platform",
-      "Added digital photobooth offerings for events",
-      "Runs ops, marketing, and client support solo",
+      "Co-launched DuaCincin, a wedding marketplace and invitation platform, plus a digital photobooth service",
+      "Co-run operations, marketing and client support next to a full-time job",
     ],
   },
+  {
+    id: "angkasa-pura",
+    role: "Guest Service Officer",
+    company: "PT Angkasa Pura Supports",
+    place: "District 8, Jakarta",
+    period: "Jan 2025 – Nov 2025",
+    logo: "/images/companies/angkasa-pura.png",
+    bullets: [
+      "Handled resident and guest inquiries, access requests and complaints through to resolution",
+      "Made announcements and safety reminders",
+      "Helped roll out a new building operations system",
+    ],
+    images: [
+      { src: "/images/experience/angkasa-pura/reception.jpg", alt: "At the District 8 reception desk" },
+      { src: "/images/experience/angkasa-pura/lobby-guest.jpg", alt: "Assisting a guest in the lobby" },
+    ],
+  },
+  {
+    id: "kawisata",
+    role: "Customer Service On Train",
+    company: "PT Kereta Api Pariwisata (KAWISATA)",
+    place: "Jakarta",
+    period: "Aug 2022 – Dec 2024",
+    logo: "/images/companies/kai-wisata.png",
+    bullets: [
+      "Ran pre-trip equipment and safety checks and onboard announcements, and coordinated with the driver on every trip",
+      "Coordinated content for the CSOT Instagram account and linked the creative team with KAI Commuter's Corporate Culture Team",
+      "The account gained 5,041 followers in 2 years and reached 115,050 accounts in 90 days (data as of 5 Dec 2024)",
+    ],
+    milestone:
+      "Selected as onboard Service Officer for the President and the Minister of Transportation at the Manggarai Station inauguration, 27 Dec 2022.",
+    images: [
+      { src: "/images/experience/kawisata/presidential-service.jpg", alt: "Presidential service at the Manggarai inauguration" },
+      { src: "/images/experience/kawisata/platform-group.jpg", alt: "CSOT officers on the platform" },
+      { src: "/images/experience/kawisata/onboard-portrait.jpg", alt: "On board a Commuter Line train" },
+    ],
+  },
+  {
+    id: "kci-announcer",
+    role: "Announcer on Station",
+    company: "PT Kereta Commuter Indonesia",
+    place: "Jakarta",
+    period: "Jun 2019 – Jul 2022",
+    logo: "/images/companies/kai-commuter.png",
+    bullets: [
+      "Announced arrivals, departures and schedule changes, and helped passengers directly, including lost and found cases",
+      "Operated the Tracking Announcer Application (ATA), which feeds the station information boards and the C-Access app",
+    ],
+    images: [
+      { src: "/images/experience/kci-announcer/lost-and-found.jpg", alt: "Helping a passenger with a lost and found case" },
+    ],
+  },
+  {
+    id: "kci-helpdesk",
+    role: "Helpdesk, Command Control Room",
+    company: "PT Kereta Commuter Indonesia",
+    place: "Jakarta",
+    period: "Jan 2019 – May 2019",
+    logo: "/images/companies/kai-commuter.png",
+    bullets: [
+      "Routed customer reports to the responsible teams, monitored passenger flow across stations, and handled complaints on Twitter",
+    ],
+  },
+];
+
+export const earlierRoles = {
+  period: "2017 – 2018",
+  roles: [
+    {
+      role: "Sales Assistant",
+      company: "PT MAP Aktif Adiperkasa",
+      note: "Exceeded monthly sales targets and lifted customer satisfaction by 15%",
+    },
+    {
+      role: "Marketing Staff",
+      company: "PT Orgaren Indonesia Jaya",
+      note: "Landed an international client and represented the company at a Ministry of Industry expo",
+    },
+    {
+      role: "Administration",
+      company: "Diva Karaoke",
+      note: "Bookkeeping and weekly payroll",
+    },
+    {
+      role: "Sales Promotion intern",
+      company: "PT Ramayana Lestari Sentosa",
+      note: "Floor sales and event promotions",
+    },
+  ],
+};
+
+export const highlights = [
+  { value: "50%", label: "less manual case work after the CS Tools Portal" },
+  { value: "9 yrs", label: "customer-facing, in retail, transport, hospitality and fintech" },
+  { value: String(projects.length + 1), label: "tools and products built with AI-assisted development" },
+  { value: "2022", label: "onboard service officer for the President at Manggarai" },
+];
+
+export const skillGroups = [
+  {
+    name: "CRM and customer operations",
+    items: [
+      "Customer relations",
+      "Complaint handling",
+      "Case resolution",
+      "Ticketing systems",
+      "SLA compliance",
+      "Fintech customer support",
+      "Bank-to-issuer case coordination",
+    ],
+  },
+  {
+    name: "Systems and process",
+    items: [
+      "Process improvement",
+      "Workflow automation",
+      "Internal tool design",
+      "KPI dashboards",
+      "Role-based access",
+      "AI-assisted development",
+      "AI prompting",
+    ],
+  },
+  {
+    name: "Communication",
+    items: [
+      "Announcing and public speaking",
+      "Persuasive communication",
+      "Team leadership",
+      "Social media administration",
+    ],
+  },
+];
+
+export const tools: { name: string; logo?: string }[] = [
+  { name: "Microsoft Excel", logo: "/images/tools/excel.png" },
+  { name: "Microsoft Word", logo: "/images/tools/word.png" },
+  { name: "Microsoft Outlook", logo: "/images/tools/outlook.png" },
+  { name: "Google Workspace" },
+  { name: "VS Code", logo: "/images/tools/vscode.png" },
+  { name: "Claude", logo: "/images/tools/claude.png" },
+  { name: "Antigravity", logo: "/images/tools/antigravity.png" },
+  { name: "Canva", logo: "/images/tools/canva.png" },
+  { name: "Adobe Photoshop", logo: "/images/tools/photoshop.png" },
+  { name: "Adobe Lightroom", logo: "/images/tools/lightroom.png" },
+  { name: "CapCut", logo: "/images/tools/capcut.png" },
 ];
 
 export const education = {
   school: "SMK Negeri 23 Jakarta",
   logo: "/images/education/smkn23-logo.png",
-  degree: "Vocational High School, Manajemen Pemasaran (Marketing Management)",
+  degree: "Vocational High School, Marketing Management",
   period: "2015 – 2018",
-  bullets: [
-    "Curriculum covered digital marketing strategies, business communication, market analysis, and brand management — building a strong foundation in marketing studies.",
-    "Served as Vice President of the Intra-School Student Council (OSIS) for one term and initiated an internet-based election system for the next leadership selection.",
-    "Contributed to the School Theater Event as part of the music accompaniment team, well received by the public.",
-  ],
+  note: "Vice President of the Student Council (2016–2017); replaced manual chairman elections with an online voting system.",
 };
-
-export const organizationalExperience: {
-  role: string;
-  org: string;
-  period: string;
-  bullets: string[];
-}[] = [
-  {
-    role: "Creative Team Coordinator",
-    org: "Creative Team of Customer Service On Train — PT Kereta Api Pariwisata (KAWISATA)",
-    period: "August 2022 – Present",
-    bullets: [
-      "Coordinated content for publication on the Customer Service On Train (CSOT) account.",
-      "Acted as a bridge between the CSOT Creative Team and the Corporate Culture Team of KAI Commuter.",
-    ],
-  },
-  {
-    role: "Wakil Ketua (Vice Chairman)",
-    org: "Intra-School Student Organization (OSIS) — SMK Negeri 23 Jakarta",
-    period: "June 2016 – June 2017",
-    bullets: [
-      "Assisted in coordinating the planning of the 2016 Art Performance event.",
-      "Implemented a digital voting system for the Chairman election, replacing the traditional manual process.",
-      "Helped organize and manage events such as Class Meet, which was successfully executed as planned.",
-    ],
-  },
-];
-
-export const tools: { name: string; logo: string }[] = [
-  { name: "Canva", logo: "/images/tools/canva.png" },
-  { name: "Adobe Photoshop", logo: "/images/tools/photoshop.png" },
-  { name: "Adobe Lightroom", logo: "/images/tools/lightroom.png" },
-  { name: "CapCut", logo: "/images/tools/capcut.png" },
-  { name: "Microsoft Word", logo: "/images/tools/word.png" },
-  { name: "Microsoft Excel", logo: "/images/tools/excel.png" },
-  { name: "Microsoft Outlook", logo: "/images/tools/outlook.png" },
-  { name: "Antigravity", logo: "/images/tools/antigravity.png" },
-  { name: "VS Code", logo: "/images/tools/vscode.png" },
-  { name: "Claude", logo: "/images/tools/claude.png" },
-];
 
 export type Certification = { title: string; url?: string };
 
@@ -329,20 +446,20 @@ export const certifications: Certification[] = [
     url: "https://drive.google.com/file/d/172d-akQdKGDNRT0r3GIw9LdXilPW_rrS/view",
   },
   {
-    title: "Certificate of Competency in Marketing Skills",
+    title: "Marketing Competency Certificate",
     url: "https://drive.google.com/file/d/16zsOM42e_n2xlSpjrkL3FQ9ExcCcWzEP/view",
   },
   {
-    title: "Fundamentals of Service: Using Persuasive Communication in Handling Complaints",
+    title: "Persuasive Communication in Complaint Handling",
     url: "https://drive.google.com/file/d/15AoutYNKMrmxZ7bSVviySpC35KuBztwd/view",
+  },
+  {
+    title: "Basic Service Excellence & Voice Treatment",
+    url: "https://drive.google.com/file/d/15D6HX3U6PrDAXNL4Vuu-GHLHDWq2i9LH/view",
   },
   {
     title: "Work Motivation Program: Building a Successful Service Team",
     url: "https://drive.google.com/file/d/15FBaoAut7NXbmiDWy6CLVlu4iIZLU5B9/view",
-  },
-  {
-    title: "Basic Service Excellence & Basic Voice Treatment",
-    url: "https://drive.google.com/file/d/15D6HX3U6PrDAXNL4Vuu-GHLHDWq2i9LH/view",
   },
   {
     title: "Team Building: Developing AKHLAK for Frontline Service Excellence",
@@ -351,286 +468,9 @@ export const certifications: Certification[] = [
 ];
 
 export const languages = [
-  { name: "Bahasa Indonesia", level: "Professional Working" },
-  { name: "English", level: "Limited Working" },
+  { name: "Bahasa Indonesia", level: "Professional working" },
+  { name: "English", level: "TOEIC certified" },
 ];
-
-export type SkillCategory =
-  | "Customer Experience"
-  | "Communication"
-  | "Fintech Support"
-  | "Hospitality"
-  | "Creative & Design"
-  | "Leadership & Teamwork"
-  | "Digital & AI";
-
-export const skills: { name: string; category: SkillCategory }[] = [
-  { name: "Customer Service", category: "Customer Experience" },
-  { name: "Complaint Handling", category: "Customer Experience" },
-  { name: "CRM", category: "Customer Experience" },
-  { name: "Time Management", category: "Customer Experience" },
-  { name: "Multitasking", category: "Customer Experience" },
-  { name: "Customer Relations", category: "Customer Experience" },
-  { name: "Customer Engagement", category: "Customer Experience" },
-  { name: "Public Communication", category: "Communication" },
-  { name: "Persuasive Communication", category: "Communication" },
-  { name: "Public Relations", category: "Communication" },
-  { name: "Public Speaking", category: "Communication" },
-  { name: "Marketing Communication", category: "Communication" },
-  { name: "Announcing", category: "Communication" },
-  { name: "Vocal Performance", category: "Communication" },
-  { name: "Leadership", category: "Leadership & Teamwork" },
-  { name: "Team Building", category: "Leadership & Teamwork" },
-  { name: "Team Management", category: "Leadership & Teamwork" },
-  { name: "Teamwork", category: "Leadership & Teamwork" },
-  { name: "Fintech Customer Support", category: "Fintech Support" },
-  { name: "Ticketing Systems", category: "Fintech Support" },
-  { name: "Process Improvement", category: "Fintech Support" },
-  { name: "SLA Compliance", category: "Fintech Support" },
-  { name: "Hospitality Excellence", category: "Hospitality" },
-  { name: "Guest Relations", category: "Hospitality" },
-  { name: "Public Service", category: "Hospitality" },
-  { name: "Photography", category: "Creative & Design" },
-  { name: "Photo Editing", category: "Creative & Design" },
-  { name: "Video Editing", category: "Creative & Design" },
-  { name: "Graphic Design", category: "Creative & Design" },
-  { name: "AI Prompting", category: "Digital & AI" },
-  { name: "Start-up Ventures", category: "Digital & AI" },
-  { name: "Digital Operations", category: "Digital & AI" },
-  { name: "Social Media Administration", category: "Digital & AI" },
-  { name: "Microsoft Office", category: "Digital & AI" },
-  { name: "Basic Computer Literacy", category: "Digital & AI" },
-  { name: "Google Workspace", category: "Digital & AI" },
-];
-
-export const achievements = [
-  {
-    title: "Presidential Service Honor",
-    description:
-      "Entrusted as Onboard Service Officer for the 7th President of Indonesia, Joko Widodo, and Minister of Transportation Budi Karya Sumadi during the Manggarai Station inauguration — 27 December 2022, Tanah Abang → Manggarai route.",
-    stat: "1 of 1",
-  },
-  {
-    title: "Cross-Industry Experience",
-    description:
-      "Built a career spanning retail, transportation, hospitality, and fintech — adapting fast in every environment.",
-    stat: "4",
-    statLabel: "industries",
-  },
-  {
-    title: "Public Transportation Service",
-    description:
-      "Nearly 6 years across roles on Jakarta's Commuter Line — helpdesk, announcer, and onboard customer service.",
-    stat: "5.7",
-    statLabel: "years",
-  },
-  {
-    title: "Sales Performance",
-    description:
-      "Exceeded monthly sales targets by over 100% and lifted customer satisfaction by 15% at PT MAP Aktif Adiperkasa.",
-    stat: "+15%",
-    statLabel: "CSAT",
-  },
-  {
-    title: "Process Improvement",
-    description:
-      "Developed internal CS tooling at Skor Technologies that cut manual case-handling work in half within 6 months.",
-    stat: "50%",
-    statLabel: "faster",
-  },
-  {
-    title: "Founder Mindset",
-    description:
-      "Launched and operates Duacincin.id, a digital wedding invitation and photobooth service, alongside a full-time role.",
-    stat: "2026",
-    statLabel: "founded",
-  },
-];
-
-export const stats = [
-  { value: 9, suffix: "+", label: "Years of Experience" },
-  { value: 4, suffix: "", label: "Industries" },
-  { value: 10, suffix: "", label: "Roles Held" },
-  { value: 1, suffix: "", label: "Presidential Assignment" },
-] as const;
-
-// CSOT Creative Team work — content sourced from the Portfolio deck (Portfolio.pdf).
-
-export const socialMediaWork = {
-  handle: "@csot.kaicommuter",
-  url: "https://www.instagram.com/csot.kaicommuter",
-  followers: "5,265+",
-  description:
-    "As part of the CSOT Creative Team, developed and managed the official Customer Service On Train Instagram account — planning content, growing the following, and tracking reach across posts, reels, and stories.",
-  metrics: [
-    { value: "5.041", label: "Followers gained in 2 years" },
-    { value: "115.050", label: "Accounts reached (last 90 days)" },
-  ],
-};
-
-export const kmtCard = {
-  title: "Multi-Trip Card (KMT) Design Competition",
-  description:
-    "Designed for the 15th Anniversary of KAI Commuter. The mosaic pattern and #PilihanCerdas messaging position CommuterLine as a pollution-free, ever-adapting choice for urban life.",
-  tag: "Design Competition",
-  frontTexture: "/images/graphic-design/kmt-card-front-flat.jpg",
-  backTexture: "/images/graphic-design/kmt-card-back.png",
-};
-
-export type GraphicDesignItem = {
-  title: string;
-  description: string;
-  image: string;
-  tag: string;
-};
-
-export const graphicDesignWork: GraphicDesignItem[] = [
-  {
-    title: "CSOT Official Logo",
-    description: "Official logo of Customer Service On Train (CSOT), KAI Commuter.",
-    image: "/images/graphic-design/csot-logo.png",
-    tag: "Brand Identity",
-  },
-  {
-    title: "ABSES Jersey Logo",
-    description: "Official jersey logo for the Customer Service On Train sports team.",
-    image: "/images/graphic-design/abses-logo.jpg",
-    tag: "Brand Identity",
-  },
-  {
-    title: "PPK Community Logo",
-    description:
-      "Official logo of Forum Pengguna dan Pecinta KA (PPK) — a community for public transport enthusiasts.",
-    image: "/images/graphic-design/ppk-logo.jpg",
-    tag: "Brand Identity",
-  },
-];
-
-export const socialDesignPosts: { image: string; caption: string }[] = [
-  {
-    image: "/images/design-posts/design-post-01.jpg",
-    caption: "C-Access app launch — \"Satu genggaman, bisa untuk semua\"",
-  },
-  {
-    image: "/images/design-posts/design-post-02.jpg",
-    caption: "KRL Access — real-time schedule and train position tracking",
-  },
-  {
-    image: "/images/design-posts/design-post-03.jpg",
-    caption: "Indonesia Independence Day greeting, 17 Agustus 2024",
-  },
-  {
-    image: "/images/design-posts/design-post-04.jpg",
-    caption: "KAI Commuter's 16th anniversary greeting",
-  },
-  {
-    image: "/images/design-posts/design-post-05.jpg",
-    caption: "CSOT open recruitment announcement",
-  },
-  {
-    image: "/images/design-posts/design-post-06.jpg",
-    caption: "GAPEKA 2023 train schedule change notice",
-  },
-  {
-    image: "/images/design-posts/design-post-07.jpg",
-    caption: "Station cleanliness campaign",
-  },
-  {
-    image: "/images/design-posts/design-post-08.jpg",
-    caption: "\"Maaf\" short film promotional poster",
-  },
-];
-
-export const photographyWork: { image: string; caption: string }[] = [
-  { image: "/images/photography/train-01.jpg", caption: "KRL Commuter Line at the platform" },
-  { image: "/images/photography/train-02.jpg", caption: "KRL Commuter Line on the open line" },
-  { image: "/images/photography/cabin-crew.jpg", caption: "Inside the driver's cabin, on duty" },
-  { image: "/images/photography/officers-lineup.jpg", caption: "CSOT officers lineup" },
-];
-
-export const photographyNote = "Shot on a Canon 1200D with tele and fix lenses.";
-
-export type GalleryItem = { image: string; caption: string; org: string };
-
-export const gallery: GalleryItem[] = [
-  {
-    image: "/images/gallery/photo-01.jpg",
-    caption: "Serving Shin Tae-yong at District 8 Jakarta",
-    org: "Angkasa Pura Supports",
-  },
-  {
-    image: "/images/gallery/photo-02.jpg",
-    caption: "Service desk at District 8 Jakarta",
-    org: "Angkasa Pura Supports",
-  },
-  {
-    image: "/images/gallery/photo-03.jpg",
-    caption: "Recording session with C-Choir",
-    org: "PT Kereta Commuter Indonesia & KAI Wisata",
-  },
-  {
-    image: "/images/gallery/photo-04.jpg",
-    caption: "Recording session with C-Choir",
-    org: "PT Kereta Commuter Indonesia & KAI Wisata",
-  },
-  {
-    image: "/images/gallery/photo-05.jpg",
-    caption: "Train services duty",
-    org: "PT Kereta Commuter Indonesia & KAI Wisata",
-  },
-  {
-    image: "/images/experience/kawisata/team-photo.jpg",
-    caption: "CSOT team photo",
-    org: "PT Kereta Commuter Indonesia & KAI Wisata",
-  },
-  {
-    image: "/images/experience/kawisata/night-briefing.jpg",
-    caption: "Night coordination briefing with station security",
-    org: "PT Kereta Commuter Indonesia & KAI Wisata",
-  },
-  {
-    image: "/images/experience/kawisata/depot-portrait.jpg",
-    caption: "Between trains at the depot",
-    org: "PT Kereta Commuter Indonesia & KAI Wisata",
-  },
-  {
-    image: "/images/gallery/announcer-lost-and-found.jpg",
-    caption: "Assisting a passenger with a lost & found case",
-    org: "PT Kereta Commuter Indonesia — Announcer",
-  },
-  {
-    image: "/images/gallery/orgaren-indian-client.jpg",
-    caption: "Meeting an Indian client to supply aren sugar",
-    org: "PT Orgaren Indonesia Jaya",
-  },
-  {
-    image: "/images/gallery/orgaren-trade-expo.jpg",
-    caption: "Representing the company at a Ministry of Industry trade expo",
-    org: "PT Orgaren Indonesia Jaya",
-  },
-  {
-    image: "/images/experience/skor/team-selfie.jpg",
-    caption: "With the CS team",
-    org: "Skor Technologies",
-  },
-];
-
-export const shortMovie = {
-  title: "Maaf",
-  subtitle: "CSOT Short Movie — by Gilang & Aziz",
-  description:
-    "A short film with a festive atmosphere, depicting the everyday situation of being a Customer Service On Train officer.",
-  poster: "/images/short-movie/maaf-poster.jpg",
-  link: "https://www.instagram.com/tv/CrQiRetJAWB/?igsh=a2Mxc3lxdnh2YnVq",
-  credits: [
-    { role: "Director", name: "Gilang Anggi Pradana" },
-    { role: "Lead Actor", name: "Albi Wagia Yusup" },
-    { role: "Assistant Actor", name: "Bani Adam" },
-    { role: "Supporting Actor", name: "Abdul Aziz Setiawan" },
-    { role: "Editor", name: "Gilang Anggi Pradana" },
-    { role: "Audio", name: "Abdul Aziz Setiawan" },
-  ],
-};
 
 export type Recommendation = {
   name: string;
@@ -641,109 +481,121 @@ export type Recommendation = {
   photo: string;
 };
 
-// LinkedIn recommendations — abdazizs.
+// LinkedIn recommendations on linkedin.com/in/abdazizs.
 export const recommendations: Recommendation[] = [
   {
-    name: "Riyan Riyadi",
-    title: "Training & Service Quality Strategist",
-    relationship: "Senior colleague, did not manage Aziz directly",
-    date: "July 3, 2026",
-    quote:
-      "Aziz has a strong willingness to learn and continuously improve. He quickly adapts to new processes, actively seeks feedback, and is always looking for ways to enhance both his own performance and the team's effectiveness. Beyond his technical capabilities, Aziz is a reliable, proactive, and collaborative team player.",
-    photo: "/images/recommendations/riyan-riyadi.jpg",
-  },
-  {
     name: "Nabila Sharafina",
-    title: "Customer Service Supervisor | HR Operations | Employee Relations",
+    title: "Customer Service Supervisor, Skor Technologies",
     relationship: "Aziz's mentor at Skor Technologies",
-    date: "July 1, 2026",
+    date: "1 July 2026",
     quote:
       "Aziz is one of the best Customer Service team members at Skor. Beyond his excellent customer support skills, he has an exceptional aptitude for technology and problem-solving. One of his most impressive contributions was developing an internal portal that significantly simplifies and streamlines the Customer Service team's daily operations.",
     photo: "/images/recommendations/nabila-sharafina.jpg",
   },
   {
+    name: "Riyan Riyadi",
+    title: "Training & Service Quality Strategist",
+    relationship: "Senior colleague",
+    date: "3 July 2026",
+    quote:
+      "Aziz has a strong willingness to learn and continuously improve. He quickly adapts to new processes, actively seeks feedback, and is always looking for ways to enhance both his own performance and the team's effectiveness. Beyond his technical capabilities, Aziz is a reliable, proactive, and collaborative team player.",
+    photo: "/images/recommendations/riyan-riyadi.jpg",
+  },
+  {
     name: "Abdul Azis",
     title: "Public Relations | Customer Service | Human Resources",
     relationship: "Worked together at PT KAI Wisata",
-    date: "December 17, 2024",
+    date: "17 December 2024",
     quote:
       "During his time at PT KAI Wisata, Abdul Aziz Setiawan consistently demonstrated exceptional skills in customer service and operational management. His dedication to providing top-notch service and his ability to handle complex situations with ease made him an invaluable asset to the team.",
     photo: "/images/recommendations/abdul-azis.jpg",
   },
 ];
 
-export type AiProject = {
-  name: string;
-  tagline: string;
-  description: string;
-  url: string;
-  screenshot: string;
+// CSOT Creative Team work, from the Portfolio deck.
+
+export const socialMediaWork = {
+  handle: "@csot.kaicommuter",
+  url: "https://www.instagram.com/csot.kaicommuter",
+  description:
+    "I coordinated content for the official Customer Service On Train account and linked our creative team with KAI Commuter's Corporate Culture Team.",
+  metrics: [
+    { value: "5,041", label: "followers gained in 2 years" },
+    { value: "115,050", label: "accounts reached in 90 days" },
+  ],
+  asOf: "Data as of 5 Dec 2024",
 };
 
-// Software built with AI-assisted ("vibe coding") development.
-export const aiProjects: AiProject[] = [
+export const kmtCard = {
+  title: "Multi-Trip Card (KMT) design competition",
+  description:
+    "Entry for KAI Commuter's 15th anniversary. The mosaic pattern and #PilihanCerdas message pitch the Commuter Line as a clean, always-adapting choice for city life.",
+  frontTexture: "/images/graphic-design/kmt-card-front-flat.jpg",
+  backTexture: "/images/graphic-design/kmt-card-back.png",
+};
+
+export const graphicDesignWork = [
   {
-    name: "Skorcard CS Tools Portal",
-    tagline: "Internal CS toolkit — Skor Technologies",
-    description:
-      "An internal portal built for Skor Technologies' Customer Service team, streamlining day-to-day case handling — the tooling referenced in Nabila's recommendation above.",
-    url: "https://sc-cs-portal.skorcard.app",
-    screenshot: "/images/ai-projects/skorcard-cs-portal.jpg",
+    title: "CSOT official logo",
+    description: "Customer Service On Train, KAI Commuter",
+    image: "/images/graphic-design/csot-logo.png",
   },
   {
-    name: "FlowWorks",
-    tagline: "Enterprise workflow platform",
-    description:
-      "Takes teams from survey to quotation in one place, with real-time KPI dashboards, role-based access, and automated task workflows.",
-    url: "https://flowworks.ptuip.my.id",
-    screenshot: "/images/ai-projects/flowworks.jpg",
+    title: "ABSES jersey logo",
+    description: "CSOT sports team",
+    image: "/images/graphic-design/abses-logo.jpg",
   },
   {
-    name: "RuangBaru",
-    tagline: "UMKM team workspace",
-    description:
-      "Unifies projects, tasks, calendar, and notes in one simple space, so small teams can focus on the work instead of the tools.",
-    url: "https://ruangbaru.my.id",
-    screenshot: "/images/ai-projects/ruangbaru.jpg",
+    title: "PPK community logo",
+    description: "Forum Pengguna dan Pecinta KA",
+    image: "/images/graphic-design/ppk-logo.jpg",
   },
-  {
-    name: "Muter",
-    tagline: "Casual browser games",
-    description:
-      "A pocketful of quick, joyful browser games — no installs, no accounts. Pick one and you're playing in seconds.",
-    url: "https://muter.id",
-    screenshot: "/images/ai-projects/muter.jpg",
-  },
-  {
-    name: "Muter.my.id",
-    tagline: "Link-in-bio that actually sells",
-    description:
-      "Turns followers into customers with one link — creators list products, recruit fellow affiliates, and track every commission from a single dashboard.",
-    url: "https://muter.my.id",
-    screenshot: "/images/ai-projects/muter-my-id.png",
-  },
-  {
-    name: "Duacincin.id",
-    tagline: "Digital wedding invitations",
-    screenshot: "/images/ai-projects/duacincin.jpg",
-    description:
-      "32 templates with rich animation and layout variety, from rustic to baroque to minimalist — the platform behind the Founder role above.",
-    url: "https://duacincin.id",
-  },
-  {
-    name: "Skor Chat",
-    tagline: "Internal team chat — Skor Technologies",
-    description:
-      "Channels and direct messages for the whole Skorcard x Skorlife team, signed in with the same CS Portal account used across internal tools.",
-    url: "https://sc-cs-portal.skorcard.app/skorchat",
-    screenshot: "/images/ai-projects/skorchat.png",
-  },
-  {
-    name: "Skorcard Chatbot",
-    tagline: "Agent & admin console — Skor Technologies",
-    description:
-      "Login and console for agents and admins managing Skorcard's customer-facing chatbot.",
-    url: "https://cs.skorcard.app",
-    screenshot: "/images/ai-projects/skorcard-chatbot.png",
-  },
+];
+
+export const socialDesignPosts: { image: string; caption: string }[] = [
+  { image: "/images/design-posts/design-post-01.jpg", caption: "C-Access app launch" },
+  { image: "/images/design-posts/design-post-02.jpg", caption: "KRL Access real-time tracking" },
+  { image: "/images/design-posts/design-post-03.jpg", caption: "Independence Day, 17 Agustus 2024" },
+  { image: "/images/design-posts/design-post-04.jpg", caption: "KAI Commuter's 16th anniversary" },
+  { image: "/images/design-posts/design-post-05.jpg", caption: "CSOT open recruitment" },
+  { image: "/images/design-posts/design-post-06.jpg", caption: "GAPEKA 2023 schedule change" },
+  { image: "/images/design-posts/design-post-07.jpg", caption: "Station cleanliness campaign" },
+  { image: "/images/design-posts/design-post-08.jpg", caption: "\"Maaf\" short film poster" },
+];
+
+export const photographyWork: { image: string; caption: string }[] = [
+  { image: "/images/photography/train-01.jpg", caption: "Commuter Line at the platform" },
+  { image: "/images/photography/train-02.jpg", caption: "Commuter Line on the open line" },
+  { image: "/images/photography/cabin-crew.jpg", caption: "In the driver's cabin, on duty" },
+  { image: "/images/photography/officers-lineup.jpg", caption: "CSOT officers lineup" },
+];
+
+export const photographyNote = "Shot on a Canon 1200D with tele and prime lenses.";
+
+export const shortMovie = {
+  title: "Maaf",
+  subtitle: "CSOT short film by Gilang & Aziz",
+  description:
+    "A light-hearted short about an ordinary day as a Customer Service On Train officer.",
+  poster: "/images/short-movie/maaf-poster.jpg",
+  link: "https://www.instagram.com/tv/CrQiRetJAWB/?igsh=a2Mxc3lxdnh2YnVq",
+  credits: [
+    { role: "Director & editor", name: "Gilang Anggi Pradana" },
+    { role: "Lead actor", name: "Albi Wagia Yusup" },
+    { role: "Supporting actor & audio", name: "Abdul Aziz Setiawan" },
+  ],
+};
+
+export type GalleryItem = { image: Image; caption: string; org: string };
+
+export const gallery: GalleryItem[] = [
+  { image: { src: "/images/gallery/photo-01.jpg", w: 1400, h: 1860 }, caption: "Serving Shin Tae-yong at District 8 Jakarta", org: "Angkasa Pura Supports" },
+  { image: { src: "/images/gallery/photo-03.jpg", w: 1400, h: 933 }, caption: "Recording session with C-Choir", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/gallery/photo-05.jpg", w: 1400, h: 2100 }, caption: "Train services duty", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/experience/kawisata/team-photo.jpg", w: 1600, h: 775 }, caption: "CSOT team photo", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/gallery/photo-02.jpg", w: 1400, h: 2489 }, caption: "Service desk at District 8 Jakarta", org: "Angkasa Pura Supports" },
+  { image: { src: "/images/experience/kawisata/night-briefing.jpg", w: 1600, h: 776 }, caption: "Night briefing with station security", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/gallery/orgaren-trade-expo.jpg", w: 1400, h: 1051 }, caption: "Ministry of Industry trade expo", org: "PT Orgaren Indonesia Jaya" },
+  { image: { src: "/images/gallery/orgaren-indian-client.jpg", w: 1400, h: 1864 }, caption: "Meeting an Indian client to supply aren sugar", org: "PT Orgaren Indonesia Jaya" },
+  { image: { src: "/images/experience/kawisata/depot-portrait.jpg", w: 1600, h: 755 }, caption: "Between trains at the depot", org: "KAI Commuter & KAI Wisata" },
 ];

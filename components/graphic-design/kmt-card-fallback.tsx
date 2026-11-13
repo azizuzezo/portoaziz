@@ -41,7 +41,7 @@ export function KmtCardFallback() {
         />
         <Image
           src={kmtCard.backTexture}
-          alt={`${kmtCard.title} — back`}
+          alt={`${kmtCard.title}, back`}
           fill
           sizes="420px"
           className={`object-cover transition-opacity duration-300 ${showBack ? "opacity-100" : "opacity-0"}`}

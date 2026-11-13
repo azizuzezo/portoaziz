@@ -1,97 +1,94 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
-import { person } from "@/lib/content/profile";
-import { AuroraBackground } from "@/components/chrome/aurora-background";
-import { PhotoBackdrop } from "@/components/chrome/photo-backdrop";
-import { CursorFollower } from "@/components/chrome/cursor-follower";
-import { PageLoader } from "@/components/chrome/page-loader";
+import { Poppins } from "next/font/google";
+import { person, summary } from "@/lib/content/profile";
 import { ServiceWorkerRegistrar } from "@/components/chrome/service-worker-registrar";
-import { SmoothScrollProvider } from "@/components/chrome/smooth-scroll-provider";
 import "./globals.css";
 
-const bodyFont = Inter({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
-const headingFont = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const siteUrl = "https://abdazizs-portfolio.vercel.app";
+const description = `${person.headline}. ${summary.lead}`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(person.siteUrl),
   title: `${person.name} | ${person.headline}`,
-  description: siteDescription(),
+  description,
   keywords: [
     "Abdul Aziz Setiawan",
-    "Customer Service",
     "Customer Experience",
-    "Guest Service",
-    "Fintech Support",
-    "Hospitality",
+    "CRM",
+    "Systems Analyst",
+    "AI Application Developer",
     "Skor Technologies",
+    "Teman Kereta",
   ],
   authors: [{ name: person.name }],
   openGraph: {
     title: person.name,
-    description: siteDescription(),
-    url: siteUrl,
+    description,
+    url: person.siteUrl,
     siteName: person.name,
     type: "profile",
   },
   twitter: {
     card: "summary_large_image",
     title: person.name,
-    description: siteDescription(),
+    description,
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0e0f",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0c0e" },
+  ],
 };
-
-function siteDescription() {
-  return "Customer Experience professional across transportation, hospitality, and fintech — from Jakarta's Commuter Line to Skor Technologies.";
-}
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: person.name,
   jobTitle: person.headline,
+  worksFor: { "@type": "Organization", name: "Skor Technologies" },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Jakarta",
+    addressLocality: "Bogor",
     addressCountry: "ID",
   },
   email: person.email,
+  url: person.siteUrl,
   sameAs: [person.linkedin],
 };
 
+// Runs before first paint so the saved (or system) theme never flashes.
+const themeScript = `(function(){try{var s=localStorage.getItem("theme");var d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${bodyFont.variable} ${headingFont.variable}`}>
-      <body className="min-h-screen bg-void font-sans text-fog antialiased">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={poppins.variable}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Without JavaScript the scroll reveals never run, so show everything as-is. */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+      </head>
+      <body id="top" className="min-h-screen bg-paper font-sans text-ink antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <PageLoader />
-        <AuroraBackground />
-        <PhotoBackdrop />
-        <CursorFollower />
         <ServiceWorkerRegistrar />
-        <SmoothScrollProvider>
-          <div className="relative z-10">{children}</div>
-        </SmoothScrollProvider>
+        {children}
       </body>
     </html>
   );

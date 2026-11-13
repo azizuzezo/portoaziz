@@ -1,60 +1,40 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/motion/motion";
 import { cn } from "@/lib/utils";
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
+/**
+ * Section opener: a numbered label (the case-log motif repeated across the page)
+ * and a heading, with the intro beside it on wide screens.
+ */
 export function SectionHeading({
-  eyebrow,
+  index,
+  label,
   title,
-  description,
-  align = "left",
+  intro,
   className,
 }: {
-  eyebrow: string;
+  index: string;
+  label: string;
   title: string;
-  description?: string;
-  align?: "left" | "center";
+  intro?: React.ReactNode;
   className?: string;
 }) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-80px" }}
-      variants={container}
-      className={cn(
-        "mb-10 max-w-2xl",
-        align === "center" && "mx-auto text-center",
-        className
+    <Reveal className={cn("grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-8", className)}>
+      <div className="md:col-span-7">
+        <p className="text-sm font-semibold text-accent">
+          {index}
+          <span className="mx-2 text-line" aria-hidden>
+            /
+          </span>
+          {label}
+        </p>
+        <h2 className="mt-3 text-3xl leading-[1.15] font-semibold tracking-tight text-balance sm:text-4xl md:text-[2.75rem]">
+          {title}
+        </h2>
+      </div>
+      {intro && (
+        <div className="text-base leading-relaxed text-muted md:col-span-5 md:self-end">{intro}</div>
       )}
-    >
-      <motion.span
-        variants={item}
-        className="inline-block text-xs font-semibold uppercase tracking-[0.25em] text-aurora-cyan"
-      >
-        {eyebrow}
-      </motion.span>
-      <motion.h2
-        variants={item}
-        className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl"
-      >
-        {title}
-      </motion.h2>
-      {description && (
-        <motion.p variants={item} className="mt-3 text-base text-mist sm:text-lg">
-          {description}
-        </motion.p>
-      )}
-    </motion.div>
+    </Reveal>
   );
 }

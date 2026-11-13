@@ -12,29 +12,17 @@ export default function AppleIcon() {
           width: "100%",
           height: "100%",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #05060a, #10121b)",
-          color: "transparent",
-          backgroundClip: "border-box",
+          background: "#17191c",
+          color: "#f5f3ee",
+          fontSize: 72,
+          fontWeight: 700,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 140,
-            height: 140,
-            borderRadius: "50%",
-            background: "linear-gradient(135deg, #8b7cf6, #4fd8e0)",
-            color: "#05060a",
-            fontSize: 64,
-            fontWeight: 700,
-          }}
-        >
-          {person.initials}
-        </div>
+        {person.initials}
+        <div style={{ display: "flex", width: 72, height: 8, marginTop: 8, background: "#f08060" }} />
       </div>
     ),
     { ...size }

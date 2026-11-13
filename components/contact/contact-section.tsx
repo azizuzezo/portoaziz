@@ -1,66 +1,84 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Copy, Download, Linkedin, Mail } from "lucide-react";
 import { useState } from "react";
 import { person } from "@/lib/content/profile";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/motion/motion";
 
 export function ContactSection() {
-  const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle");
 
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(person.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setStatus("copied");
     } catch {
-      // clipboard unavailable — the visible email text is still selectable
+      setStatus("failed");
     }
+    setTimeout(() => setStatus("idle"), 2500);
   };
 
   return (
-    <section id="contact" className="section-shell">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7 }}
-        className="glass-panel-strong relative overflow-hidden rounded-[2.5rem] px-6 py-16 text-center sm:px-16"
-      >
-        <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-aurora-violet/25 blur-[100px]" />
-
-        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-aurora-cyan">
-          Let&apos;s talk
-        </span>
-        <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-semibold text-ink sm:text-4xl md:text-5xl">
-          Looking for a customer experience professional who adapts fast?
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base text-mist">
-          Open to customer experience, guest service, and support-operations roles.
-          Reach out on email or LinkedIn — I reply quickly.
+    <section id="contact" className="anchor bg-ink text-paper">
+      <div className="shell py-16 md:py-24">
+        <Reveal>
+        <p className="text-sm font-semibold text-paper/75">
+          <span>07</span>
+          <span className="mx-2" aria-hidden>
+            /
+          </span>
+          Contact
         </p>
+        <h2 className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl">
+          If your customers keep raising the same problem, I&apos;d like to help fix it at the source.
+        </h2>
+        <p className="mt-6 max-w-xl text-lg text-paper/75">{person.lookingFor}. Email is the quickest way to reach me.</p>
+        </Reveal>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Button onClick={copyEmail}>
-            {copied ? "Copied!" : <><Mail className="h-4 w-4" /> {person.email}</>}
-            {!copied && <Copy className="h-3.5 w-3.5 opacity-70" />}
-          </Button>
-          <Button href={person.linkedin} external variant="outline">
-            <Linkedin className="h-4 w-4" />
-            LinkedIn
-          </Button>
-          <Button href={person.cvUrl} external variant="outline">
-            <Download className="h-4 w-4" />
-            Download CV
-          </Button>
+        <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <a
+              href={`mailto:${person.email}`}
+              className="inline-block py-1 text-2xl font-semibold break-all underline decoration-paper/30 underline-offset-8 transition-colors hover:decoration-accent sm:text-4xl"
+            >
+              {person.email}
+            </a>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="min-h-11 rounded-full border border-paper/40 px-5 text-sm font-medium transition-colors duration-150 hover:border-paper hover:bg-paper hover:text-ink"
+              >
+                Copy email address
+              </button>
+              <span role="status" aria-live="polite" className="text-sm text-paper/75">
+                {status === "copied" && "Copied to clipboard."}
+                {status === "failed" && "Couldn't copy. Select the address above instead."}
+              </span>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Button href={person.linkedin} external>
+              Message me on LinkedIn
+            </Button>
+            <Button
+              href={person.cvUrl}
+              external
+              variant="secondary"
+              className="border-paper/40 bg-transparent text-paper hover:border-paper hover:bg-paper hover:text-ink"
+            >
+              Download CV (PDF)
+            </Button>
+          </div>
         </div>
-      </motion.div>
 
-      <footer className="mt-12 flex flex-col items-center gap-2 text-center text-xs text-mist/70">
-        <p>{person.location}</p>
-        <p>&copy; {new Date().getFullYear()} {person.name}. Built with intent.</p>
-      </footer>
+        <footer className="mt-20 flex flex-col gap-2 border-t border-paper/20 pt-6 text-xs text-paper/60 sm:flex-row sm:justify-between">
+          <p>
+            {person.name}, {person.location}
+          </p>
+          <p>Designed and built by Aziz with AI-assisted development.</p>
+        </footer>
+      </div>
     </section>
   );
 }

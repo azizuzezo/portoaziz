@@ -1,44 +1,34 @@
-"use client";
-
-import { motion } from "framer-motion";
+import Image from "next/image";
 import { gallery } from "@/lib/content/profile";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Zoom } from "@/components/motion/lightbox";
+import { Reveal } from "@/components/motion/motion";
 
+const items = gallery.map((g) => ({ ...g.image, alt: g.caption, caption: `${g.caption}, ${g.org}` }));
+
+// Captions sit under each photo, not over it, so they stay readable on any image.
 export function GallerySection() {
   return (
-    <section id="gallery" className="section-shell">
-      <SectionHeading
-        eyebrow="Gallery"
-        title="Documentation of a work life"
-        description="Moments from the floor — stations, studios, and client meetings."
-      />
-
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>div]:mb-4">
+    <section id="gallery" className="anchor shell py-16 md:py-24">
+      <SectionHeading index="06" label="On the job" title="Stations, lobbies, studios and an expo floor" />
+      <ul className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3">
         {gallery.map((item, i) => (
-          <motion.div
-            key={item.image}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
-            className="group relative break-inside-avoid overflow-hidden rounded-2xl border border-ink/10"
-          >
-            <div className="relative w-full">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={item.image}
+          <Reveal as="li" key={item.image.src} delay={(i % 3) * 0.06} className="mb-6 break-inside-avoid">
+            <Zoom items={items} index={i} className="overflow-hidden rounded-xl">
+              <Image
+                src={item.image.src}
                 alt={item.caption}
-                loading="lazy"
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                width={item.image.w}
+                height={item.image.h}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="h-auto w-full bg-sunken transition-transform duration-500 ease-out group-hover/zoom:scale-[1.03]"
               />
-            </div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4">
-              <p className="text-sm font-medium text-white">{item.caption}</p>
-              <p className="mt-0.5 text-xs text-white/70">{item.org}</p>
-            </div>
-          </motion.div>
+            </Zoom>
+            <p className="mt-2 text-sm font-medium">{item.caption}</p>
+            <p className="text-xs text-muted">{item.org}</p>
+          </Reveal>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
