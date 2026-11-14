@@ -4,6 +4,7 @@
 
 export const person = {
   name: "Abdul Aziz Setiawan",
+  chineseName: "王毅成",
   shortName: "Aziz",
   initials: "AA",
   title: "Customer Experience · AI Application Developer",

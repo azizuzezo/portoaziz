@@ -21,6 +21,14 @@ export function Hero() {
               <SplitWords text="Abdul Aziz" stagger={0.08} />
               <br />
               <SplitWords text="Setiawan" delay={0.16} className="text-accent" />
+              <Reveal as="span" delay={0.3} className="ml-3 inline-block align-baseline sm:ml-4">
+                <span
+                  lang="zh-Hans"
+                  className="text-[0.45em] font-medium tracking-normal text-muted"
+                >
+                  {person.chineseName}
+                </span>
+              </Reveal>
             </h1>
             <Reveal delay={0.25}>
               <p className="mt-3 text-lg font-medium text-ink sm:text-xl">{person.title}</p>

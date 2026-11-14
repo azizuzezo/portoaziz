@@ -34,7 +34,7 @@ export function Reveal({
   children: React.ReactNode;
   className?: string;
   delay?: number;
-  as?: "div" | "li" | "article" | "figure";
+  as?: "div" | "span" | "li" | "article" | "figure";
 }) {
   const Comp = motion[as];
   return (
