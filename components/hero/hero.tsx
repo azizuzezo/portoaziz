@@ -1,101 +1,109 @@
-import Image from "next/image";
-import { ArrowDown } from "lucide-react";
-import { highlights, person, summary } from "@/lib/content/profile";
-import { Button } from "@/components/ui/button";
-import { CountUp, Magnetic, Reveal, Spotlight, SplitWords, Tilt } from "@/components/motion/motion";
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
+import { useRef } from "react";
+import { person, summary } from "@/lib/content/profile";
+import { Magnetic } from "@/components/motion/motion";
+import { LensBlob, LensHeadline, useLens } from "@/components/hero/lens-headline";
+import { FlapBoard } from "@/components/hero/flap-board";
+import { RailColor } from "@/components/chrome/rail-backdrop";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const { lens, enabled, handlers } = useLens();
+
   return (
-    <section className="relative isolate overflow-hidden">
-      {/* Backdrop: dot grid plus one soft accent glow, both behind the text and beside the photo. */}
-      <div aria-hidden className="hero-grid absolute inset-0 -z-10" />
-      <div
-        aria-hidden
-        className="absolute -top-40 -left-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-accent/10 blur-3xl motion-safe:animate-[pulse_8s_ease-in-out_infinite]"
-      />
+    <section ref={ref} {...handlers} className="relative isolate flex min-h-[100svh] overflow-hidden">
+      {enabled && <LensBlob lens={lens} />}
+      {/* Coloured rail in the same fixed frame as the site-wide pale map, so the lines sit exactly
+          on top of it; it fades away as the hero scrolls out. */}
+      <motion.div style={{ opacity }} className="pointer-events-none fixed inset-0 -z-10 hidden lg:block">
+        <RailColor className="h-full w-full opacity-50 [mask-image:linear-gradient(90deg,transparent_58%,#000_78%)] dark:opacity-60" />
+      </motion.div>
+      {/* Dark mode only: a soft light behind the card so it doesn't float in a flat black. */}
+      <div aria-hidden className="pointer-events-none absolute top-1/4 right-[-8%] -z-10 hidden h-[38rem] w-[38rem] rounded-full bg-accent/15 blur-[120px] dark:block" />
 
-      <div className="shell pt-10 pb-16 sm:pt-16 md:pb-24">
-        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-10">
+      <motion.div style={{ y, opacity }} className="shell flex flex-1 flex-col pt-24 pb-6 sm:pt-28">
+        <div className="grid flex-1 grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-8 lg:gap-10">
           <div className="md:col-span-7">
-            <h1 className="text-[clamp(2.5rem,7vw,5rem)] leading-[1.02] font-semibold tracking-tight">
-              <SplitWords text="Abdul Aziz" stagger={0.08} />
-              <br />
-              <SplitWords text="Setiawan" delay={0.16} className="text-accent" />
-              <Reveal as="span" delay={0.3} className="ml-3 inline-block align-baseline sm:ml-4">
-                <span
-                  lang="zh-Hans"
-                  className="text-[0.45em] font-medium tracking-normal text-muted"
-                >
-                  {person.chineseName}
-                </span>
-              </Reveal>
-            </h1>
-            <Reveal delay={0.25}>
-              <p className="mt-3 text-lg font-medium text-ink sm:text-xl">{person.title}</p>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">{summary.lead}</p>
-              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">{summary.body}</p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: EASE }}
+              className="text-lg font-semibold tracking-tight text-muted sm:text-2xl"
+            >
+              <span lang="zh-Hans">你好</span>, I&apos;m {person.name}{" "}
+              <span lang="zh-Hans" className="font-medium">
+                {person.chineseName}
+              </span>
+            </motion.p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-4">
+              <LensHeadline lens={lens} enabled={enabled} className="display text-[clamp(2.1rem,4.4vw,4.25rem)] text-balance" />
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
+              className="mt-6 flex flex-col gap-6"
+            >
+              <p className="max-w-lg text-base leading-relaxed text-muted sm:text-lg">{summary.body}</p>
+              <div className="flex flex-wrap gap-3">
                 <Magnetic>
-                  <Button href="#work">See the work</Button>
+                  <Link
+                    href="/work"
+                    className="inline-flex min-h-14 items-center rounded-full bg-accent px-7 text-base font-semibold text-accent-ink transition-transform duration-200 hover:-translate-y-0.5"
+                  >
+                    See the work
+                  </Link>
                 </Magnetic>
                 <Magnetic>
-                  <Button href={person.cvUrl} external variant="secondary">
-                    Download CV (PDF)
-                  </Button>
+                  <Link
+                    href="/contact"
+                    className="inline-flex min-h-14 items-center rounded-full border border-ink/15 bg-paper px-7 text-base font-semibold transition-colors duration-200 hover:border-ink"
+                  >
+                    Write to me
+                  </Link>
                 </Magnetic>
-                <Button href={`mailto:${person.email}`} variant="quiet">
-                  {person.email}
-                </Button>
               </div>
-              <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
-                <span className="font-medium text-ink">{person.focus}</span>
-                <span aria-hidden>·</span>
-                {person.location}
-              </p>
-            </Reveal>
+            </motion.div>
           </div>
 
-          <Reveal className="md:col-span-5" delay={0.1}>
-            <Tilt max={6}>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-sunken ring-1 ring-line">
-                <Image
-                  src={person.photoUrl}
-                  alt={`Portrait of ${person.name}`}
-                  fill
-                  priority
-                  sizes="(min-width: 768px) 40vw, 100vw"
-                  className="object-cover"
-                  style={{ objectPosition: "51% 30%" }}
-                />
-              </div>
-            </Tilt>
-          </Reveal>
+          <motion.div
+            initial={{ opacity: 0, y: -80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 70, damping: 11, delay: 0.4 }}
+            className="md:col-span-5"
+          >
+            <FlapBoard />
+          </motion.div>
         </div>
 
-        <dl className="mt-14 grid grid-cols-2 gap-3 md:mt-20 md:grid-cols-4">
-          {highlights.map((h, i) => (
-            <Reveal key={h.label} delay={i * 0.06} className="h-full">
-              <Spotlight className="flex h-full flex-col-reverse justify-end rounded-xl border border-line bg-surface/80 p-5 backdrop-blur-sm transition-transform duration-200 hover:-translate-y-1">
-                <dt className="mt-1 text-sm leading-snug text-muted">{h.label}</dt>
-                <dd className="text-3xl font-semibold text-accent sm:text-4xl">
-                  <CountUp value={h.value} />
-                </dd>
-              </Spotlight>
-            </Reveal>
-          ))}
-        </dl>
-
-        <a
-          href="#work"
-          className="group mx-auto mt-12 hidden w-fit flex-col items-center gap-2 text-xs font-medium text-muted transition-colors hover:text-ink md:flex"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.3 }}
+          className="mt-6 flex items-end justify-between text-sm text-muted"
         >
-          Scroll to the work
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-line transition-colors group-hover:border-accent group-hover:text-accent">
-            <ArrowDown className="h-4 w-4 motion-safe:animate-bounce" aria-hidden />
-          </span>
-        </a>
-      </div>
+          <p className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full border-2 border-ink bg-paper" />
+            {person.location.replace(", Jawa Barat", "")}
+          </p>
+          <a href="#services" className="flex items-center gap-3 transition-colors hover:text-ink">
+            Next stop: what I do
+            <span className="relative block h-px w-12 overflow-hidden bg-ink/15">
+              <span className="scroll-cue-x absolute inset-0 bg-accent" />
+            </span>
+          </a>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

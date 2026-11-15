@@ -10,7 +10,7 @@ export const person = {
   title: "Customer Experience · AI Application Developer",
   headline: "Customer Experience | AI Application Developer",
   location: "Kota Bogor, Jawa Barat, Indonesia",
-  email: "si.aziz6970@gmail.com",
+  email: "hi@aziz.ai.id",
   linkedin: "https://www.linkedin.com/in/abdazizs",
   cvUrl: "/cv/Abdul-Aziz-Setiawan-CV.pdf",
   photoUrl: "/images/profile/aziz.png",
@@ -37,6 +37,8 @@ export type Project = {
   url?: string;
   urlLabel?: string;
   image: Image;
+  /** More sections of the same live site, cycled after the main image. Same size as `image`. */
+  gallery?: Image[];
   imageAlt: string;
   /** Shown under the screenshot when something in it was blurred. */
   imageNote?: string;
@@ -50,8 +52,15 @@ export const featuredCase = {
   url: "https://sc-cs-portal.skorcard.app",
   urlLabel: "sc-cs-portal.skorcard.app (sign-in required)",
   image: { src: "/images/ai-projects/skorcard-cs-portal-2026-11.jpg", w: 2400, h: 1226 },
+  // SC Desk and SL Desk: the Skorcard and Skorlife ticketing desks inside the portal.
+  // Requester names, emails and subjects are blurred.
+  gallery: [
+    { src: "/images/ai-projects/skorcard-cs-portal-sc-desk-2026-11.jpg", w: 2400, h: 1226 },
+    { src: "/images/ai-projects/skorcard-cs-portal-sl-desk-2026-11.jpg", w: 2400, h: 1226 },
+  ],
+  imageNote: "SC Desk and SL Desk ticket queues: customer names, emails and subjects are blurred.",
   imageAlt:
-    "CS Tools Portal dashboard: live queue for Skorcard and Skorlife tickets, team schedule, product updates and a sheets and reports hub",
+    "CS Tools Portal: the dashboard, then the SC Desk and SL Desk ticketing queues for Skorcard and Skorlife",
   result: { value: "50%", label: "less manual case work within 6 months" },
   sections: [
     {
@@ -143,6 +152,10 @@ export const projects: Project[] = [
     url: "https://patungan.gifts",
     urlLabel: "patungan.gifts",
     image: { src: "/images/ai-projects/patungan-2026-11.jpg", w: 2000, h: 1250 },
+    gallery: [
+      { src: "/images/ai-projects/patungan-2026-11-g1.jpg", w: 2000, h: 1250 },
+      { src: "/images/ai-projects/patungan-2026-11-g2.jpg", w: 2000, h: 1250 },
+    ],
     imageAlt: "Patungan Yuk! landing page",
   },
   {
@@ -156,6 +169,10 @@ export const projects: Project[] = [
     url: "https://duacincin.id",
     urlLabel: "duacincin.id",
     image: { src: "/images/ai-projects/duacincin-2026-11.jpg", w: 2000, h: 1250 },
+    gallery: [
+      { src: "/images/ai-projects/duacincin-2026-11-g1.jpg", w: 2000, h: 1250 },
+      { src: "/images/ai-projects/duacincin-2026-11-g2.jpg", w: 2000, h: 1250 },
+    ],
     imageAlt: "DuaCincin marketplace landing page",
   },
   {
@@ -169,6 +186,10 @@ export const projects: Project[] = [
     url: "https://invitation.duacincin.id",
     urlLabel: "invitation.duacincin.id",
     image: { src: "/images/ai-projects/duacincin-invitation-2026-11.jpg", w: 2000, h: 1250 },
+    gallery: [
+      { src: "/images/ai-projects/duacincin-invitation-2026-11-g1.jpg", w: 2000, h: 1250 },
+      { src: "/images/ai-projects/duacincin-invitation-2026-11-g2.jpg", w: 2000, h: 1250 },
+    ],
     imageAlt: "DuaCincin Invitation landing page",
   },
   {
@@ -182,6 +203,10 @@ export const projects: Project[] = [
     url: "https://tongkrongan.tech",
     urlLabel: "tongkrongan.tech",
     image: { src: "/images/ai-projects/tongkrongan-2026-11.jpg", w: 2000, h: 1250 },
+    gallery: [
+      { src: "/images/ai-projects/tongkrongan-2026-11-g1.jpg", w: 2000, h: 1250 },
+      { src: "/images/ai-projects/tongkrongan-2026-11-g2.jpg", w: 2000, h: 1250 },
+    ],
     imageAlt: "Tongkrongan.tech landing page",
   },
   {
@@ -208,6 +233,10 @@ export const projects: Project[] = [
     url: "https://ruangbaru.my.id",
     urlLabel: "ruangbaru.my.id",
     image: { src: "/images/ai-projects/ruangbaru-2026-11.jpg", w: 2000, h: 1250 },
+    gallery: [
+      { src: "/images/ai-projects/ruangbaru-2026-11-g1.jpg", w: 2000, h: 1250 },
+      { src: "/images/ai-projects/ruangbaru-2026-11-g2.jpg", w: 2000, h: 1250 },
+    ],
     imageAlt: "RuangBaru landing page",
   },
   {
@@ -221,6 +250,10 @@ export const projects: Project[] = [
     url: "https://muter.my.id",
     urlLabel: "muter.my.id",
     image: { src: "/images/ai-projects/muter-my-id-2026-11.jpg", w: 2000, h: 1250 },
+    gallery: [
+      { src: "/images/ai-projects/muter-my-id-2026-11-g1.jpg", w: 2000, h: 1250 },
+      { src: "/images/ai-projects/muter-my-id-2026-11-g2.jpg", w: 2000, h: 1250 },
+    ],
     imageAlt: "Muter.my.id landing page",
   },
 ];
@@ -599,4 +632,81 @@ export const gallery: GalleryItem[] = [
   { image: { src: "/images/gallery/orgaren-trade-expo.jpg", w: 1400, h: 1051 }, caption: "Ministry of Industry trade expo", org: "PT Orgaren Indonesia Jaya" },
   { image: { src: "/images/gallery/orgaren-indian-client.jpg", w: 1400, h: 1864 }, caption: "Meeting an Indian client to supply aren sugar", org: "PT Orgaren Indonesia Jaya" },
   { image: { src: "/images/experience/kawisata/depot-portrait.jpg", w: 1600, h: 755 }, caption: "Between trains at the depot", org: "KAI Commuter & KAI Wisata" },
+];
+
+export type Service = {
+  id: string;
+  title: string;
+  /** Giant hollow word at the foot of the panel. */
+  word: string;
+  description: string;
+  chips: string[];
+  /** Which dot animation draws on the panel. */
+  art: "ripple" | "wave" | "orbit" | "phone" | "bars" | "spiral";
+  /** Route-line colour for the panel's dots, chips and stop marker. */
+  tone: "navy" | "steel" | "green";
+};
+
+// "What I do": the parts of customer service I own, from first contact to the tool behind it.
+export const services: Service[] = [
+  {
+    id: "cx",
+    title: "Customer experience",
+    word: "SERVICE",
+    description:
+      "Card cases between the bank, Skorcard and Skorlife, handled from first contact to resolution inside SLA. Nine years of it, from station platforms to fintech help desks.",
+    chips: ["Ticketing", "SLA", "Complaint handling"],
+    art: "ripple",
+    tone: "navy",
+  },
+  {
+    id: "tools",
+    title: "Internal tools",
+    word: "TOOLS",
+    description:
+      "Portals that put a support shift's queue, schedule, request forms and sheets on one screen. The CS Tools Portal halved manual case work within 6 months.",
+    chips: ["AI-assisted development", "Workflow automation", "KPI dashboards"],
+    art: "wave",
+    tone: "steel",
+  },
+  {
+    id: "chat",
+    title: "Chatbots and agent consoles",
+    word: "CHAT",
+    description:
+      "The AI answers first. When a customer needs a person, an agent takes over with the card, billing and credit details already beside the conversation.",
+    chips: ["AI prompting", "Agent takeover", "Role-based access"],
+    art: "orbit",
+    tone: "green",
+  },
+  {
+    id: "products",
+    title: "Products I run",
+    word: "LAUNCH",
+    description:
+      "Teman Kereta for KRL commuters, Patungan Yuk! for live-stream donations, DuaCincin for weddings. Each one started from a problem I saw up close.",
+    chips: ["Mobile apps", "Web platforms", "QRIS payments"],
+    art: "phone",
+    tone: "navy",
+  },
+  {
+    id: "voice",
+    title: "Announcing and speaking",
+    word: "VOICE",
+    description:
+      "Three years on station microphones and onboard trains, including service for the President at the Manggarai Station inauguration in 2022.",
+    chips: ["Public speaking", "Announcements", "Persuasive communication"],
+    art: "bars",
+    tone: "steel",
+  },
+  {
+    id: "creative",
+    title: "Design and content",
+    word: "CREATE",
+    description:
+      "Content for the CSOT Instagram account (115,050 accounts reached in 90 days), team logos, a KMT card design entry and a short film.",
+    chips: ["Canva", "Photoshop", "CapCut"],
+    art: "spiral",
+    tone: "green",
+  },
 ];

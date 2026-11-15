@@ -2,57 +2,42 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp, Menu, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { person } from "@/lib/content/profile";
 import { ThemeToggle } from "@/components/chrome/theme-toggle";
 import { cn } from "@/lib/utils";
 
-// Every id here exists as a section on the page.
-const links = [
-  { id: "work", label: "Work" },
-  { id: "experience", label: "Experience" },
-  { id: "recommendations", label: "Recommendations" },
-  { id: "skills", label: "Skills" },
-  { id: "creative", label: "Creative" },
-  { id: "contact", label: "Contact" },
+// Every href here is a real page in app/.
+export const navLinks = [
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/creative", label: "Creative" },
+  { href: "/contact", label: "Contact" },
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export function Navbar() {
-  const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  // Hides while reading downward, returns on any scroll up. Purpose: more room for screenshots.
-  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [farDown, setFarDown] = useState(false);
 
   useEffect(() => {
-    let last = window.scrollY;
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 8);
-      setFarDown(y > 900);
-      if (Math.abs(y - last) < 6) return;
-      setHidden(y > last && y > 400);
-      last = y;
+      setScrolled(window.scrollY > 40);
+      setFarDown(window.scrollY > 1200);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id);
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    for (const { id } of links) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    }
-    return () => observer.disconnect();
-  }, []);
+  // Close the mobile menu after navigating.
+  useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
     if (!open) return;
@@ -61,125 +46,142 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
   return (
     <>
-    <header
-      className={cn(
-        "sticky top-0 z-50 border-b bg-paper/80 backdrop-blur-md transition-[transform,border-color,box-shadow] duration-300",
-        scrolled ? "border-line shadow-[0_8px_24px_-18px_rgb(17_18_20/0.35)]" : "border-transparent",
-        hidden && !open && "-translate-y-full"
-      )}
-    >
-      <nav className="shell flex h-16 items-center justify-between gap-4" aria-label="Main">
-        <a href="#top" className="flex min-h-11 items-center gap-2.5 text-base font-semibold tracking-tight">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink text-xs font-bold text-paper" aria-hidden>
-            {person.initials}
-          </span>
-          {person.name}
-        </a>
-
-        <ul className="isolate hidden items-center gap-0.5 lg:flex">
-          {links.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                aria-current={active === link.id ? "true" : undefined}
-                className={cn(
-                  "relative flex min-h-11 items-center rounded-full px-3.5 text-sm font-medium text-muted transition-colors duration-150 hover:text-ink",
-                  active === link.id && "text-accent-ink hover:text-accent-ink"
-                )}
-              >
-                {/* Sliding pill. Purpose: shows which section you are reading. */}
-                {active === link.id && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-x-0 top-1.5 bottom-1.5 -z-10 rounded-full bg-accent"
-                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                  />
-                )}
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-1">
-          <a
-            href={person.cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden min-h-11 items-center rounded-full border border-line px-4 text-sm font-medium transition-colors duration-150 hover:border-ink hover:bg-ink hover:text-paper sm:flex"
-          >
-            CV (PDF)
-          </a>
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="flex h-11 w-11 items-center justify-center rounded-md hover:bg-ink/8 lg:hidden"
-          >
-            {open ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
-          </button>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-      {open && (
+      <motion.header
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+        className="fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-6"
+      >
+        {/* The pill narrows once you start reading, so it covers less of the page.
+            It is the one blurred surface on the site, so text under it stays legible. */}
         <motion.div
-          id="mobile-menu"
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="overflow-hidden border-t border-line bg-paper lg:hidden"
+          initial={false}
+          style={{ maxWidth: 1280 }}
+          animate={{ maxWidth: scrolled ? 960 : 1280 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="glass-nav mx-auto rounded-[1.75rem]"
         >
-          <ul className="shell flex flex-col py-2">
-            {links.map((link) => (
-              <li key={link.id}>
-                <a
-                  href={`#${link.id}`}
-                  onClick={() => setOpen(false)}
-                  className="flex min-h-12 items-center border-b border-line text-base last:border-0"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-            <li>
+          <nav className="flex h-14 items-center justify-between gap-3 pr-2 pl-2 sm:h-16 sm:pr-3" aria-label="Main">
+            <Link href="/" className="group flex min-h-11 min-w-0 items-center gap-2.5 rounded-full pr-3 font-semibold tracking-tight">
+              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-accent/70 transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10">
+                <Image src={person.photoUrl} alt="" fill sizes="40px" className="object-cover" style={{ objectPosition: "51% 22%" }} />
+              </span>
+              <span className="truncate text-sm sm:text-base">{person.name}</span>
+            </Link>
+
+            <ul className="isolate hidden items-center lg:flex">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className={cn(
+                      "relative flex min-h-11 items-center rounded-full px-4 text-sm font-medium text-ink/65 transition-colors duration-150 hover:text-ink",
+                      isActive(link.href) && "text-accent-ink hover:text-accent-ink"
+                    )}
+                  >
+                    {isActive(link.href) && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute inset-x-0 top-1.5 bottom-1.5 -z-10 rounded-full bg-accent"
+                        transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      />
+                    )}
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex shrink-0 items-center gap-1">
               <a
                 href={person.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="flex min-h-12 items-center text-base text-accent"
+                className="hidden min-h-10 items-center rounded-full border border-ink/15 px-4 text-sm font-semibold transition-colors duration-150 hover:border-ink sm:flex"
               >
-                Download CV (PDF)
+                CV
               </a>
-            </li>
-          </ul>
-        </motion.div>
-      )}
-      </AnimatePresence>
-    </header>
+              <ThemeToggle />
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                aria-expanded={open}
+                aria-controls="mobile-menu"
+                aria-label={open ? "Close menu" : "Open menu"}
+                className="flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-ink/8 lg:hidden"
+              >
+                {open ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
+              </button>
+            </div>
+          </nav>
 
-    <AnimatePresence>
-      {farDown && (
-        <motion.a
-          href="#top"
-          aria-label="Back to top"
-          initial={{ opacity: 0, y: 16, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 16, scale: 0.9 }}
-          transition={{ duration: 0.2 }}
-          className="fixed right-4 bottom-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-accent-ink shadow-[0_12px_24px_-10px_var(--accent)] transition-transform hover:-translate-y-1 sm:right-6 sm:bottom-6"
-        >
-          <ArrowUp className="h-5 w-5" aria-hidden />
-        </motion.a>
-      )}
-    </AnimatePresence>
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                id="mobile-menu"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="overflow-hidden lg:hidden"
+              >
+                <ul className="px-4 pt-2 pb-5">
+                  {[{ href: "/", label: "Home" }, ...navLinks].map((link, i) => (
+                    <motion.li
+                      key={link.href}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 + i * 0.04, duration: 0.3 }}
+                    >
+                      <Link
+                        href={link.href}
+                        aria-current={pathname === link.href ? "page" : undefined}
+                        className={cn(
+                          "flex min-h-12 items-center justify-between border-b border-ink/10 text-2xl font-semibold tracking-tight",
+                          pathname === link.href && "text-accent"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.li>
+                  ))}
+                  <li className="pt-4">
+                    <a
+                      href={person.cvUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex min-h-12 items-center justify-center rounded-full bg-accent text-base font-semibold text-accent-ink"
+                    >
+                      Download CV (PDF)
+                    </a>
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </motion.header>
+
+      <AnimatePresence>
+        {farDown && (
+          <motion.a
+            href="#top"
+            aria-label="Back to top"
+            initial={{ opacity: 0, y: 16, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            className="fixed right-4 bottom-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-ink/10 bg-paper text-ink shadow-lg transition-transform hover:-translate-y-1 sm:right-6 sm:bottom-6"
+          >
+            <ArrowUp className="h-5 w-5" aria-hidden />
+          </motion.a>
+        )}
+      </AnimatePresence>
     </>
   );
 }

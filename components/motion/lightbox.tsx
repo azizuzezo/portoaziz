@@ -95,6 +95,9 @@ export function LightboxProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** Opens the viewer from anywhere: open(items, index). */
+export const useLightbox = () => useContext(OpenCtx);
+
 /** Wraps an image in a button that opens it (and its group) in the viewer. */
 export function Zoom({
   items,

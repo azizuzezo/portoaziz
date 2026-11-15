@@ -4,7 +4,7 @@ import { person } from "@/lib/content/profile";
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
-// Initials on ink with the signal-red accent bar: the site's palette at favicon size.
+// Initials on ink with the blue accent bar: the site's palette at favicon size.
 export default function Icon() {
   return new ImageResponse(
     (
@@ -24,7 +24,7 @@ export default function Icon() {
         }}
       >
         {person.initials}
-        <div style={{ display: "flex", width: 14, height: 2, marginTop: 1, background: "#f08060" }} />
+        <div style={{ display: "flex", width: 14, height: 2, marginTop: 1, background: "#6ea0ff" }} />
       </div>
     ),
     { ...size }

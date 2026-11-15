@@ -1,21 +1,40 @@
 import Image from "next/image";
 import { earlierRoles, experience } from "@/lib/content/profile";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Reveal, ScrollLine } from "@/components/motion/motion";
+import { Reveal, ScrollLine, SplitWords } from "@/components/motion/motion";
 import { Zoom } from "@/components/motion/lightbox";
 
-// A ledger, not cards: period on the left, the work on the right, hairlines between.
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// "Jun 2026 – Present" -> months since; the CV's "Present" is read as today's date.
+const parse = (t: string) => {
+  if (t.trim() === "Present") {
+    const d = new Date();
+    return d.getFullYear() * 12 + d.getMonth();
+  }
+  const [m, y] = t.trim().split(" ");
+  return Number(y) * 12 + MONTHS.indexOf(m);
+};
+function durationOf(period: string) {
+  const [a, b] = period.split("–");
+  const n = parse(b) - parse(a) + 1;
+  const y = Math.floor(n / 12), m = n % 12;
+  return [y && `${y} yr${y > 1 ? "s" : ""}`, m && `${m} mo`].filter(Boolean).join(" ");
+}
+function yearsOf(period: string) {
+  const [a, b] = period.split("–").map((t) => t.trim());
+  const ya = a.split(" ")[1];
+  const yb = b === "Present" ? "" : b.split(" ")[1];
+  return yb && yb !== ya ? `${ya} – ${yb}` : ya;
+}
+
+// The ledger: period on the left, the work on the right; the line fills as you read down it.
 export function ExperienceSection() {
   return (
-    <section id="experience" className="anchor shell py-16 md:py-24">
-      <SectionHeading
-        index="02"
-        label="Experience"
-        title="Nine years on the front line, in four industries"
-        intro={<p>Newest first. Every role was customer-facing; the later ones added the systems behind the service.</p>}
-      />
-
-      <div className="relative mt-12 pl-8 md:pl-10">
+    <section id="experience" className="anchor shell py-24 md:py-32">
+      <h2 className="display text-[clamp(2.5rem,5vw,4.5rem)]">
+        <SplitWords text="Every stop so far" />
+      </h2>
+      <p className="mt-4 text-lg text-muted">Newest first.</p>
+      <div className="relative mt-10 pl-8 md:pl-10">
         <ScrollLine className="left-[7px]" />
         <ol>
         {experience.map((e) => (
@@ -27,8 +46,14 @@ export function ExperienceSection() {
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             </span>
             <div className="md:col-span-3">
-              <p className="text-sm font-semibold text-accent">{e.period}</p>
-              <p className="mt-1 text-xs text-muted">{e.place}</p>
+              <p className="text-2xl font-semibold tracking-tight">
+                {yearsOf(e.period)}
+                {e.period.includes("Present") && <span className="ml-2 text-accent">Now</span>}
+              </p>
+              <p className="mt-1 text-sm text-muted">
+                {e.period} · {durationOf(e.period)}
+              </p>
+              <p className="text-xs text-muted">{e.place}</p>
             </div>
 
             <div className="md:col-span-9">
@@ -39,7 +64,7 @@ export function ExperienceSection() {
                   </span>
                 )}
                 <div className="min-w-0">
-                  <h3 className="text-xl font-semibold tracking-tight transition-colors group-hover/role:text-accent sm:text-2xl">{e.role}</h3>
+                  <h4 className="text-2xl font-semibold tracking-tight transition-colors group-hover/role:text-accent sm:text-3xl">{e.role}</h4>
                   <p className="mt-0.5 text-ink-soft">{e.company}</p>
                 </div>
               </div>
@@ -98,7 +123,7 @@ export function ExperienceSection() {
             <p className="text-sm font-semibold text-accent">{earlierRoles.period}</p>
           </div>
           <div className="md:col-span-9">
-            <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">Earlier roles</h3>
+            <h4 className="text-2xl font-semibold tracking-tight sm:text-3xl">Earlier roles</h4>
             <dl className="mt-4 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
               {earlierRoles.roles.map((r) => (
                 <div key={r.company}>

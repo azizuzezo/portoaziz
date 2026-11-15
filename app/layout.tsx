@@ -2,6 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import { person, summary } from "@/lib/content/profile";
 import { ServiceWorkerRegistrar } from "@/components/chrome/service-worker-registrar";
+import { Footer } from "@/components/chrome/footer";
+import { RailBackdrop } from "@/components/chrome/rail-backdrop";
+import { Navbar } from "@/components/chrome/navbar";
+import { LightboxProvider } from "@/components/motion/lightbox";
+import { MotionProvider } from "@/components/motion/motion";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -15,7 +20,7 @@ const description = `${person.headline}. ${summary.lead}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(person.siteUrl),
-  title: `${person.name} | ${person.headline}`,
+  title: { default: `${person.name} | ${person.headline}`, template: `%s | ${person.name}` },
   description,
   keywords: [
     "Abdul Aziz Setiawan",
@@ -45,7 +50,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0c0e" },
+    { media: "(prefers-color-scheme: dark)", color: "#08090d" },
   ],
 };
 
@@ -82,13 +87,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
-      <body id="top" className="min-h-screen bg-paper font-sans text-ink antialiased">
+      <body id="top" className="min-h-screen font-sans text-ink antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ServiceWorkerRegistrar />
-        {children}
+        <MotionProvider>
+          <LightboxProvider>
+            <a
+              href="#main"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+            >
+              Skip to content
+            </a>
+            {/* One moving backdrop for the whole site, behind every page, top to bottom. */}
+            <RailBackdrop />
+            <Navbar />
+            <main id="main">{children}</main>
+            <Footer />
+          </LightboxProvider>
+        </MotionProvider>
       </body>
     </html>
   );

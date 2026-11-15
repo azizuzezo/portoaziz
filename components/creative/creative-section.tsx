@@ -1,21 +1,11 @@
 import Image from "next/image";
-import {
-  graphicDesignWork,
-  kmtCard,
-  photographyNote,
-  photographyWork,
-  shortMovie,
-  socialDesignPosts,
-  socialMediaWork,
-} from "@/lib/content/profile";
+import { graphicDesignWork, kmtCard, photographyNote, shortMovie, socialMediaWork } from "@/lib/content/profile";
+import { PhotoViewer } from "@/components/creative/photo-viewer";
+import { PostFan } from "@/components/creative/post-fan";
 import { KmtCard3D } from "@/components/graphic-design/kmt-card-3d";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
-import { Zoom } from "@/components/motion/lightbox";
 import { Reveal } from "@/components/motion/motion";
 
-const postItems = socialDesignPosts.map((p) => ({ src: p.image, alt: p.caption, w: 1080, h: 1080 }));
-const photoItems = photographyWork.map((p) => ({ src: p.image, alt: p.caption, w: 1200, h: 1500 }));
 
 function Sub({ title, children }: { title: string; children?: React.ReactNode }) {
   return (
@@ -26,21 +16,14 @@ function Sub({ title, children }: { title: string; children?: React.ReactNode })
   );
 }
 
-// A sunken band marks this as a side chapter: creative work done alongside service roles.
+// The page header (app/creative) introduces this; the section is the body of that page.
 export function CreativeSection() {
   return (
-    <section id="creative" className="anchor bg-sunken py-16 md:py-24">
+    <section aria-label="Creative work" className="bg-sunken/75 pt-14 pb-24 md:pt-16 md:pb-32">
       <div className="shell">
-        <SectionHeading
-          index="05"
-          label="Creative"
-          title="Design, photos and a short film, made around the job"
-          intro={<p>Most of this came from the Customer Service On Train creative team at KAI Commuter.</p>}
-        />
-
         {/* Instagram: real numbers, dated, with the source account linked. */}
-        <Reveal className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
-          <div className="md:col-span-5">
+        <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
+          <div className="max-w-2xl lg:col-span-4">
             <Sub title={socialMediaWork.handle}>
               <p>{socialMediaWork.description}</p>
             </Sub>
@@ -57,18 +40,9 @@ export function CreativeSection() {
               Open {socialMediaWork.handle} on Instagram
             </Button>
           </div>
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:col-span-7">
-            {socialDesignPosts.map((post, i) => (
-              <li key={post.image}>
-                <Zoom items={postItems} index={i} className="overflow-hidden rounded-lg">
-                  <span className="relative block aspect-square bg-paper">
-                    <Image src={post.image} alt={post.caption} fill sizes="(min-width: 768px) 15vw, 45vw" className="object-cover transition-transform duration-500 ease-out group-hover/zoom:scale-105" />
-                  </span>
-                </Zoom>
-                <p className="mt-1.5 text-xs leading-snug text-muted">{post.caption}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="min-w-0 lg:col-span-8">
+            <PostFan />
+          </div>
         </Reveal>
 
         <Reveal className="mt-20 grid grid-cols-1 items-center gap-10 border-t border-line pt-10 md:grid-cols-12 md:gap-8">
@@ -98,18 +72,9 @@ export function CreativeSection() {
           <Sub title="Photography">
             <p>{photographyNote}</p>
           </Sub>
-          <ul className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {photographyWork.map((p, i) => (
-              <li key={p.image}>
-                <Zoom items={photoItems} index={i} className="overflow-hidden rounded-lg">
-                  <span className="relative block aspect-[4/5] bg-paper">
-                    <Image src={p.image} alt={p.caption} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition-transform duration-500 ease-out group-hover/zoom:scale-105" />
-                  </span>
-                </Zoom>
-                <p className="mt-1.5 text-xs text-muted">{p.caption}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8">
+            <PhotoViewer />
+          </div>
         </Reveal>
 
         <Reveal className="mt-20 grid grid-cols-1 items-center gap-8 border-t border-line pt-10 md:grid-cols-12">

@@ -10,6 +10,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import Lenis from "lenis";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +22,45 @@ import { cn } from "@/lib/utils";
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
 export function MotionProvider({ children }: { children: React.ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return (
+    <MotionConfig reducedMotion="user">
+      <SmoothScroll />
+      {children}
+    </MotionConfig>
+  );
+}
+
+/**
+ * Inertial page scrolling (Lenis). Purpose: the pinned and scroll-scrubbed chapters read as one
+ * continuous camera move instead of stepping with each wheel notch. Off for reduced motion
+ * and on touch devices, which already scroll natively with momentum.
+ */
+let activeLenis: Lenis | null = null;
+
+/** Scroll the page to an absolute Y, through Lenis when it is running so the two never fight. */
+export function scrollToY(y: number) {
+  if (activeLenis) activeLenis.scrollTo(y, { duration: 1.2 });
+  else window.scrollTo({ top: y, behavior: "smooth" });
+}
+
+function SmoothScroll() {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const lenis = new Lenis({ lerp: 0.1, anchors: { offset: -88 }, syncTouch: false });
+    activeLenis = lenis;
+    let raf = 0;
+    const loop = (t: number) => {
+      lenis.raf(t);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      activeLenis = null;
+      lenis.destroy();
+    };
+  }, []);
+  return null;
 }
 
 /** Fades content up as it scrolls in. Purpose: paces a long page into readable chapters. */
@@ -30,16 +69,19 @@ export function Reveal({
   className,
   delay = 0,
   as = "div",
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   as?: "div" | "span" | "li" | "article" | "figure";
+  style?: React.CSSProperties;
 }) {
   const Comp = motion[as];
   return (
     <Comp
       className={className}
+      style={style}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
@@ -197,18 +239,21 @@ export function SplitWords({
   className,
   delay = 0,
   stagger = 0.05,
+  immediate = false,
 }: {
   text: string;
   className?: string;
   delay?: number;
   stagger?: number;
+  /** Play on mount instead of on scroll-in (for the hero, which is already on screen). */
+  immediate?: boolean;
 }) {
   const words = text.split(" ");
   return (
     <motion.span
       className={className}
       initial="hidden"
-      whileInView="shown"
+      {...(immediate ? { animate: "shown" } : { whileInView: "shown" })}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
       transition={{ staggerChildren: stagger, delayChildren: delay }}
       aria-label={text}

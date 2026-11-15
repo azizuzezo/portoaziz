@@ -22,7 +22,7 @@ export default function AppleIcon() {
         }}
       >
         {person.initials}
-        <div style={{ display: "flex", width: 72, height: 8, marginTop: 8, background: "#f08060" }} />
+        <div style={{ display: "flex", width: 72, height: 8, marginTop: 8, background: "#6ea0ff" }} />
       </div>
     ),
     { ...size }
