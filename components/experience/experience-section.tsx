@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { earlierRoles, experience } from "@/lib/content/profile";
 import { Reveal, ScrollLine, SplitWords } from "@/components/motion/motion";
-import { Zoom } from "@/components/motion/lightbox";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 // "Jun 2026 – Present" -> months since; the CV's "Present" is read as today's date.
@@ -38,10 +37,10 @@ export function ExperienceSection() {
         <ScrollLine className="left-[7px]" />
         <ol>
         {experience.map((e) => (
-          <Reveal as="li" key={e.id} className="group/role relative grid grid-cols-1 gap-3 border-b border-line py-8 md:grid-cols-12 md:gap-8">
+          <Reveal as="li" key={e.id} id={`role-${e.id}`} className="anchor group/role relative grid grid-cols-1 gap-3 rounded-2xl border-b border-line py-8 transition-colors duration-300 hover:bg-accent-soft/60 md:-mx-5 md:grid-cols-12 md:gap-8 md:px-5">
             <span
               aria-hidden
-              className="absolute top-9 -left-8 flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-accent bg-paper transition-transform duration-200 group-hover/role:scale-125 md:-left-10"
+              className="absolute top-9 -left-8 flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-accent bg-paper transition-transform duration-200 group-hover/role:scale-150 md:-left-5"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             </span>
@@ -60,7 +59,7 @@ export function ExperienceSection() {
               <div className="flex items-start gap-4">
                 {e.logo && (
                   <span className="relative mt-1 hidden h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-line bg-white sm:block">
-                    <Image src={e.logo} alt="" fill sizes="40px" className="object-contain p-1" />
+                    <Image quality={90} src={e.logo} alt="" fill sizes="40px" className="object-contain p-1" />
                   </span>
                 )}
                 <div className="min-w-0">
@@ -83,30 +82,6 @@ export function ExperienceSection() {
                   <span className="font-semibold">Highlight: </span>
                   {e.milestone}
                 </p>
-              )}
-
-              {e.images && (
-                <ul className="mt-5 flex gap-2 overflow-x-auto pb-1">
-                  {e.images.map((img, i) => (
-                    <li key={img.src} className="shrink-0">
-                      <Zoom
-                        items={e.images!.map((x) => ({ src: x.src, alt: x.alt, w: 1600, h: 1200 }))}
-                        index={i}
-                        className="overflow-hidden rounded-lg"
-                      >
-                        <span className="relative block h-20 w-[6.75rem] bg-sunken sm:h-28 sm:w-40">
-                          <Image
-                            src={img.src}
-                            alt={img.alt}
-                            fill
-                            sizes="160px"
-                            className="object-cover transition-transform duration-300 group-hover/zoom:scale-105"
-                          />
-                        </span>
-                      </Zoom>
-                    </li>
-                  ))}
-                </ul>
               )}
             </div>
           </Reveal>

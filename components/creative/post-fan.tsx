@@ -92,7 +92,7 @@ export function PostFan() {
               {front ? (
                 <Zoom items={items} index={k} className="rounded-2xl">
                   <span className="relative block aspect-square overflow-hidden rounded-2xl bg-paper shadow-[0_30px_60px_-25px_rgb(0_0_0/0.55)] ring-1 ring-black/10">
-                    <Image src={post.image} alt={post.caption} fill sizes="(min-width: 640px) 288px, 224px" className="object-cover" draggable={false} />
+                    <Image quality={90} src={post.image} alt={post.caption} fill sizes="(min-width: 640px) 288px, 224px" className="object-cover" draggable={false} />
                   </span>
                 </Zoom>
               ) : (
@@ -104,7 +104,7 @@ export function PostFan() {
                   className="block w-full rounded-2xl"
                 >
                   <span className="relative block aspect-square overflow-hidden rounded-2xl bg-paper shadow-[0_20px_40px_-20px_rgb(0_0_0/0.5)] ring-1 ring-black/10">
-                    <Image src={post.image} alt="" fill sizes="(min-width: 640px) 288px, 224px" className="object-cover" draggable={false} />
+                    <Image quality={90} src={post.image} alt="" fill sizes="(min-width: 640px) 288px, 224px" className="object-cover" draggable={false} />
                   </span>
                 </button>
               )}

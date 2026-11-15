@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useRef } from "react";
 import { Magnetic, Reveal } from "@/components/motion/motion";
 
-
-
 /**
  * Home's closing block. It only points on to the Contact page; the address itself lives there,
  * so nothing is repeated. The big line slides in from the right as it rises.

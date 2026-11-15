@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { person, summary } from "@/lib/content/profile";
 import { Magnetic } from "@/components/motion/motion";
-import { LensBlob, LensHeadline, useLens } from "@/components/hero/lens-headline";
+import { LensBlob, LensHeadline, LensInvert, useLens } from "@/components/hero/lens-headline";
 import { FlapBoard } from "@/components/hero/flap-board";
 import { RailColor } from "@/components/chrome/rail-backdrop";
 
@@ -32,17 +32,16 @@ export function Hero() {
       <motion.div style={{ y, opacity }} className="shell flex flex-1 flex-col pt-24 pb-6 sm:pt-28">
         <div className="grid flex-1 grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-8 lg:gap-10">
           <div className="md:col-span-7">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: EASE }}
-              className="text-lg font-semibold tracking-tight text-muted sm:text-2xl"
-            >
-              <span lang="zh-Hans">你好</span>, I&apos;m {person.name}{" "}
-              <span lang="zh-Hans" className="font-medium">
-                {person.chineseName}
-              </span>
-            </motion.p>
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE }}>
+              <LensInvert lens={lens} enabled={enabled}>
+                <p className="text-lg font-semibold tracking-tight text-muted sm:text-2xl">
+                  <span lang="zh-Hans">你好</span>, I&apos;m {person.name}{" "}
+                  <span lang="zh-Hans" className="font-medium">
+                    {person.chineseName}
+                  </span>
+                </p>
+              </LensInvert>
+            </motion.div>
 
             <div className="mt-4">
               <LensHeadline lens={lens} enabled={enabled} className="display text-[clamp(2.1rem,4.4vw,4.25rem)] text-balance" />
@@ -54,7 +53,10 @@ export function Hero() {
               transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
               className="mt-6 flex flex-col gap-6"
             >
-              <p className="max-w-lg text-base leading-relaxed text-muted sm:text-lg">{summary.body}</p>
+              {/* On phones the hero must fit one screen; this paragraph is on the About page too. */}
+              <LensInvert lens={lens} enabled={enabled}>
+                <p className="hidden max-w-lg text-base leading-relaxed text-muted sm:text-lg md:block">{summary.body}</p>
+              </LensInvert>
               <div className="flex flex-wrap gap-3">
                 <Magnetic>
                   <Link
@@ -80,8 +82,10 @@ export function Hero() {
             initial={{ opacity: 0, y: -80 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 70, damping: 11, delay: 0.4 }}
-            className="md:col-span-5"
+            className="relative md:col-span-5"
           >
+            {/* Soft light behind the portrait so it lifts off the page. */}
+            <div aria-hidden className="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[125%] w-[125%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 blur-[90px] motion-safe:animate-[pulse_7s_ease-in-out_infinite]" />
             <FlapBoard />
           </motion.div>
         </div>

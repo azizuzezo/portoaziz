@@ -1,5 +1,6 @@
 "use client";
 
+import { CareerStrip } from "@/components/chrome/header-backdrops";
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Fragment } from "react";
 import { earlierRoles, person, skillGroups, summary } from "@/lib/content/profile";
@@ -50,7 +51,7 @@ export function AboutHero() {
   // The portrait is 1672x941; the face is ~11% of its width with the eyes at ~22% of its
   // height. At 220% of the word width the face spans two middle letters, and y 17% lands the
   // eyes on the word's centre line. The pointer nudges the photo a few percent.
-  const bgPos = useTransform([sx, sy] as never, ([x, y]: number[]) => `0% 0%, ${50 + (x - 0.5) * 4}% ${15 + (y - 0.5) * 3}%`);
+  const bgPos = useTransform([sx, sy] as never, ([x, y]: number[]) => `0% 0%, ${50 + (x - 0.5) * 4}% ${12 + (y - 0.5) * 3}%`);
 
   return (
     <header
@@ -92,7 +93,7 @@ export function AboutHero() {
             aria-hidden
             style={{
               // Face across the middle letters; the outer edges tint to the brand blue and green.
-              backgroundImage: `linear-gradient(90deg, #1f5fd6 0%, rgb(31 95 214 / 0.55) 18%, rgb(31 95 214 / 0) 34%, rgb(18 128 74 / 0) 66%, rgb(18 128 74 / 0.55) 82%, #12804a 100%), url(${person.photoUrl})`,
+              backgroundImage: `linear-gradient(90deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 55%, transparent) 18%, color-mix(in srgb, var(--accent) 0%, transparent) 34%, rgb(18 128 74 / 0) 66%, rgb(18 128 74 / 0.55) 82%, #12804a 100%), url(${person.photoUrl})`,
               backgroundSize: "100% 100%, 220% auto",
               backgroundPosition: bgPos,
             }}
@@ -105,7 +106,11 @@ export function AboutHero() {
           </motion.span>
         </motion.h1>
 
-        <div className="mt-12 grid grid-cols-1 gap-8 border-t border-line pt-8 md:grid-cols-12">
+        <div className="mt-10">
+          <CareerStrip />
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-12">
           <p className="text-xl leading-snug font-medium tracking-tight sm:text-2xl md:col-span-7">{summary.lead}</p>
           <dl className="flex gap-12 text-sm md:col-span-4 md:col-start-9 md:justify-end">
             <div>

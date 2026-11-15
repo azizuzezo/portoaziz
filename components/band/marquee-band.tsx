@@ -65,8 +65,8 @@ function VelocityRow({
     <div key={key} className="flex shrink-0 items-center" aria-hidden={key !== "a" || undefined}>
       {items.map((w) => (
         <Fragment key={w}>
-          <span className={cn("px-5 whitespace-nowrap sm:px-8", outline && "text-on-board/55")}>{w}</span>
-          <span className={cn("h-3 w-3 shrink-0 rounded-full border-[3px] sm:h-4 sm:w-4", outline ? "border-on-board/40" : "border-board-led")} />
+          <span className={cn("px-5 whitespace-nowrap sm:px-8", outline && "opacity-60")}>{w}</span>
+          <span className={cn("h-3 w-3 shrink-0 rounded-full border-[3px] sm:h-4 sm:w-4", outline ? "border-white/40" : "border-white")} />
         </Fragment>
       ))}
     </div>
@@ -90,18 +90,17 @@ export function MarqueeBand() {
           <li key={s}>{s}</li>
         ))}
       </ul>
-      <div className="bg-board text-board-led">
+      {/* A full-colour band in the accent blue: the first strong colour after the light hero. */}
+      <div data-nav="dark" className="bg-accent text-accent-ink">
         <div aria-hidden className="relative overflow-hidden py-8 sm:py-12">
           <div className="space-y-3 font-semibold tracking-tight sm:space-y-5">
-            <div className="text-[clamp(2.2rem,5.5vw,4.75rem)] leading-none dark:drop-shadow-[0_0_18px_rgb(160_190_255/0.35)]">
+            <div className="text-[clamp(2.2rem,5.5vw,4.75rem)] leading-none">
               <VelocityRow items={solid} base={-1.6} />
             </div>
             <div className="text-[clamp(1.4rem,3vw,2.6rem)] leading-none">
               <VelocityRow items={hollow} base={1.4} outline />
             </div>
           </div>
-          {/* LED pixel grid only on the dark board, where it reads as a real display. */}
-          <div className="led pointer-events-none absolute inset-0 hidden dark:block" />
         </div>
       </div>
     </section>

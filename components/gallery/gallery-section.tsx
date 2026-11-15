@@ -14,7 +14,7 @@ const items = gallery.map((g) => ({ ...g.image, alt: g.caption, caption: `${g.ca
 export function GallerySection() {
   return (
     <section id="gallery" className="anchor shell py-24 md:py-32">
-      <SectionHeading label="On the job" title="Stations, lobbies, studios and an expo floor" />
+      <SectionHeading label="On the job" title="Offices, stations, lobbies, studios and an expo floor" />
       <ul className="mt-12 flex flex-wrap gap-3">
         {gallery.map((item, i) => {
           const ratio = item.image.w / item.image.h;
@@ -28,7 +28,7 @@ export function GallerySection() {
             >
               <Zoom items={items} index={i} className="overflow-hidden rounded-xl">
                 <span className="relative block w-full bg-sunken" style={{ aspectRatio: `${item.image.w} / ${item.image.h}` }}>
-                  <Image
+                  <Image quality={90}
                     src={item.image.src}
                     alt={`${item.caption}, ${item.org}`}
                     fill

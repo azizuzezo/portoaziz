@@ -31,7 +31,7 @@ export function PhotoViewer() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Image src={p.image} alt={p.caption} fill sizes="(min-width: 768px) 60vw, 100vw" className="object-cover" />
+                  <Image quality={90} src={p.image} alt={p.caption} fill sizes="(min-width: 768px) 60vw, 100vw" className="object-cover" />
                 </motion.span>
               </AnimatePresence>
             </span>
@@ -50,7 +50,7 @@ export function PhotoViewer() {
                   k === i ? "ring-2 ring-accent" : "opacity-60 hover:opacity-100"
                 )}
               >
-                <Image src={ph.image} alt="" fill sizes="(min-width: 768px) 16vw, 22vw" className="object-cover" />
+                <Image quality={90} src={ph.image} alt="" fill sizes="(min-width: 768px) 16vw, 22vw" className="object-cover" />
               </button>
             </li>
           ))}

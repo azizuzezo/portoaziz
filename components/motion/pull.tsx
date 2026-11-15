@@ -2,14 +2,13 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
 import { GridBackdrop } from "@/components/motion/grid-backdrop";
+import { cn } from "@/lib/utils";
 
 /**
  * Wraps a section so it is "pulled up" over the one before it as it scrolls in: it rises,
  * grows from 94% to full width, and its rounded top corners flatten out. Scroll-scrubbed, so
  * it follows the reader's speed. MotionConfig's reducedMotion turns the transforms off.
- * Behind the content sits a living grid (GridBackdrop), so no section reads as static.
  */
 export function Pull({ children, className }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);

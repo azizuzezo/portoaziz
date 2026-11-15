@@ -32,14 +32,14 @@ export function KmtCardFallback() {
         className="relative aspect-[16/10] w-full max-w-md cursor-pointer overflow-hidden rounded-2xl shadow-xl transition-transform duration-300 ease-out"
         style={style}
       >
-        <Image
+        <Image quality={90}
           src={kmtCard.frontTexture}
           alt={kmtCard.title}
           fill
           sizes="420px"
           className={`object-cover transition-opacity duration-300 ${showBack ? "opacity-0" : "opacity-100"}`}
         />
-        <Image
+        <Image quality={90}
           src={kmtCard.backTexture}
           alt={`${kmtCard.title}, back`}
           fill

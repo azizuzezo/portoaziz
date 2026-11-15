@@ -58,7 +58,7 @@ export function CreativeSection() {
               {graphicDesignWork.map((g) => (
                 <li key={g.title}>
                   <div className="relative aspect-square overflow-hidden rounded-lg border border-line bg-white transition-transform duration-200 hover:-translate-y-1">
-                    <Image src={g.image} alt={g.title} fill sizes="140px" className="object-contain p-3" />
+                    <Image quality={90} src={g.image} alt={g.title} fill sizes="140px" className="object-contain p-3" />
                   </div>
                   <p className="mt-1.5 text-xs font-medium">{g.title}</p>
                   <p className="text-xs text-muted">{g.description}</p>
@@ -79,7 +79,7 @@ export function CreativeSection() {
 
         <Reveal className="mt-20 grid grid-cols-1 items-center gap-8 border-t border-line pt-10 md:grid-cols-12">
           <div className="relative aspect-square w-full max-w-xs overflow-hidden rounded-xl md:col-span-4">
-            <Image src={shortMovie.poster} alt={`"${shortMovie.title}" poster`} fill sizes="320px" className="object-cover" />
+            <Image quality={90} src={shortMovie.poster} alt={`"${shortMovie.title}" poster`} fill sizes="320px" className="object-cover" />
           </div>
           <div className="md:col-span-7 md:col-start-6">
             <p className="text-xs text-muted">{shortMovie.subtitle}</p>

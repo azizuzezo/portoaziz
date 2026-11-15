@@ -3,6 +3,7 @@ import { Pull } from "@/components/motion/pull";
 import { highlights, summary } from "@/lib/content/profile";
 import { ScrollText } from "@/components/motion/scroll-text";
 import { AboutHero } from "@/components/about/about-hero";
+import { GallerySection } from "@/components/gallery/gallery-section";
 import { ExperienceSection } from "@/components/experience/experience-section";
 import { SkillsSection } from "@/components/skills/skills-section";
 
@@ -39,6 +40,10 @@ export default function AboutPage() {
       </Pull>
       <Pull>
         <ExperienceSection />
+      </Pull>
+      {/* Photos from those jobs sit with the career they belong to, not with the creative work. */}
+      <Pull>
+        <GallerySection />
       </Pull>
       <Pull>
         <SkillsSection />

@@ -21,7 +21,7 @@ function LocalTime() {
 // Shared on every page. The three-colour line is the route-map legend, closing the page like a terminus.
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-paper/85 backdrop-blur-[2px]">
+    <footer className="overflow-hidden border-t border-line bg-paper/85 backdrop-blur-[2px]">
       <div aria-hidden className="flex h-1.5">
         <span className="flex-1 bg-l-navy" />
         <span className="flex-1 bg-l-steel" />
@@ -86,7 +86,14 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <p className="shell pb-8 text-xs text-muted">Designed and built by Aziz with AI-assisted development.</p>
+      <p className="shell pb-8 text-xs text-muted">
+        Designed and built by Aziz with AI-assisted development. Design inspired by{" "}
+        <a href="https://aulianza.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-line underline-offset-4 hover:text-ink hover:decoration-accent">
+          aulianza.com
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>
+        .
+      </p>
     </footer>
   );
 }

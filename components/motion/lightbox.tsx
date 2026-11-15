@@ -53,7 +53,7 @@ export function LightboxProvider({ children }: { children: React.ReactNode }) {
             {item && (
               <>
                 <div className="relative flex max-h-[80vh] w-full max-w-6xl items-center justify-center">
-                  <Image
+                  <Image quality={90}
                     key={item.src}
                     src={item.src}
                     alt={item.alt}

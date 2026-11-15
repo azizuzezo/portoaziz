@@ -70,16 +70,19 @@ export function Reveal({
   delay = 0,
   as = "div",
   style,
+  id,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   as?: "div" | "span" | "li" | "article" | "figure";
   style?: React.CSSProperties;
+  id?: string;
 }) {
   const Comp = motion[as];
   return (
     <Comp
+      id={id}
       className={className}
       style={style}
       initial={{ opacity: 0, y: 24 }}

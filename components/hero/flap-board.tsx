@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { earlierRoles, person } from "@/lib/content/profile";
-import { Tilt } from "@/components/motion/motion";
+import { PhotoFlaps } from "@/components/hero/photo-flaps";
 
 const CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789·&-";
 const WIDTH = 20;
@@ -83,22 +82,10 @@ export function FlapBoard() {
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-[18rem] md:max-w-[28rem]">
-      <Tilt max={4}>
-        <div className="relative aspect-[4/4] max-h-[58svh] overflow-hidden rounded-[1.75rem] bg-[#ececec] shadow-[0_40px_80px_-40px_rgb(0_0_0/0.45)]">
-          <Image
-            src={person.photoUrl}
-            alt={`Portrait of ${person.name}`}
-            fill
-            priority
-            sizes="(min-width: 640px) 448px, 90vw"
-            className="object-cover"
-            style={{ objectPosition: "51% 18%" }}
-          />
-        </div>
-      </Tilt>
+    <div className="mx-auto w-full max-w-[20rem] md:max-w-[28rem]">
+      <PhotoFlaps />
 
-      <div className="relative z-10 mx-3 -mt-10 rounded-2xl bg-[#26324d] p-3 shadow-[0_24px_50px_-24px_rgb(0_0_0/0.6)] sm:mx-5 sm:p-4">
+      <div className="relative z-10 mx-3 -mt-10 rounded-2xl bg-ink p-3 shadow-[0_24px_50px_-24px_rgb(0_0_0/0.6)] sm:mx-5 sm:p-4">
         <p className="sr-only">
           {person.name}, {LINES.join(", ")}
         </p>

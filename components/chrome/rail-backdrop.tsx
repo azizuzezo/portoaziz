@@ -88,3 +88,24 @@ export function RailColor({ className }: { className?: string }) {
     </div>
   );
 }
+
+/**
+ * Running-rail backdrop for page headers: the pale map across the full width (light enough to
+ * sit behind a title), the coloured map with moving trains on the right, and a fade at the
+ * bottom into the page. Place inside a `relative isolate overflow-hidden` header.
+ */
+export function RailHeader() {
+  const [trains, setTrains] = useState(false);
+  useEffect(() => setTrains(!window.matchMedia("(prefers-reduced-motion: reduce)").matches), []);
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0">
+        <Map pale trains={false} />
+      </div>
+      <div className="absolute inset-0 hidden opacity-50 [mask-image:linear-gradient(90deg,transparent_55%,#000_78%)] lg:block dark:opacity-60">
+        <Map pale={false} trains={trains} />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-paper" />
+    </div>
+  );
+}

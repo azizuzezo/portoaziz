@@ -8,7 +8,18 @@ function ProjectRow({ p, n, flip }: { p: Project; n: number; flip: boolean }) {
   const skor = p.group === "skor";
   const signIn = p.urlLabel?.includes("sign-in required");
   return (
-    <Reveal as="article" className="grid grid-cols-1 items-start gap-8 border-t border-line py-14 md:grid-cols-12 md:gap-12 md:py-20">
+    <Reveal
+      as="article"
+      id={p.id}
+      className={cn(
+        "anchor relative mb-8 grid grid-cols-1 items-center gap-8 overflow-hidden rounded-[2rem] p-6 ring-1 ring-line md:grid-cols-12 md:gap-12 md:p-12",
+        n % 2 ? "bg-accent-soft" : "bg-surface"
+      )}
+    >
+      {/* The project number, huge and faint, behind the copy. */}
+      <span aria-hidden className={cn("display pointer-events-none absolute -bottom-10 text-[13rem] leading-none opacity-[0.09] select-none", skor ? "text-l-navy" : "text-l-green", flip ? "left-6" : "right-6")}>
+        {String(n).padStart(2, "0")}
+      </span>
       <div className={cn("min-w-0 md:col-span-7", flip && "md:order-2")}>
         <ShotGallery
           images={[p.image, ...(p.gallery ?? [])]}
@@ -18,9 +29,8 @@ function ProjectRow({ p, n, flip }: { p: Project; n: number; flip: boolean }) {
         />
         {p.imageNote && <p className="mt-2 text-xs text-muted">{p.imageNote}</p>}
       </div>
-      <div className="md:col-span-5 md:pt-4">
+      <div className="relative md:col-span-5">
         {/* Index number in the group's line colour: blue for Skor tools, green for my products. */}
-        <p className={cn("display text-5xl", skor ? "text-l-navy" : "text-l-green")}>{String(n).padStart(2, "0")}</p>
         <h3 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">{p.name}</h3>
         <p className="mt-2 text-lg font-medium text-ink-soft">{p.tagline}</p>
         <p className="mt-4 text-[15px] leading-relaxed text-muted">{p.description}</p>

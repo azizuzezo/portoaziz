@@ -93,6 +93,25 @@ export function LensBlob({ lens }: { lens: Lens }) {
   return <motion.div ref={ref} aria-hidden style={{ clipPath: clip }} className="pointer-events-none absolute inset-0 -z-[5] bg-accent" />;
 }
 
+/**
+ * Text that stays readable when the lens is over it: a copy in the lens's ink colour is laid
+ * on top and clipped to the disc, so the words switch colour instead of sinking into the blue.
+ */
+export function LensInvert({ lens, enabled, children }: { lens: Lens; enabled: boolean; children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const clip = useLocalClip(lens, ref);
+  return (
+    <div ref={ref} className="relative">
+      {children}
+      {enabled && (
+        <motion.div aria-hidden style={{ clipPath: clip }} className="pointer-events-none absolute inset-0 text-accent-ink [&_*]:!text-accent-ink">
+          {children}
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
 /** The headline; where the lens passes over it, the hidden line shows instead. */
 export function LensHeadline({ className, lens, enabled }: { className: string; lens: Lens; enabled: boolean }) {
   const ref = useRef<HTMLDivElement>(null);

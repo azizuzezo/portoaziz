@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Pull } from "@/components/motion/pull";
+import { CreativeBackdrop } from "@/components/chrome/header-backdrops";
 import { PageHeader } from "@/components/chrome/page-header";
 import { CreativeSection } from "@/components/creative/creative-section";
-import { GallerySection } from "@/components/gallery/gallery-section";
 
 export const metadata: Metadata = {
   title: "Creative",
@@ -14,14 +14,12 @@ export default function CreativePage() {
     <>
       <PageHeader
         label="Creative"
-        title="Design, photos and a short film, made around the job"
-        intro={<p>Most of this came from the Customer Service On Train creative team at KAI Commuter.</p>}
+        backdrop={<CreativeBackdrop />}
+        title="Made around the job"
+        intro={<p>Designs, photos, logos and a short film. Most of it came from the Customer Service On Train creative team at KAI Commuter.</p>}
       />
       <Pull>
         <CreativeSection />
-      </Pull>
-      <Pull>
-        <GallerySection />
       </Pull>
     </>
   );

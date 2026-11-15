@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { featuredCase } from "@/lib/content/profile";
+import { TabsToPortal } from "@/components/work/tabs-to-portal";
 import { ShotGallery } from "@/components/ui/shot-gallery";
 import { CountUp, Reveal, Spotlight, SplitWords } from "@/components/motion/motion";
 
@@ -27,13 +28,15 @@ export function CaseStudy() {
 
         <div ref={ref} className="relative mt-12 [perspective:1600px] md:mt-16">
           <motion.div style={{ rotateX, scale, y }} className="origin-bottom">
-            <ShotGallery
-              images={[c.image, ...c.gallery]}
-              alt={c.imageAlt}
-              label={c.urlLabel}
-              sizes="(min-width: 1312px) 1216px, 100vw"
-            />
-            <p className="mt-2 text-xs text-muted">{c.imageNote}</p>
+            <TabsToPortal>
+              <ShotGallery
+                images={[c.image, ...c.gallery]}
+                alt={c.imageAlt}
+                label={c.urlLabel}
+                sizes="(min-width: 1312px) 1216px, 100vw"
+              />
+              <p className="mt-2 text-xs text-muted">{c.imageNote}</p>
+            </TabsToPortal>
           </motion.div>
         </div>
 

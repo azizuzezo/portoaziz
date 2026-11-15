@@ -10,7 +10,7 @@ const CELL = 56;
  * section never sits still. Listens on its parent section; paused off screen; static lines only
  * for reduced motion.
  */
-export function GridBackdrop({ tone }: { tone?: "dark" } = {}) {
+export function GridBackdrop() {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -21,14 +21,8 @@ export function GridBackdrop({ tone }: { tone?: "dark" } = {}) {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let W = 0, H = 0, cols = 0, rows = 0;
-    let line = "#000", accent = "#1f5fd6";
-    const readColors = () => {
-      const cs = getComputedStyle(document.documentElement);
-      accent = tone === "dark" ? "#4d6bff" : cs.getPropertyValue("--accent").trim() || accent;
-      const dark = tone === "dark" || document.documentElement.classList.contains("dark");
-      line = dark ? "rgba(255,255,255,0.08)" : "rgba(30,40,70,0.09)";
-    };
-    readColors();
+    const line = "rgba(30,40,70,0.09)";
+    const accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#1f5fd6";
     const resize = () => {
       W = host.clientWidth;
       H = host.clientHeight;
@@ -112,21 +106,15 @@ export function GridBackdrop({ tone }: { tone?: "dark" } = {}) {
       draw();
     });
     ro.observe(host);
-    const mo = new MutationObserver(() => {
-      readColors();
-      draw();
-    });
-    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     if (!reduced) host.addEventListener("pointermove", onMove, { passive: true });
 
     return () => {
       cancelAnimationFrame(raf);
       io.disconnect();
       ro.disconnect();
-      mo.disconnect();
       host.removeEventListener("pointermove", onMove);
     };
-  }, [tone]);
+  }, []);
 
   return <canvas ref={ref} aria-hidden className="pointer-events-none absolute inset-0 z-0" />;
 }

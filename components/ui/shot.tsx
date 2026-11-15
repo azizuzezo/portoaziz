@@ -40,7 +40,7 @@ export function Shot({
               <span className="truncate text-[11px] text-muted">{label}</span>
             </span>
           )}
-          <Image
+          <Image quality={90}
             src={image.src}
             alt={alt}
             width={image.w}

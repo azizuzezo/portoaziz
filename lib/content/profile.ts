@@ -623,15 +623,23 @@ export const shortMovie = {
 export type GalleryItem = { image: Image; caption: string; org: string };
 
 export const gallery: GalleryItem[] = [
+  { image: { src: "/images/experience/skor/team-lunch.jpg", w: 1280, h: 960 }, caption: "Team lunch at Skor", org: "Skor Technologies" },
+  { image: { src: "/images/experience/skor/team-selfie.jpg", w: 600, h: 800 }, caption: "With the Skor CS team", org: "Skor Technologies" },
+  { image: { src: "/images/experience/skor/birthday-celebration.jpg", w: 600, h: 800 }, caption: "Celebrating a teammate's birthday", org: "Skor Technologies" },
   { image: { src: "/images/gallery/photo-01.jpg", w: 1400, h: 1860 }, caption: "Serving Shin Tae-yong at District 8 Jakarta", org: "Angkasa Pura Supports" },
   { image: { src: "/images/gallery/photo-03.jpg", w: 1400, h: 933 }, caption: "Recording session with C-Choir", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/gallery/photo-05.jpg", w: 1400, h: 2100 }, caption: "Train services duty", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/gallery/photo-04.jpg", w: 1400, h: 933 }, caption: "At the microphone with a train crew member, C-Choir recording", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/experience/kawisata/team-photo.jpg", w: 1600, h: 775 }, caption: "CSOT team photo", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/gallery/photo-02.jpg", w: 1400, h: 2489 }, caption: "Service desk at District 8 Jakarta", org: "Angkasa Pura Supports" },
   { image: { src: "/images/experience/kawisata/night-briefing.jpg", w: 1600, h: 776 }, caption: "Night briefing with station security", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/gallery/orgaren-trade-expo.jpg", w: 1400, h: 1051 }, caption: "Ministry of Industry trade expo", org: "PT Orgaren Indonesia Jaya" },
   { image: { src: "/images/gallery/orgaren-indian-client.jpg", w: 1400, h: 1864 }, caption: "Meeting an Indian client to supply aren sugar", org: "PT Orgaren Indonesia Jaya" },
   { image: { src: "/images/experience/kawisata/depot-portrait.jpg", w: 1600, h: 755 }, caption: "Between trains at the depot", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/experience/kawisata/platform-group.jpg", w: 1280, h: 960 }, caption: "CSOT officers on the platform", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/experience/kawisata/presidential-service.jpg", w: 800, h: 800 }, caption: "Presidential service at the Manggarai inauguration", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/experience/kawisata/onboard-portrait.jpg", w: 1600, h: 775 }, caption: "On board a Commuter Line train", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/experience/kci-announcer/lost-and-found.jpg", w: 1400, h: 1038 }, caption: "Helping a passenger with a lost and found case", org: "KAI Commuter" },
 ];
 
 export type Service = {

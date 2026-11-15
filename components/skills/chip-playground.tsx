@@ -22,7 +22,7 @@ const CHIP_STYLE: Record<Group, string> = {
   service: "bg-l-navy text-paper",
   systems: "bg-l-green text-paper",
   comms: "bg-l-steel text-paper",
-  tools: "bg-white text-[#2c3a55] ring-1 ring-black/10",
+  tools: "bg-white text-ink ring-1 ring-black/10",
 };
 
 const chips: Chip[] = [
@@ -37,7 +37,7 @@ function ChipFace({ c }: { c: Chip }) {
     <>
       {c.logo && (
         <span className="relative -ml-1.5 h-7 w-7 shrink-0 overflow-hidden rounded-full bg-white">
-          <Image src={c.logo} alt="" fill sizes="28px" draggable={false} className="object-contain p-0.5" />
+          <Image quality={90} src={c.logo} alt="" fill sizes="28px" draggable={false} className="object-contain p-0.5" />
         </span>
       )}
       {c.label}

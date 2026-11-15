@@ -3,9 +3,6 @@ import { certifications, education, languages } from "@/lib/content/profile";
 import { Reveal, SplitWords } from "@/components/motion/motion";
 import { ChipPlayground } from "@/components/skills/chip-playground";
 
-const linkClass =
-  "underline decoration-line underline-offset-4 transition-colors hover:decoration-accent";
-
 export function SkillsSection() {
   return (
     <section id="skills" className="anchor">
@@ -25,50 +22,57 @@ export function SkillsSection() {
         </div>
       </div>
 
-      <div id="credentials" className="shell grid py-20 md:py-28 grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
-        <div className="md:col-span-6">
-          <h3 className="border-b border-line pb-3 text-sm font-semibold">Certifications</h3>
-          <ul className="mt-2">
-            {certifications.map((c) => (
-              <li key={c.title} className="border-b border-line text-[15px] last:border-0">
-                {c.url ? (
-                  <a href={c.url} target="_blank" rel="noopener noreferrer" className={`flex min-h-12 items-center py-2 ${linkClass} hover:text-accent`}>
-                    {c.title}
-                    <span className="sr-only"> (certificate, opens in a new tab)</span>
-                  </a>
-                ) : (
-                  c.title
-                )}
+      <div id="credentials" className="shell grid grid-cols-1 gap-5 py-20 md:grid-cols-12 md:py-28">
+        <Reveal className="rounded-[2rem] bg-surface p-7 ring-1 ring-line md:col-span-7 md:p-10">
+          <h3 className="display text-3xl">Certifications</h3>
+          <ul className="mt-6">
+            {certifications.map((c, i) => (
+              <li key={c.title} className="border-t border-line">
+                <a
+                  href={c.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex min-h-14 items-center gap-4 py-2 transition-[padding] duration-300 hover:pl-2 hover:text-accent"
+                >
+                  <span className="w-6 text-sm text-muted tabular-nums">0{i + 1}</span>
+                  <span className="flex-1 text-[15px] font-medium">{c.title}</span>
+                  <span aria-hidden className="text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent">
+                    ↗
+                  </span>
+                  <span className="sr-only"> (certificate, opens in a new tab)</span>
+                </a>
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="md:col-span-3">
-          <h3 className="border-b border-line pb-3 text-sm font-semibold">Education</h3>
-          <div className="mt-4 flex items-start gap-3">
-            <span className="relative mt-0.5 h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-line bg-white">
-              <Image src={education.logo} alt="" fill sizes="40px" className="object-contain p-1" />
-            </span>
-            <div>
-              <p className="text-[15px] font-medium">{education.school}</p>
-              <p className="text-sm text-muted">{education.degree}</p>
-              <p className="text-xs text-muted">{education.period}</p>
-            </div>
-          </div>
-          <p className="mt-4 text-sm leading-relaxed text-muted">{education.note}</p>
-        </div>
-
-        <div className="md:col-span-3">
-          <h3 className="border-b border-line pb-3 text-sm font-semibold">Languages</h3>
-          <dl className="mt-2">
-            {languages.map((l) => (
-              <div key={l.name} className="border-b border-line py-3 last:border-0">
-                <dt className="text-[15px]">{l.name}</dt>
-                <dd className="text-sm text-muted">{l.level}</dd>
+        <div className="grid gap-5 md:col-span-5">
+          <Reveal delay={0.08} className="rounded-[2rem] bg-accent p-7 text-accent-ink md:p-10">
+            <h3 className="display text-3xl">Education</h3>
+            <div className="mt-6 flex items-center gap-4">
+              <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl bg-white">
+                <Image quality={90} src={education.logo} alt="" fill sizes="56px" className="object-contain p-1.5" />
+              </span>
+              <div>
+                <p className="text-lg font-semibold">{education.school}</p>
+                <p className="text-sm opacity-80">
+                  {education.degree} · {education.period}
+                </p>
               </div>
-            ))}
-          </dl>
+            </div>
+            <p className="mt-5 text-sm leading-relaxed opacity-85">{education.note}</p>
+          </Reveal>
+          <Reveal delay={0.16} className="rounded-[2rem] bg-surface p-7 ring-1 ring-line md:p-10">
+            <h3 className="display text-3xl">Languages</h3>
+            <dl className="mt-5 grid grid-cols-2 gap-4">
+              {languages.map((l) => (
+                <div key={l.name}>
+                  <dt className="font-semibold">{l.name}</dt>
+                  <dd className="text-sm text-muted">{l.level}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
       </div>
     </section>

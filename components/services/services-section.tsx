@@ -99,7 +99,8 @@ function Panel({ s, i, n, progress }: { s: Service; i: number; n: number; progre
           </span>
         </motion.div>
 
-        <div className="shell relative grid h-full grid-cols-1 grid-rows-[auto_1fr_auto] gap-6 pt-28 pb-20 md:grid-cols-12 md:pt-32 md:pb-28">
+        <div className="shell relative grid h-full grid-cols-1 items-center gap-8 pt-24 pb-24 md:grid-cols-12 md:pb-28">
+          {/* Title, description and chips read as one block, centred in the panel. */}
           <div className="md:col-span-6">
             <p className={cn("text-sm font-semibold tabular-nums", t.soft)}>
               0{i + 1} / 0{n}
@@ -107,14 +108,7 @@ function Panel({ s, i, n, progress }: { s: Service; i: number; n: number; progre
             <h3 id={`service-${s.id}-title`} className="display mt-3 text-[clamp(2.75rem,6vw,5.5rem)] text-balance">
               <SplitWords text={s.title} stagger={0.06} />
             </h3>
-          </div>
-
-          <div className="relative min-h-0 md:col-span-6 md:row-span-2 md:row-start-1 md:col-start-7">
-            <DotArt art={s.art} color={t.dot} className="absolute inset-0 h-full w-full" />
-          </div>
-
-          <div className="relative md:col-span-6 md:row-start-3">
-            <div className={cn("h-px w-full max-w-xl", t.rule)} />
+            <div className={cn("mt-8 h-px w-full max-w-xl", t.rule)} />
             <p className={cn("mt-6 max-w-xl text-lg leading-relaxed sm:text-xl", t.soft)}>{s.description}</p>
             <div className="mt-6 flex flex-wrap items-center gap-2">
               <span className={cn("mr-1 text-xs font-semibold", t.soft)}>Day to day</span>
@@ -124,6 +118,10 @@ function Panel({ s, i, n, progress }: { s: Service; i: number; n: number; progre
                 </span>
               ))}
             </div>
+          </div>
+
+          <div className="relative h-56 md:col-span-6 md:h-[70%]">
+            <DotArt art={s.art} color={t.dot} className="absolute inset-0 h-full w-full" />
           </div>
         </div>
 

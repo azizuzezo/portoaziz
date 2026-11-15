@@ -1,10 +1,11 @@
 "use client";
 
+import { RailHeader } from "@/components/chrome/rail-backdrop";
+import { GridBackdrop } from "@/components/motion/grid-backdrop";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { person } from "@/lib/content/profile";
-import { GridBackdrop } from "@/components/motion/grid-backdrop";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -107,6 +108,7 @@ export function ContactPageBody() {
 
   return (
     <section className="relative isolate overflow-hidden bg-board/80 text-on-board">
+      <RailHeader />
       <GridBackdrop />
       <div className="shell grid grid-cols-1 gap-14 pt-36 pb-24 md:pt-44 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-7">
@@ -230,7 +232,7 @@ export function ContactPageBody() {
               tear line (--cut, measured), so the halves can't drift apart when it tilts. */}
           <div
             ref={ticketRef}
-            className="relative mx-auto max-w-md overflow-hidden rounded-[1.75rem] bg-white text-[#2c3a55] shadow-[0_40px_80px_-40px_rgb(0_0_0/0.45)]"
+            className="relative mx-auto max-w-md overflow-hidden rounded-[1.75rem] bg-white text-ink shadow-[0_40px_80px_-40px_rgb(0_0_0/0.45)]"
             style={{
               ["--cut" as string]: `${cut}px`,
               WebkitMask:
@@ -239,7 +241,7 @@ export function ContactPageBody() {
             }}
           >
             <div ref={topRef}>
-              <div className="flex items-center justify-between bg-[#1f5fd6] px-7 py-4 text-white">
+              <div className="flex items-center justify-between bg-accent px-7 py-4 text-white">
                 <span className="text-xs font-bold tracking-[0.16em]">ONE-WAY TICKET</span>
                 <span className="text-xs font-semibold tabular-nums text-white/85">Departs {time} WIB</span>
               </div>
@@ -250,7 +252,7 @@ export function ContactPageBody() {
                     <p className="mt-1 text-base leading-snug font-semibold">A problem that keeps coming back</p>
                   </div>
                   {/* Route: origin ring, a small train, destination dot. */}
-                  <span aria-hidden className="mt-6 flex items-center gap-1 text-[#1f5fd6]">
+                  <span aria-hidden className="mt-6 flex items-center gap-1 text-accent">
                     <span className="h-2.5 w-2.5 rounded-full border-2 border-current" />
                     <span className="h-0.5 w-4 bg-current" />
                     <span className="flex h-4 w-7 items-center justify-center gap-0.5 rounded-[5px] bg-current">
@@ -291,7 +293,7 @@ export function ContactPageBody() {
 
             <div className="relative px-7 pt-6 pb-7">
               <p className="text-xs text-zinc-500">Email</p>
-              <a href={`mailto:${person.email}`} className="mt-1 block text-lg font-semibold break-all underline decoration-zinc-300 underline-offset-4 hover:decoration-[#1f5fd6]">
+              <a href={`mailto:${person.email}`} className="mt-1 block text-lg font-semibold break-all underline decoration-zinc-300 underline-offset-4 hover:decoration-[var(--accent)]">
                 {person.email}
               </a>
               <div className="mt-3 flex items-center gap-3">
@@ -312,7 +314,7 @@ export function ContactPageBody() {
                   href={person.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex min-h-12 items-center justify-center gap-1.5 rounded-full bg-[#1f5fd6] text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+                  className="flex min-h-12 items-center justify-center gap-1.5 rounded-full bg-accent text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
                 >
                   LinkedIn <ArrowUpRight className="h-4 w-4" aria-hidden />
                   <span className="sr-only">(opens in a new tab)</span>
@@ -329,7 +331,7 @@ export function ContactPageBody() {
               {/* Decorative barcode at the foot of the stub. */}
               <div aria-hidden className="mt-6 flex h-8 items-stretch justify-center gap-[2px] opacity-80">
                 {BARS.map((w, k) => (
-                  <span key={k} className="bg-[#2c3a55]" style={{ width: w }} />
+                  <span key={k} className="bg-ink" style={{ width: w }} />
                 ))}
               </div>
 

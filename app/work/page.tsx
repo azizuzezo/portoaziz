@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Pull } from "@/components/motion/pull";
+import { WorkBackdrop } from "@/components/chrome/header-backdrops";
 import { PageHeader } from "@/components/chrome/page-header";
 import { CaseStudy } from "@/components/work/work-section";
 import { ProjectList } from "@/components/work/project-list";
@@ -15,6 +16,7 @@ export default function WorkPage() {
     <>
       <PageHeader
         label="Work"
+        backdrop={<WorkBackdrop />}
         title="Tools for a support team, and products I run"
         intro={
           <p>

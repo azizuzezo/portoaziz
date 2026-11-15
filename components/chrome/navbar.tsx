@@ -7,7 +7,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { person } from "@/lib/content/profile";
-import { ThemeToggle } from "@/components/chrome/theme-toggle";
 import { cn } from "@/lib/utils";
 
 // Every href here is a real page in app/.
@@ -25,16 +24,24 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [farDown, setFarDown] = useState(false);
+  // True while the bar sits over a section painted in the accent colour (marked data-nav="dark").
+  const [onDark, setOnDark] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
       setFarDown(window.scrollY > 1200);
+      let dark = false;
+      for (const el of document.querySelectorAll('[data-nav="dark"]')) {
+        const r = el.getBoundingClientRect();
+        if (r.top <= 56 && r.bottom >= 40) dark = true;
+      }
+      setOnDark(dark);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   // Close the mobile menu after navigating.
   useEffect(() => setOpen(false), [pathname]);
@@ -63,12 +70,12 @@ export function Navbar() {
           style={{ maxWidth: 1280 }}
           animate={{ maxWidth: scrolled ? 960 : 1280 }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="glass-nav mx-auto rounded-[1.75rem]"
+          className={cn("glass-nav mx-auto rounded-[1.75rem]", onDark && "is-dark")}
         >
           <nav className="flex h-14 items-center justify-between gap-3 pr-2 pl-2 sm:h-16 sm:pr-3" aria-label="Main">
             <Link href="/" className="group flex min-h-11 min-w-0 items-center gap-2.5 rounded-full pr-3 font-semibold tracking-tight">
               <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-accent/70 transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10">
-                <Image src={person.photoUrl} alt="" fill sizes="40px" className="object-cover" style={{ objectPosition: "51% 22%" }} />
+                <Image quality={90} src={person.photoUrl} alt="" fill sizes="40px" className="object-cover" style={{ objectPosition: "51% 22%" }} />
               </span>
               <span className="truncate text-sm sm:text-base">{person.name}</span>
             </Link>
@@ -80,7 +87,7 @@ export function Navbar() {
                     href={link.href}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
-                      "relative flex min-h-11 items-center rounded-full px-4 text-sm font-medium text-ink/65 transition-colors duration-150 hover:text-ink",
+                      "relative flex min-h-11 items-center rounded-full px-4 text-sm font-medium text-ink/80 transition-colors duration-150 hover:text-ink",
                       isActive(link.href) && "text-accent-ink hover:text-accent-ink"
                     )}
                   >
@@ -106,7 +113,6 @@ export function Navbar() {
               >
                 CV
               </a>
-              <ThemeToggle />
               <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}

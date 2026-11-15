@@ -6,7 +6,7 @@ import { Footer } from "@/components/chrome/footer";
 import { RailBackdrop } from "@/components/chrome/rail-backdrop";
 import { Navbar } from "@/components/chrome/navbar";
 import { LightboxProvider } from "@/components/motion/lightbox";
-import { MotionProvider } from "@/components/motion/motion";
+import { MotionProvider, ScrollProgress } from "@/components/motion/motion";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -70,8 +70,8 @@ const jsonLd = {
   sameAs: [person.linkedin],
 };
 
-// Runs before first paint so the saved (or system) theme never flashes.
-const themeScript = `(function(){try{var s=localStorage.getItem("theme");var d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
+// The site is light-only; clear a dark class a previous version may have left behind.
+const lightScript = `(function(){try{document.documentElement.classList.remove("dark");}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={poppins.variable}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: lightScript }} />
         {/* Without JavaScript the scroll reveals never run, so show everything as-is. */}
         <noscript>
           <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
@@ -103,7 +103,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </a>
             {/* One moving backdrop for the whole site, behind every page, top to bottom. */}
             <RailBackdrop />
-            <Navbar />
+            <ScrollProgress />
+          <Navbar />
             <main id="main">{children}</main>
             <Footer />
           </LightboxProvider>

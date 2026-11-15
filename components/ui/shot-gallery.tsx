@@ -73,7 +73,7 @@ export function ShotGallery({
                 exit={{ opacity: 0, y: -28 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
-                <Image src={images[i].src} alt={items[i].alt} fill sizes={sizes} className="object-cover object-top" />
+                <Image quality={90} src={images[i].src} alt={items[i].alt} fill sizes={sizes} className="object-cover object-top" />
               </motion.span>
             </AnimatePresence>
           </span>
