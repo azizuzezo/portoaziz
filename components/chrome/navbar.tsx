@@ -75,7 +75,7 @@ export function Navbar() {
           <nav className="flex h-14 items-center justify-between gap-3 pr-2 pl-2 sm:h-16 sm:pr-3" aria-label="Main">
             <Link href="/" className="group flex min-h-11 min-w-0 items-center gap-2.5 rounded-full pr-3 font-semibold tracking-tight">
               <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-accent/70 transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10">
-                <Image quality={90} src={person.photoUrl} alt="" fill sizes="40px" className="object-cover" style={{ objectPosition: "51% 22%" }} />
+                <Image src="/images/profile/aziz-avatar.webp" alt="" width={192} height={192} unoptimized priority className="h-full w-full object-cover" />
               </span>
               <span className="truncate text-sm sm:text-base">{person.name}</span>
             </Link>

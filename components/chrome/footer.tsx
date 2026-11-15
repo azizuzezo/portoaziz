@@ -87,12 +87,12 @@ export function Footer() {
         </div>
       </div>
       <p className="shell pb-8 text-xs text-muted">
-        Designed and built by Aziz with AI-assisted development. Design inspired by{" "}
+        Original design by{" "}
         <a href="https://aulianza.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-line underline-offset-4 hover:text-ink hover:decoration-accent">
           aulianza.com
           <span className="sr-only"> (opens in a new tab)</span>
         </a>
-        .
+        , customized and built by Aziz with AI-assisted development.
       </p>
     </footer>
   );
