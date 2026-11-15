@@ -30,7 +30,7 @@ export function RecommendationsSection() {
       <div className="shell relative grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
           <h2 className="display text-[clamp(2.4rem,4.5vw,4rem)] text-balance">
-            <SplitWords text="What people I've worked with say" stagger={0.04} />
+            <SplitWords text="What my colleagues say" stagger={0.04} />
           </h2>
           <Reveal delay={0.1}>
             <a

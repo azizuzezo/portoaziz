@@ -9,7 +9,7 @@ import { SkillsSection } from "@/components/skills/skills-section";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Nine years of customer service across transport, hospitality, retail and fintech, and the tools built along the way.",
+  description: "Nine years handling customer experience across transport, hospitality, retail and fintech, and the tools built along the way.",
 };
 
 // The portrait lives on Home (the ID card), so About opens straight on the story and the numbers.

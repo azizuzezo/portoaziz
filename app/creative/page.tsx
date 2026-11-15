@@ -6,7 +6,7 @@ import { CreativeSection } from "@/components/creative/creative-section";
 
 export const metadata: Metadata = {
   title: "Creative",
-  description: "Social media design, logos, a KMT card design entry, train photography and a short film, plus photos from the job.",
+  description: "Social media designs, logos, a KMT card design competition entry, train photography and a short film.",
 };
 
 export default function CreativePage() {
@@ -15,8 +15,8 @@ export default function CreativePage() {
       <PageHeader
         label="Creative"
         backdrop={<CreativeBackdrop />}
-        title="Made around the job"
-        intro={<p>Designs, photos, logos and a short film. Most of it came from the Customer Service On Train creative team at KAI Commuter.</p>}
+        title="Made alongside the job"
+        intro={<p>Designs, photos, logos and a short film. Most of it was made with the Customer Service On Train creative team at KAI Commuter.</p>}
       />
       <Pull>
         <CreativeSection />

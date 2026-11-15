@@ -118,7 +118,7 @@ export function AboutHero() {
               <dd className="mt-1 text-base font-semibold">Bogor, Indonesia</dd>
             </div>
             <div>
-              <dt className="text-muted">Serving customers since</dt>
+              <dt className="text-muted">Handling customer experience since</dt>
               <dd className="mt-1 text-base font-semibold">{SINCE}</dd>
             </div>
           </dl>

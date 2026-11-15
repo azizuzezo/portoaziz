@@ -13,7 +13,7 @@ export function SkillsSection() {
           </h2>
           <Reveal delay={0.1}>
             <p className="mt-5 max-w-md text-lg leading-relaxed text-on-board/60">
-              Every skill and tool I use day to day. Pick a group to bring it forward.
+              The skills and tools I use every day. Pick a group to highlight it.
             </p>
           </Reveal>
           <Reveal delay={0.15} className="mt-10">

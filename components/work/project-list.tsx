@@ -84,7 +84,7 @@ export function ProjectList() {
       <div id="skor" className="anchor pt-20">
         <h2 className="display text-[clamp(2.25rem,4.5vw,3.75rem)]">Built next, on the same sign-in</h2>
         <p className="mt-4 max-w-2xl text-lg text-muted">
-          After the portal, the support team asked for chat and a place to run the customer chatbots.
+          After the portal, the support team asked for team chat and a place to manage the customer chatbots.
         </p>
         <div className="mt-6">
           {skor.map((p, i) => (

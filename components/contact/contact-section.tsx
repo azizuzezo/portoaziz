@@ -23,7 +23,7 @@ export function ContactSection() {
         <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <p className="max-w-xl text-xl leading-relaxed text-on-board/80 sm:text-2xl">
-              If your customers keep raising the same problem, I&apos;d like to help fix it at the source.
+              If your customers keep running into the same problem, I&apos;d love to help you fix it at the source.
             </p>
           </Reveal>
           <Reveal delay={0.1}>

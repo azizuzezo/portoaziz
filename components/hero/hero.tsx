@@ -63,7 +63,7 @@ export function Hero() {
                     href="/work"
                     className="inline-flex min-h-14 items-center rounded-full bg-accent px-7 text-base font-semibold text-accent-ink transition-transform duration-200 hover:-translate-y-0.5"
                   >
-                    See the work
+                    View my work
                   </Link>
                 </Magnetic>
                 <Magnetic>
@@ -71,7 +71,7 @@ export function Hero() {
                     href="/contact"
                     className="inline-flex min-h-14 items-center rounded-full border border-ink/15 bg-paper px-7 text-base font-semibold transition-colors duration-200 hover:border-ink"
                   >
-                    Write to me
+                    Get in touch
                   </Link>
                 </Magnetic>
               </div>

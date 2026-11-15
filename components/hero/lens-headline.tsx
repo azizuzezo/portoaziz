@@ -6,7 +6,7 @@ import { person } from "@/lib/content/profile";
 import { SplitWords } from "@/components/motion/motion";
 
 // What the lens reveals: the same story told from the customer's side. Facts from the CV.
-const HIDDEN = "Every complaint I answered became a tool, so the next customer waits less.";
+const HIDDEN = "Every complaint I handled showed me what to build, so the next customer waits less.";
 const BIG = 150; // over the headline, while moving
 const DOT = 9; // anywhere else in the hero, or when the pointer rests
 const REST_MS = 900;
@@ -120,8 +120,8 @@ export function LensHeadline({ className, lens, enabled }: { className: string; 
     <div ref={ref} className="relative" onPointerEnter={() => lens.setOver(true)} onPointerLeave={() => lens.setOver(false)}>
       <h1 className={className}>
         <span className="sr-only">{person.name}: </span>
-        <SplitWords text="Nine years serving customers." immediate delay={0.15} stagger={0.06} />{" "}
-        <SplitWords text="Now I build the tools that serve them faster." immediate delay={0.45} stagger={0.05} className="text-accent" />
+        <SplitWords text="Nine years handling customer experience." immediate delay={0.15} stagger={0.06} />{" "}
+        <SplitWords text="Now I build tools that help support teams work faster." immediate delay={0.45} stagger={0.05} className="text-accent" />
       </h1>
       {enabled && (
         <motion.p

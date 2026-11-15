@@ -15,12 +15,12 @@ export const person = {
   cvUrl: "/cv/Abdul-Aziz-Setiawan-CV.pdf",
   photoUrl: "/images/profile/aziz.png",
   siteUrl: "https://portoaziz.my.id",
-  focus: "Customer experience specialist and tech enthusiast",
+  focus: "Customer experience specialist who builds the tools support teams use",
 } as const;
 
 export const summary = {
-  lead: "Nine years of answering customers, from Commuter Line platforms to fintech help desks. Now I also build the tools that help a support team answer them faster.",
-  body: "At Skor Technologies I handle card cases between the bank, Skorcard and Skorlife in a ticketing system, and I built the internal CS Tools Portal, which cut the team's manual case handling by 50% within 6 months.",
+  lead: "Nine years handling customer experience, from Commuter Line platforms to fintech help desks. Now I also build the tools that help support teams resolve cases faster.",
+  body: "At Skor Technologies, I resolve card-related cases involving the bank, Skorcard and Skorlife. I also built the team's internal CS Tools Portal, which cut manual case handling by 50% in six months.",
 };
 
 export type Image = { src: string; w: number; h: number };
@@ -61,19 +61,19 @@ export const featuredCase = {
   imageNote: "SC Desk and SL Desk ticket queues: customer names, emails and subjects are blurred.",
   imageAlt:
     "CS Tools Portal: the dashboard, then the SC Desk and SL Desk ticketing queues for Skorcard and Skorlife",
-  result: { value: "50%", label: "less manual case work within 6 months" },
+  result: { value: "50%", label: "less manual case work in six months" },
   sections: [
     {
       heading: "The problem",
-      text: "Agents worked Skorcard and Skorlife cases across two ticket desks, bank escalations, fee waivers, card delivery sheets and a monthly roster. Each lived in its own tab, so a single case meant a lot of copying and checking by hand.",
+      text: "Agents handled Skorcard and Skorlife cases across two ticket desks, bank escalations, fee waivers, card delivery sheets and a monthly roster. Each one lived in a separate tab, so a single case involved a lot of manual copying and cross-checking.",
     },
     {
       heading: "What I built",
-      text: "One portal for the whole shift: a live queue that refreshes every 20 seconds, the team schedule, BMI escalation workflows, request forms for fee waivers, early payoff and card closing, customer data trackers, and every team sheet linked in one place.",
+      text: "A single portal for the whole shift: a live queue that refreshes every 20 seconds, the team schedule, BMI escalation workflows, request forms for fee waivers, early payoff and card closure, customer data trackers, and links to every team sheet.",
     },
     {
-      heading: "How it landed",
-      text: "Manual case handling dropped by half within 6 months. The team later asked for chat and a chatbot console on the same sign-in, which became the next three tools below.",
+      heading: "The result",
+      text: "Manual case handling dropped by half within six months. The team then asked for team chat and a chatbot console under the same login, which became the three tools below.",
     },
   ],
   quote: {
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     status: "Internal",
     tagline: "Agent and admin console for the Skorcard chatbot",
     description:
-      "Agents pick up chats the bot can't finish, claim or reassign a session, and see the customer's card, billing and risk details beside the conversation. A ticket can be raised without leaving the chat.",
+      "Agents pick up chats the bot can't resolve, claim or reassign sessions, and see the customer's card, billing and risk details next to the conversation. They can also raise a ticket without leaving the chat.",
     url: "https://cs.skorcard.app",
     urlLabel: "cs.skorcard.app (sign-in required)",
     image: { src: "/images/ai-projects/skorcard-chatbot-2026-11.jpg", w: 2000, h: 997 },
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     status: "Internal",
     tagline: "AI chat with agent takeover for Skorlife",
     description:
-      "The AI answers credit report questions first. When a customer needs a person, an agent takes over with the credit snapshot and active accounts already on screen, then hands the chat back or closes it.",
+      "The AI handles credit report questions first. When a customer needs a human, an agent takes over with the credit snapshot and active accounts already on screen, then hands the chat back to the AI or closes it.",
     image: { src: "/images/ai-projects/skorlife-chatbot-2026-11.jpg", w: 2000, h: 1023 },
     imageAlt: "Skorlife agent dashboard with AI-handled sessions and a credit snapshot panel",
     imageNote: "Customer names, IDs and financial details are blurred.",
@@ -115,9 +115,9 @@ export const projects: Project[] = [
     name: "Skor Chat",
     group: "skor",
     status: "Internal",
-    tagline: "Team chat on the same sign-in",
+    tagline: "Team chat under the same login",
     description:
-      "Channels and direct messages for the Skorcard and Skorlife team, using the CS Portal account, so case talk stays next to the tools instead of in personal chat apps.",
+      "Channels and direct messages for the Skorcard and Skorlife team, using their CS Portal accounts, so case discussions stay next to the tools instead of in personal chat apps.",
     url: "https://sc-cs-portal.skorcard.app/skorchat",
     urlLabel: "sc-cs-portal.skorcard.app/skorchat (sign-in required)",
     image: { src: "/images/ai-projects/skorchat-2026-11.jpg", w: 2000, h: 1024 },
@@ -130,11 +130,11 @@ export const projects: Project[] = [
     status: "On Google Play",
     tagline: "A free, ad-free companion for KRL Jabodetabek commuters",
     description:
-      "Built from five years on the Commuter Line. It sounds an alarm two stations before your stop, shows routes and fares, and tracks trains live from anonymous passenger GPS.",
+      "Born from five years of working on the Commuter Line. It sounds an alarm two stations before your stop, shows routes and fares, and tracks trains in real time using anonymous GPS data from passengers.",
     points: [
       "Schedules from official GTFS open data",
-      "Forum for crowding reports",
-      "Independent app, not an official KAI Commuter product",
+      "Community forum for crowd reports",
+      "An independent app, not affiliated with KAI Commuter",
     ],
     url: "https://play.google.com/store/apps/details?id=id.temankereta.teman_kereta",
     urlLabel: "Google Play",
@@ -146,9 +146,9 @@ export const projects: Project[] = [
     name: "Patungan Yuk!",
     group: "own",
     status: "Live",
-    tagline: "QRIS donations that show up live on TikTok LIVE and OBS",
+    tagline: "QRIS donations that appear live on TikTok LIVE and OBS",
     description:
-      "Viewers pay by QRIS and the alert appears on the streamer's screen. Hosts get a dashboard, overlay widgets and a wallet with withdrawal requests. The platform takes a 1% fee.",
+      "Viewers pay via QRIS and an alert pops up on the streamer's screen. Streamers get a dashboard, overlay widgets and a wallet they can withdraw from. The platform charges a 1% fee.",
     url: "https://patungan.gifts",
     urlLabel: "patungan.gifts",
     image: { src: "/images/ai-projects/patungan-2026-11.jpg", w: 2000, h: 1250 },
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     status: "Live",
     tagline: "Wedding vendor marketplace",
     description:
-      "Couples compare verified vendors, chat and book in one place. Payment is held in escrow and released to the vendor after the event.",
+      "Couples can compare verified vendors, chat with them and book, all in one place. Payments are held in escrow and released to the vendor after the event.",
     url: "https://duacincin.id",
     urlLabel: "duacincin.id",
     image: { src: "/images/ai-projects/duacincin-2026-11.jpg", w: 2000, h: 1250 },
@@ -182,7 +182,7 @@ export const projects: Project[] = [
     status: "Live",
     tagline: "Cinematic digital wedding invitations",
     description:
-      "12 themes, RSVP with guest count and dress code, live streaming, a digital guestbook, QR check-in and a photo booth.",
+      "12 themes, RSVPs with guest count and dress code, live streaming, a digital guestbook, QR check-in and a photo booth.",
     url: "https://invitation.duacincin.id",
     urlLabel: "invitation.duacincin.id",
     image: { src: "/images/ai-projects/duacincin-invitation-2026-11.jpg", w: 2000, h: 1250 },
@@ -199,7 +199,7 @@ export const projects: Project[] = [
     status: "Live",
     tagline: "Free subdomains for anyone",
     description:
-      "Claim yourname.tongkrongan.tech and point it at Vercel, Cloudflare, a VPS or other hosting. No credit card, no DNS knowledge needed.",
+      "Claim yourname.tongkrongan.tech and point it to Vercel, Cloudflare, a VPS or any other host. No credit card or DNS knowledge required.",
     url: "https://tongkrongan.tech",
     urlLabel: "tongkrongan.tech",
     image: { src: "/images/ai-projects/tongkrongan-2026-11.jpg", w: 2000, h: 1250 },
@@ -216,7 +216,7 @@ export const projects: Project[] = [
     status: "Live",
     tagline: "Survey-to-quotation workflow platform",
     description:
-      "Takes a team from site survey to quotation with real-time KPI dashboards, role-based access and automated task workflows.",
+      "Guides a team from site survey to quotation, with real-time KPI dashboards, role-based access and automated task workflows.",
     url: "https://flowworks.ptuip.my.id",
     urlLabel: "flowworks.ptuip.my.id",
     image: { src: "/images/ai-projects/flowworks-2026-11.jpg", w: 2000, h: 1250 },
@@ -229,7 +229,7 @@ export const projects: Project[] = [
     status: "Live",
     tagline: "Team workspace for small businesses",
     description:
-      "Projects, tasks, calendar and notes in one board, so progress is visible without chasing updates in group chats.",
+      "Projects, tasks, calendar and notes on one board, so everyone can see progress without chasing updates in group chats.",
     url: "https://ruangbaru.my.id",
     urlLabel: "ruangbaru.my.id",
     image: { src: "/images/ai-projects/ruangbaru-2026-11.jpg", w: 2000, h: 1250 },
@@ -246,7 +246,7 @@ export const projects: Project[] = [
     status: "Live",
     tagline: "Link-in-bio for creators who sell",
     description:
-      "Creators list products, recruit fellow affiliates and track every commission from one dashboard.",
+      "Creators list products, recruit other affiliates and track every commission from a single dashboard.",
     url: "https://muter.my.id",
     urlLabel: "muter.my.id",
     image: { src: "/images/ai-projects/muter-my-id-2026-11.jpg", w: 2000, h: 1250 },
@@ -280,10 +280,10 @@ export const experience: ExperienceEntry[] = [
     period: "Jun 2026 – Present",
     logo: "/images/companies/skor-technologies.png",
     bullets: [
-      "Resolve card-related customer complaints and coordinate cases between the bank, Skorcard and Skorlife",
-      "Built the internal CS Tools Portal with AI-assisted development for the team's daily case handling; it cut manual work by 50% within 6 months",
-      "Recommended on LinkedIn by the customer service supervisor for building the portal",
-      "Added team chat on the same sign-in, and an agent and admin console for the customer-facing chatbot",
+      "Resolve card-related customer complaints and coordinate cases with the bank, Skorcard and Skorlife",
+      "Built the team's internal CS Tools Portal using AI-assisted development, cutting manual case handling by 50% in six months",
+      "Received a LinkedIn recommendation from my supervisor for building the portal",
+      "Added team chat under the same login, plus an agent and admin console for the customer-facing chatbot",
     ],
     images: [
       { src: "/images/experience/skor/team-selfie.jpg", alt: "With the Skor CS team" },
@@ -299,9 +299,9 @@ export const experience: ExperienceEntry[] = [
     period: "Jan 2026 – Jun 2026",
     logo: "/images/companies/skor-technologies.png",
     bullets: [
-      "Resolved card-related customer complaints and coordinated cases between the bank and Skorcard",
-      "Handled cases from first contact to resolution in the ticketing system, within SLA targets",
-      "Kept customers updated on case status and escalated to the bank or Skorcard when they had to act",
+      "Resolved card-related customer complaints and coordinated cases with the bank and Skorcard",
+      "Handled cases in the ticketing system from first contact to resolution, within SLA targets",
+      "Kept customers informed of case progress and escalated to the bank or Skorcard when action was needed on their side",
     ],
   },
   {
@@ -313,7 +313,7 @@ export const experience: ExperienceEntry[] = [
     logo: "/images/companies/duacincin.png",
     bullets: [
       "Co-launched DuaCincin, a wedding marketplace and invitation platform, plus a digital photobooth service",
-      "Co-run operations, marketing and client support next to a full-time job",
+      "Co-manage operations, marketing and client support alongside a full-time job",
     ],
   },
   {
@@ -324,9 +324,9 @@ export const experience: ExperienceEntry[] = [
     period: "Jan 2025 – Nov 2025",
     logo: "/images/companies/angkasa-pura.png",
     bullets: [
-      "Handled resident and guest inquiries, access requests and complaints through to resolution",
-      "Made announcements and safety reminders",
-      "Helped roll out a new building operations system",
+      "Handled resident and guest inquiries, access requests and complaints from start to resolution",
+      "Delivered public announcements and safety reminders",
+      "Helped roll out a new building management system",
     ],
     images: [
       { src: "/images/experience/angkasa-pura/reception.jpg", alt: "At the District 8 reception desk" },
@@ -341,12 +341,12 @@ export const experience: ExperienceEntry[] = [
     period: "Aug 2022 – Dec 2024",
     logo: "/images/companies/kai-wisata.png",
     bullets: [
-      "Ran pre-trip equipment and safety checks and onboard announcements, and coordinated with the driver on every trip",
-      "Coordinated content for the CSOT Instagram account and linked the creative team with KAI Commuter's Corporate Culture Team",
+      "Carried out pre-departure equipment and safety checks, made onboard announcements and coordinated with the train driver on every trip",
+      "Coordinated content for the CSOT Instagram account and served as the link between the creative team and KAI Commuter's Corporate Culture Team",
       "The account gained 5,041 followers in 2 years and reached 115,050 accounts in 90 days (data as of 5 Dec 2024)",
     ],
     milestone:
-      "Selected as onboard Service Officer for the President and the Minister of Transportation at the Manggarai Station inauguration, 27 Dec 2022.",
+      "Selected as the onboard service officer for the President and the Minister of Transportation at the inauguration of Manggarai Station on 27 Dec 2022.",
     images: [
       { src: "/images/experience/kawisata/presidential-service.jpg", alt: "Presidential service at the Manggarai inauguration" },
       { src: "/images/experience/kawisata/platform-group.jpg", alt: "CSOT officers on the platform" },
@@ -355,14 +355,14 @@ export const experience: ExperienceEntry[] = [
   },
   {
     id: "kci-announcer",
-    role: "Announcer on Station",
+    role: "Station Announcer",
     company: "PT Kereta Commuter Indonesia",
     place: "Jakarta",
     period: "Jun 2019 – Jul 2022",
     logo: "/images/companies/kai-commuter.png",
     bullets: [
-      "Announced arrivals, departures and schedule changes, and helped passengers directly, including lost and found cases",
-      "Operated the Tracking Announcer Application (ATA), which feeds the station information boards and the C-Access app",
+      "Announced arrivals, departures and schedule changes, and assisted passengers in person, including with lost and found cases",
+      "Operated the Tracking Announcer Application (ATA), which powers the station information displays and the C-Access app",
     ],
     images: [
       { src: "/images/experience/kci-announcer/lost-and-found.jpg", alt: "Helping a passenger with a lost and found case" },
@@ -376,7 +376,7 @@ export const experience: ExperienceEntry[] = [
     period: "Jan 2019 – May 2019",
     logo: "/images/companies/kai-commuter.png",
     bullets: [
-      "Routed customer reports to the responsible teams, monitored passenger flow across stations, and handled complaints on Twitter",
+      "Forwarded customer reports to the relevant teams, monitored passenger flow across stations and handled complaints on Twitter",
     ],
   },
 ];
@@ -387,31 +387,31 @@ export const earlierRoles = {
     {
       role: "Sales Assistant",
       company: "PT MAP Aktif Adiperkasa",
-      note: "Exceeded monthly sales targets and lifted customer satisfaction by 15%",
+      note: "Exceeded monthly sales targets and raised customer satisfaction by 15%",
     },
     {
       role: "Marketing Staff",
       company: "PT Orgaren Indonesia Jaya",
-      note: "Landed an international client and represented the company at a Ministry of Industry expo",
+      note: "Secured an international client and represented the company at a Ministry of Industry expo",
     },
     {
       role: "Administration",
       company: "Diva Karaoke",
-      note: "Bookkeeping and weekly payroll",
+      note: "Handled bookkeeping and weekly payroll",
     },
     {
-      role: "Sales Promotion intern",
+      role: "Sales Promotion Intern",
       company: "PT Ramayana Lestari Sentosa",
-      note: "Floor sales and event promotions",
+      note: "Sales floor support and event promotions",
     },
   ],
 };
 
 export const highlights = [
-  { value: "50%", label: "less manual case work after the CS Tools Portal" },
-  { value: "9 yrs", label: "customer-facing, in retail, transport, hospitality and fintech" },
+  { value: "50%", label: "less manual case work with the CS Tools Portal" },
+  { value: "9 yrs", label: "handling customer experience across retail, transport, hospitality and fintech" },
   { value: String(projects.length + 1), label: "tools and products built with AI-assisted development" },
-  { value: "2022", label: "onboard service officer for the President at Manggarai" },
+  { value: "2022", label: "onboard service officer for the President at Manggarai Station" },
 ];
 
 export const skillGroups = [
@@ -424,7 +424,7 @@ export const skillGroups = [
       "Ticketing systems",
       "SLA compliance",
       "Fintech customer support",
-      "Bank-to-issuer case coordination",
+      "Bank and card issuer coordination",
     ],
   },
   {
@@ -436,7 +436,7 @@ export const skillGroups = [
       "KPI dashboards",
       "Role-based access",
       "AI-assisted development",
-      "AI prompting",
+      "Prompt engineering",
     ],
   },
   {
@@ -469,7 +469,7 @@ export const education = {
   logo: "/images/education/smkn23-logo.png",
   degree: "Vocational High School, Marketing Management",
   period: "2015 – 2018",
-  note: "Vice President of the Student Council (2016–2017); replaced manual chairman elections with an online voting system.",
+  note: "Vice President of the Student Council (2016–2017). Replaced paper ballots for the student council election with an online voting system.",
 };
 
 export type Certification = { title: string; url?: string };
@@ -502,7 +502,7 @@ export const certifications: Certification[] = [
 ];
 
 export const languages = [
-  { name: "Bahasa Indonesia", level: "Professional working" },
+  { name: "Bahasa Indonesia", level: "Native" },
   { name: "English", level: "TOEIC certified" },
 ];
 
@@ -552,7 +552,7 @@ export const socialMediaWork = {
   handle: "@csot.kaicommuter",
   url: "https://www.instagram.com/csot.kaicommuter",
   description:
-    "I coordinated content for the official Customer Service On Train account and linked our creative team with KAI Commuter's Corporate Culture Team.",
+    "I coordinated content for the official Customer Service On Train account and served as the link between our creative team and KAI Commuter's Corporate Culture Team.",
   metrics: [
     { value: "5,041", label: "followers gained in 2 years" },
     { value: "115,050", label: "accounts reached in 90 days" },
@@ -563,7 +563,7 @@ export const socialMediaWork = {
 export const kmtCard = {
   title: "Multi-Trip Card (KMT) design competition",
   description:
-    "Entry for KAI Commuter's 15th anniversary. The mosaic pattern and #PilihanCerdas message pitch the Commuter Line as a clean, always-adapting choice for city life.",
+    "My entry for KAI Commuter's 15th anniversary. The mosaic pattern and the #PilihanCerdas message present the Commuter Line as a clean, ever-evolving choice for city life.",
   frontTexture: "/images/graphic-design/kmt-card-front-flat.jpg",
   backTexture: "/images/graphic-design/kmt-card-back.png",
 };
@@ -601,16 +601,16 @@ export const photographyWork: { image: string; caption: string }[] = [
   { image: "/images/photography/train-01.jpg", caption: "Commuter Line at the platform" },
   { image: "/images/photography/train-02.jpg", caption: "Commuter Line on the open line" },
   { image: "/images/photography/cabin-crew.jpg", caption: "In the driver's cabin, on duty" },
-  { image: "/images/photography/officers-lineup.jpg", caption: "CSOT officers lineup" },
+  { image: "/images/photography/officers-lineup.jpg", caption: "CSOT officers lined up" },
 ];
 
-export const photographyNote = "Shot on a Canon 1200D with tele and prime lenses.";
+export const photographyNote = "Shot on a Canon 1200D with telephoto and prime lenses.";
 
 export const shortMovie = {
   title: "Maaf",
   subtitle: "CSOT short film by Gilang & Aziz",
   description:
-    "A light-hearted short about an ordinary day as a Customer Service On Train officer.",
+    "A light-hearted short film about an ordinary day in the life of a Customer Service On Train officer.",
   poster: "/images/short-movie/maaf-poster.jpg",
   link: "https://www.instagram.com/tv/CrQiRetJAWB/?igsh=a2Mxc3lxdnh2YnVq",
   credits: [
@@ -628,13 +628,13 @@ export const gallery: GalleryItem[] = [
   { image: { src: "/images/experience/skor/birthday-celebration.jpg", w: 600, h: 800 }, caption: "Celebrating a teammate's birthday", org: "Skor Technologies" },
   { image: { src: "/images/gallery/photo-01.jpg", w: 1400, h: 1860 }, caption: "Serving Shin Tae-yong at District 8 Jakarta", org: "Angkasa Pura Supports" },
   { image: { src: "/images/gallery/photo-03.jpg", w: 1400, h: 933 }, caption: "Recording session with C-Choir", org: "KAI Commuter & KAI Wisata" },
-  { image: { src: "/images/gallery/photo-05.jpg", w: 1400, h: 2100 }, caption: "Train services duty", org: "KAI Commuter & KAI Wisata" },
-  { image: { src: "/images/gallery/photo-04.jpg", w: 1400, h: 933 }, caption: "At the microphone with a train crew member, C-Choir recording", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/gallery/photo-05.jpg", w: 1400, h: 2100 }, caption: "On duty for train services", org: "KAI Commuter & KAI Wisata" },
+  { image: { src: "/images/gallery/photo-04.jpg", w: 1400, h: 933 }, caption: "At the mic with a train crew member during the C-Choir recording", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/experience/kawisata/team-photo.jpg", w: 1600, h: 775 }, caption: "CSOT team photo", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/gallery/photo-02.jpg", w: 1400, h: 2489 }, caption: "Service desk at District 8 Jakarta", org: "Angkasa Pura Supports" },
   { image: { src: "/images/experience/kawisata/night-briefing.jpg", w: 1600, h: 776 }, caption: "Night briefing with station security", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/gallery/orgaren-trade-expo.jpg", w: 1400, h: 1051 }, caption: "Ministry of Industry trade expo", org: "PT Orgaren Indonesia Jaya" },
-  { image: { src: "/images/gallery/orgaren-indian-client.jpg", w: 1400, h: 1864 }, caption: "Meeting an Indian client to supply aren sugar", org: "PT Orgaren Indonesia Jaya" },
+  { image: { src: "/images/gallery/orgaren-indian-client.jpg", w: 1400, h: 1864 }, caption: "Meeting a client from India about a palm sugar supply deal", org: "PT Orgaren Indonesia Jaya" },
   { image: { src: "/images/experience/kawisata/depot-portrait.jpg", w: 1600, h: 755 }, caption: "Between trains at the depot", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/experience/kawisata/platform-group.jpg", w: 1280, h: 960 }, caption: "CSOT officers on the platform", org: "KAI Commuter & KAI Wisata" },
   { image: { src: "/images/experience/kawisata/presidential-service.jpg", w: 800, h: 800 }, caption: "Presidential service at the Manggarai inauguration", org: "KAI Commuter & KAI Wisata" },
@@ -662,7 +662,7 @@ export const services: Service[] = [
     title: "Customer experience",
     word: "SERVICE",
     description:
-      "Card cases between the bank, Skorcard and Skorlife, handled from first contact to resolution inside SLA. Nine years of it, from station platforms to fintech help desks.",
+      "Card-related cases involving the bank, Skorcard and Skorlife, handled from first contact to resolution within SLA. Nine years handling customer experience, from station platforms to fintech help desks.",
     chips: ["Ticketing", "SLA", "Complaint handling"],
     art: "ripple",
     tone: "navy",
@@ -672,7 +672,7 @@ export const services: Service[] = [
     title: "Internal tools",
     word: "TOOLS",
     description:
-      "Portals that put a support shift's queue, schedule, request forms and sheets on one screen. The CS Tools Portal halved manual case work within 6 months.",
+      "Portals that bring a support team's queue, schedule, request forms and sheets onto one screen. The CS Tools Portal halved manual case work in six months.",
     chips: ["AI-assisted development", "Workflow automation", "KPI dashboards"],
     art: "wave",
     tone: "steel",
@@ -682,8 +682,8 @@ export const services: Service[] = [
     title: "Chatbots and agent consoles",
     word: "CHAT",
     description:
-      "The AI answers first. When a customer needs a person, an agent takes over with the card, billing and credit details already beside the conversation.",
-    chips: ["AI prompting", "Agent takeover", "Role-based access"],
+      "The AI responds first. When a customer needs a human, an agent takes over with the card, billing and credit details already next to the conversation.",
+    chips: ["Prompt engineering", "Agent takeover", "Role-based access"],
     art: "orbit",
     tone: "green",
   },
@@ -692,7 +692,7 @@ export const services: Service[] = [
     title: "Products I run",
     word: "LAUNCH",
     description:
-      "Teman Kereta for KRL commuters, Patungan Yuk! for live-stream donations, DuaCincin for weddings. Each one started from a problem I saw up close.",
+      "Teman Kereta for KRL commuters, Patungan Yuk! for livestream donations and DuaCincin for weddings. Each one started with a problem I saw firsthand.",
     chips: ["Mobile apps", "Web platforms", "QRIS payments"],
     art: "phone",
     tone: "navy",
@@ -702,7 +702,7 @@ export const services: Service[] = [
     title: "Announcing and speaking",
     word: "VOICE",
     description:
-      "Three years on station microphones and onboard trains, including service for the President at the Manggarai Station inauguration in 2022.",
+      "Years behind the microphone at stations and on board trains, including serving the President at the inauguration of Manggarai Station in 2022.",
     chips: ["Public speaking", "Announcements", "Persuasive communication"],
     art: "bars",
     tone: "steel",
@@ -712,7 +712,7 @@ export const services: Service[] = [
     title: "Design and content",
     word: "CREATE",
     description:
-      "Content for the CSOT Instagram account (115,050 accounts reached in 90 days), team logos, a KMT card design entry and a short film.",
+      "Content for the CSOT Instagram account (115,050 accounts reached in 90 days), team logos, a KMT card design competition entry and a short film.",
     chips: ["Canva", "Photoshop", "CapCut"],
     art: "spiral",
     tone: "green",

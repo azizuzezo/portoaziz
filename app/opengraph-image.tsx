@@ -8,7 +8,19 @@ export const contentType = "image/png";
 export const alt = `${person.name} (${person.chineseName}), ${person.headline}`;
 
 // Same tokens as the light theme in app/globals.css.
-const C = { paper: "#ffffff", ink: "#111214", muted: "#5b616b", line: "#e4e6ea", accent: "#1f5fd6" };
+const C = {
+  paper: "#ffffff",
+  ink: "#111214",
+  muted: "#5b616b",
+  line: "#e4e6ea",
+  accent: "#1f5fd6",
+  navy: "#1f5fd6",
+  steel: "#3d6fd8",
+  green: "#12804a",
+};
+
+// The hero headline, so a shared link says the same thing as the page.
+const TAG = ["Nine years handling customer experience.", "Now I build tools that help support teams work faster."];
 
 /**
  * Loads a Google Font subset holding only `text`, as TTF (the format the OG renderer reads).
@@ -31,7 +43,7 @@ export default async function OpengraphImage() {
   const photo = await readFile(path.join(process.cwd(), "public/images/profile/aziz.png"));
   const photoSrc = `data:image/png;base64,${photo.toString("base64")}`;
 
-  const latin = `${person.name}${person.headline}${person.focus}portoaziz.my.id`;
+  const latin = `${person.name}${person.headline}${TAG.join("")}portoaziz.my.id`;
   const [poppins400, poppins600, notoSc] = await Promise.all([
     loadFont("Poppins", 400, latin),
     loadFont("Poppins", 600, latin),
@@ -45,7 +57,7 @@ export default async function OpengraphImage() {
 
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", background: C.paper, fontFamily: "Poppins" }}>
+      <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", background: C.paper, fontFamily: "Poppins" }}>
         <div
           style={{
             display: "flex",
@@ -79,9 +91,16 @@ export default async function OpengraphImage() {
             </div>
             <div style={{ display: "flex", width: 120, height: 8, borderRadius: 4, background: C.accent, marginTop: 32 }} />
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: C.ink }}>
-            <span>{person.focus}</span>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 22, lineHeight: 1.4, color: C.ink }}>
+            <span>{TAG[0]}</span>
+            <span style={{ color: C.accent }}>{TAG[1]}</span>
           </div>
+        </div>
+        {/* Route-map legend, as at the foot of every page. */}
+        <div style={{ display: "flex", position: "absolute", left: 0, bottom: 0, width: 720, height: 10 }}>
+          <div style={{ display: "flex", flex: 1, background: C.navy }} />
+          <div style={{ display: "flex", flex: 1, background: C.steel }} />
+          <div style={{ display: "flex", flex: 1, background: C.green }} />
         </div>
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img

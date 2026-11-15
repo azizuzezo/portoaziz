@@ -31,7 +31,7 @@ function Index() {
           </h2>
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-sm text-lg leading-relaxed text-muted">
-              From the first complaint to the tool that stops it coming back, these are the parts of service I own.
+              From the first complaint to the tool that keeps it from happening again, this is the work I take on.
             </p>
           </Reveal>
         </div>

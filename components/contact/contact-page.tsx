@@ -13,10 +13,10 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const BARS = [2, 1, 3, 1, 1, 4, 2, 1, 3, 2, 1, 1, 4, 1, 2, 3, 1, 2, 1, 4, 1, 3, 1, 2, 2, 1, 3, 1, 4, 2, 1, 1, 3, 2, 1, 4, 1, 2];
 // Why someone is writing. Each one becomes the start of the email subject.
 const PURPOSES = [
-  { id: "hire", label: "Hire me (full-time role)", subject: "Job opportunity" },
-  { id: "services", label: "Use my services", subject: "Project enquiry" },
-  { id: "question", label: "Ask a question", subject: "Question" },
-  { id: "collab", label: "Collaborate", subject: "Collaboration" },
+  { id: "hire", label: "A full-time role", subject: "Job opportunity" },
+  { id: "services", label: "A project", subject: "Project inquiry" },
+  { id: "question", label: "A question", subject: "Question" },
+  { id: "collab", label: "A collaboration", subject: "Collaboration" },
   { id: "other", label: "Something else", subject: "Hello" },
 ] as const;
 type PurposeId = (typeof PURPOSES)[number]["id"];
@@ -118,7 +118,7 @@ export function ContactPageBody() {
             transition={{ duration: 0.8, ease: EASE }}
             className="display text-[clamp(3rem,8vw,7rem)]"
           >
-            Write to me<span className="text-accent">.</span>
+            Get in touch<span className="text-accent">.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ export function ContactPageBody() {
             transition={{ duration: 0.8, ease: EASE, delay: 0.15 }}
             className="mt-6 max-w-xl text-xl leading-relaxed text-on-board/75"
           >
-            If your customers keep raising the same problem, I&apos;d like to help fix it at the source.
+            If your customers keep running into the same problem, I&apos;d love to help you fix it at the source.
           </motion.p>
 
           <motion.form
@@ -138,7 +138,7 @@ export function ContactPageBody() {
             className="mt-10 max-w-2xl space-y-6"
           >
             <fieldset>
-              <legend className="text-sm font-semibold">I&apos;m writing to</legend>
+              <legend className="text-sm font-semibold">I&apos;m writing about</legend>
               <div className="mt-3 flex flex-wrap gap-2">
                 {PURPOSES.map((x) => (
                   <label
@@ -188,13 +188,13 @@ export function ContactPageBody() {
               />
               {error && (
                 <p id="c-msg-error" className="mt-2 text-sm font-medium text-red-700 dark:text-red-400">
-                  Write a line or two first, so I know where to start.
+                  Please write a short message first.
                 </p>
               )}
             </div>
 
             <div>
-              <p className="text-sm font-semibold">Send it with</p>
+              <p className="text-sm font-semibold">Send with</p>
               <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {targets.map((t, k) => (
                   <a
@@ -214,8 +214,8 @@ export function ContactPageBody() {
               </div>
               <p role="status" aria-live="polite" className="mt-3 min-h-5 text-sm text-on-board/70">
                 {sent === "zoho" &&
-                  "Zoho Mail opened in a new tab. Your message is also on your clipboard, in case the body comes up empty."}
-                {sent && sent !== "zoho" && `A new email to ${person.email} should be open with your message filled in.`}
+                  "Zoho Mail has opened in a new tab. Your message was also copied to your clipboard in case the body is empty."}
+                {sent && sent !== "zoho" && `A new email to ${person.email} should now be open with your message filled in.`}
               </p>
             </div>
           </motion.form>
@@ -306,7 +306,7 @@ export function ContactPageBody() {
                 </button>
                 <span role="status" aria-live="polite" className="text-sm text-zinc-600">
                   {copy === "copied" && "Copied."}
-                  {copy === "failed" && "Couldn't copy, select it above."}
+                  {copy === "failed" && "Couldn't copy. Please select the address above."}
                 </span>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-3">

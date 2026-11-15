@@ -92,7 +92,7 @@ export function Footer() {
           aulianza.com
           <span className="sr-only"> (opens in a new tab)</span>
         </a>
-        , customized and built by Aziz with AI-assisted development.
+        , customized and built by Aziz using AI-assisted development.
       </p>
     </footer>
   );

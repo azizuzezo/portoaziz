@@ -17,7 +17,7 @@ export default function WorkPage() {
       <PageHeader
         label="Work"
         backdrop={<WorkBackdrop />}
-        title="Tools for a support team, and products I run"
+        title="Tools for support teams, and products I run"
         intro={
           <p>
             All built end to end with AI-assisted development. Screenshots were taken from the live products in

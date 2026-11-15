@@ -10,7 +10,7 @@ const WIDTH = 20;
 const LINES = [
   "CUSTOMER EXPERIENCE",
   "AI APPLICATION DEV",
-  `SERVING SINCE ${earlierRoles.period.slice(0, 4)}`,
+  `IN CX SINCE ${earlierRoles.period.slice(0, 4)}`,
   "BOGOR · INDONESIA",
 ];
 const pad = (s: string) => s.toUpperCase().padEnd(WIDTH, " ").slice(0, WIDTH);
